@@ -6,7 +6,7 @@ from pathlib import Path
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from backend.startup import validate_records_on_startup, setup_logging
+from backend.startup import validate_records_on_startup, setup_logging, initialize_embedding_provider
 
 
 # Setup logging
@@ -32,10 +32,18 @@ app.add_middleware(
 # Store validated records in app state
 @app.on_event("startup")
 async def startup_event():
-    """Validate records on startup."""
+    """Validate records and initialize services on startup."""
     logger.info("Starting up Support Knowledge Copilot...")
+    
+    # Validate and load records
     records = validate_records_on_startup()
     app.state.records = records
+    logger.info(f"Loaded {len(records)} resolved support records")
+    
+    # Initialize embedding provider
+    embedding_provider = initialize_embedding_provider()
+    app.state.embedding_provider = embedding_provider
+    
     logger.info("Startup complete")
 
 

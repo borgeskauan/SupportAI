@@ -10,6 +10,9 @@ from pathlib import Path
 
 from backend.core import validate_file, filter_resolved_only
 from backend.models import SupportRecord
+from backend.config import Settings
+from backend.providers import get_embedding_provider
+from backend.core import EmbeddingProvider
 
 
 logger = logging.getLogger(__name__)
@@ -95,3 +98,29 @@ def setup_logging(level=logging.INFO):
         level=level,
         format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     )
+
+
+def initialize_embedding_provider(settings: Settings = None) -> EmbeddingProvider:
+    """
+    Initialize the embedding provider for the application.
+
+    Args:
+        settings: Settings instance (uses Settings class if not provided)
+
+    Returns:
+        An instance implementing the EmbeddingProvider protocol
+
+    Raises:
+        ValueError: If configured provider is invalid
+    """
+    if settings is None:
+        settings = Settings
+    
+    # Validate provider configuration
+    settings.validate_provider()
+    
+    # Get and initialize the provider
+    provider = get_embedding_provider(settings=settings)
+    logger.info(f"Embedding provider initialized: {settings.EMBEDDING_PROVIDER}")
+    
+    return provider

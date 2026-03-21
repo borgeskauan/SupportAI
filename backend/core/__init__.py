@@ -8,6 +8,7 @@ from pydantic import ValidationError
 
 from backend.models import SupportRecord, SupportStatus
 from backend.core.embeddings import format_for_embedding, format_batch_for_embedding
+from backend.core.embeddings_protocol import EmbeddingProvider
 
 
 def validate_record(data: dict) -> tuple[bool, Optional[SupportRecord], Optional[str]]:
