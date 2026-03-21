@@ -5,6 +5,7 @@ import logging
 from backend.config import Settings, EmbeddingProviderType
 from backend.core.embeddings_protocol import EmbeddingProvider
 from backend.providers.mock_provider import MockEmbeddingProvider
+from backend.providers.gemini_provider import GeminiEmbeddingProvider
 
 
 logger = logging.getLogger(__name__)
@@ -25,7 +26,7 @@ def get_embedding_provider(
         An instance implementing the EmbeddingProvider protocol
 
     Raises:
-        ValueError: If provider_type is invalid
+        ValueError: If provider_type is invalid or required config is missing
     """
     if settings is None:
         settings = Settings
@@ -47,12 +48,14 @@ def get_embedding_provider(
     if provider_enum == EmbeddingProviderType.MOCK:
         return MockEmbeddingProvider(dimension=settings.EMBEDDING_DIMENSION)
     
-    # TODO: Add OpenAI provider in Task 2.2b
+    elif provider_enum == EmbeddingProviderType.GEMINI:
+        return GeminiEmbeddingProvider(
+            api_key=settings.GEMINI_API_KEY,
+            model=settings.GEMINI_MODEL,
+        )
+    
+    # TODO: Add OpenAI provider later
     # elif provider_enum == EmbeddingProviderType.OPENAI:
     #     return OpenAIEmbeddingProvider(...)
-    
-    # TODO: Add Gemini provider in Task 2.2c
-    # elif provider_enum == EmbeddingProviderType.GEMINI:
-    #     return GeminiEmbeddingProvider(...)
     
     raise NotImplementedError(f"Provider {provider_enum.value} not yet implemented")
