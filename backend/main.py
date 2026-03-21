@@ -6,7 +6,12 @@ from pathlib import Path
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from backend.startup import validate_records_on_startup, setup_logging, initialize_embedding_provider
+from backend.startup import (
+    validate_records_on_startup,
+    setup_logging,
+    initialize_embedding_provider,
+    generate_embeddings_and_cluster,
+)
 
 
 # Setup logging
@@ -32,7 +37,7 @@ app.add_middleware(
 # Store validated records in app state
 @app.on_event("startup")
 async def startup_event():
-    """Validate records and initialize services on startup."""
+    """Validate records, initialize services, and cluster on startup."""
     logger.info("Starting up Support Knowledge Copilot...")
     
     # Validate and load records
@@ -43,6 +48,16 @@ async def startup_event():
     # Initialize embedding provider
     embedding_provider = initialize_embedding_provider()
     app.state.embedding_provider = embedding_provider
+    
+    # Generate embeddings and cluster records
+    if records:
+        embeddings, clusters = generate_embeddings_and_cluster(records, embedding_provider)
+        app.state.record_embeddings = embeddings
+        app.state.issue_clusters = clusters
+        logger.info(f"Generated {len(embeddings)} embeddings and identified {len(clusters)} issue families")
+    else:
+        app.state.record_embeddings = {}
+        app.state.issue_clusters = []
     
     logger.info("Startup complete")
 

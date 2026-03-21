@@ -8,8 +8,10 @@ import logging
 import sys
 from pathlib import Path
 
-from backend.core import validate_file, filter_resolved_only
+from backend.core import validate_file, filter_resolved_only, format_batch_for_embedding
+from backend.core.clustering import cluster_similar_records
 from backend.models import SupportRecord
+from backend.models.cluster_group import ClusterGroup
 from backend.config import Settings
 from backend.providers import get_embedding_provider
 from backend.core import EmbeddingProvider
@@ -124,3 +126,66 @@ def initialize_embedding_provider(settings: Settings = None) -> EmbeddingProvide
     logger.info(f"Embedding provider initialized: {settings.EMBEDDING_PROVIDER}")
     
     return provider
+
+
+def generate_embeddings_and_cluster(
+    records: list[SupportRecord],
+    embedding_provider: EmbeddingProvider,
+    settings: Settings = None,
+) -> tuple[dict[str, list[float]], list[ClusterGroup]]:
+    """
+    Generate embeddings for records and cluster them by semantic similarity.
+
+    Args:
+        records: List of validated SupportRecord objects
+        embedding_provider: Provider instance for generating embeddings
+        settings: Settings instance (uses Settings class if not provided)
+
+    Returns:
+        Tuple of (embeddings_dict, clusters_list)
+        - embeddings_dict: Maps record_id -> embedding vector
+        - clusters_list: List of ClusterGroup objects
+
+    Raises:
+        ValueError: If records list is empty
+    """
+    if settings is None:
+        settings = Settings
+
+    if not records:
+        logger.warning("No records provided for embedding and clustering")
+        return {}, []
+
+    logger.info(f"Generating embeddings for {len(records)} records...")
+
+    # Format records for embedding
+    formatted_texts = format_batch_for_embedding(records)
+    logger.info(f"Formatted {len(formatted_texts)} records for embedding")
+
+    if not formatted_texts:
+        logger.warning("No records could be formatted for embedding")
+        return {}, []
+
+    # Generate embeddings
+    texts = [formatted_texts[rid] for rid in formatted_texts.keys()]
+    embedding_vectors = embedding_provider.embed_batch(texts)
+
+    # Build embeddings dict
+    embeddings = {rid: vec for rid, vec in zip(formatted_texts.keys(), embedding_vectors)}
+    logger.info(f"Generated {len(embeddings)} embeddings")
+
+    # Cluster records
+    logger.info(
+        f"Clustering records with threshold={settings.CLUSTERING_SIMILARITY_THRESHOLD}, "
+        f"min_size={settings.CLUSTERING_MIN_CLUSTER_SIZE}..."
+    )
+    clusters = cluster_similar_records(
+        records=records,
+        embeddings=embeddings,
+        min_cluster_size=settings.CLUSTERING_MIN_CLUSTER_SIZE,
+        similarity_threshold=settings.CLUSTERING_SIMILARITY_THRESHOLD,
+    )
+
+    logger.info(f"Clustering complete: {len(clusters)} issue families identified")
+
+    return embeddings, clusters
