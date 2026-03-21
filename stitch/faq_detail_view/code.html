@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Knowledge Base - FAQ Detail</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "inverse-on-surface": "#959cb5",
+              "surface-container-low": "#f2f3ff",
+              "primary-fixed": "#dee0ff",
+              "secondary-dim": "#465468",
+              "on-secondary": "#f8f8ff",
+              "tertiary-dim": "#764900",
+              "secondary-fixed-dim": "#c7d5ed",
+              "on-error-container": "#782232",
+              "outline": "#6079b7",
+              "primary-dim": "#3649ac",
+              "on-tertiary-fixed": "#2a1700",
+              "surface-container": "#eaedff",
+              "surface-tint": "#4355b9",
+              "outline-variant": "#98b1f2",
+              "surface": "#faf8ff",
+              "secondary": "#526074",
+              "on-secondary-fixed": "#324053",
+              "on-primary-fixed": "#203498",
+              "tertiary-container": "#f8a010",
+              "inverse-surface": "#060e20",
+              "on-primary-fixed-variant": "#4052b6",
+              "on-secondary-container": "#455367",
+              "on-tertiary": "#fff7f3",
+              "secondary-fixed": "#d5e3fc",
+              "surface-variant": "#d9e2ff",
+              "on-tertiary-container": "#4a2c00",
+              "background": "#faf8ff",
+              "on-secondary-fixed-variant": "#4e5c71",
+              "primary-container": "#dee0ff",
+              "error": "#9e3f4e",
+              "surface-dim": "#cdd9ff",
+              "surface-bright": "#faf8ff",
+              "on-primary": "#f9f6ff",
+              "inverse-primary": "#8596ff",
+              "tertiary": "#865400",
+              "secondary-container": "#d5e3fc",
+              "primary-fixed-dim": "#ccd2ff",
+              "error-dim": "#4f0116",
+              "on-error": "#fff7f7",
+              "tertiary-fixed": "#f8a010",
+              "on-primary-container": "#3648ac",
+              "surface-container-high": "#e2e7ff",
+              "tertiary-fixed-dim": "#e79400",
+              "on-background": "#113069",
+              "primary": "#4355b9",
+              "on-surface": "#113069",
+              "on-tertiary-fixed-variant": "#563400",
+              "surface-container-lowest": "#ffffff",
+              "error-container": "#ff8b9a",
+              "surface-container-highest": "#d9e2ff",
+              "on-surface-variant": "#445d99"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- SideNavBar -->
+<aside class="flex flex-col fixed left-0 top-0 h-full z-40 h-screen w-64 border-r-0 bg-indigo-50/50 dark:bg-slate-900/50 font-['Inter'] antialiased tracking-tight">
+<div class="p-6">
+<div class="flex items-center gap-3 mb-8">
+<div class="w-8 h-8 rounded bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-sm">edit_note</span>
+</div>
+<div>
+<h2 class="text-lg font-bold text-indigo-900 dark:text-indigo-100 tracking-tighter">Editorial Dash</h2>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-widest font-semibold">Knowledge MVP</p>
+</div>
+</div>
+<nav class="space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-indigo-700 dark:text-indigo-300 font-semibold border-r-2 border-indigo-600 bg-indigo-100/50" href="#">
+<span class="material-symbols-outlined">edit_note</span>
+<span>FAQ Drafts</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-500 dark:text-slate-400 hover:text-indigo-600 hover:bg-indigo-100/50 transition-colors" href="#">
+<span class="material-symbols-outlined">report_problem</span>
+<span>Issues</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-500 dark:text-slate-400 hover:text-indigo-600 hover:bg-indigo-100/50 transition-colors" href="#">
+<span class="material-symbols-outlined">archive</span>
+<span>Archive</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-500 dark:text-slate-400 hover:text-indigo-600 hover:bg-indigo-100/50 transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+</div>
+<div class="mt-auto p-6">
+<button class="w-full py-2.5 bg-primary text-on-primary rounded-lg font-medium shadow-lg shadow-primary/20 flex items-center justify-center gap-2 hover:opacity-90 transition-all scale-98 active:opacity-80">
+<span class="material-symbols-outlined text-sm">add</span>
+                New Article
+            </button>
+<div class="mt-6 flex items-center gap-3 px-2">
+<img alt="User Profile" class="w-8 h-8 rounded-full" data-alt="Professional user profile picture for administrative dashboard" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNs3Qd2N-tpAspS14QdnyePggbw21QBEJBTpMS4U-17ZLgdeIRlfXAssMTIwhO-TwDauUDWci-goQidowiMtJniryYYp0dQhmwAh3SZdO0QWh95uFwFynzcFCWyJFADHJdXHDDWmBY2gDL8jH5W-nzbBkne8k5cYM0GRLVdwAH7cdh5DjYyKoj6QLbPbV0L4xxtEkzH6Ly4VddJBaooYrZynS7IsHkaezDk_8ycbVD6lOHzzmbhZCNrkNfUNDjzFZvDwSmfPZEQA"/>
+<div class="overflow-hidden">
+<p class="text-xs font-semibold truncate">Editorial Lead</p>
+<p class="text-[10px] text-on-surface-variant truncate">admin@knowledge.base</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Shell -->
+<div class="pl-64">
+<!-- TopNavBar -->
+<header class="flex items-center justify-between w-full pl-8 pr-8 py-3 z-30 docked full-width top-0 sticky bg-white/80 backdrop-blur-xl border-b border-indigo-100/20 shadow-sm shadow-indigo-900/5 font-['Inter'] text-sm font-medium">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-lg">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-full py-2 pl-10 text-xs focus:ring-2 focus:ring-primary/20" placeholder="Search documentation..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 px-3 border-r border-outline-variant/20">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-all">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-all">help_outline</span>
+</div>
+<button class="bg-primary-container text-on-primary-container px-4 py-1.5 rounded-lg font-semibold hover:bg-primary-fixed transition-all scale-98 active:opacity-80">
+                    Export
+                </button>
+</div>
+</header>
+<!-- Page Canvas -->
+<main class="p-8 max-w-7xl mx-auto">
+<!-- Page Header (Editorial Anchor) -->
+<div class="mb-10">
+<div class="flex items-center gap-3 mb-4">
+<span class="text-[10px] font-bold tracking-[0.2em] uppercase text-on-surface-variant bg-surface-container px-2 py-0.5 rounded">Authentication</span>
+<span class="text-[10px] font-bold tracking-[0.2em] uppercase text-on-secondary-container bg-secondary-container px-2 py-0.5 rounded">Draft</span>
+<span class="text-[10px] font-bold tracking-[0.2em] uppercase text-on-tertiary-container bg-tertiary-container/20 px-2 py-0.5 rounded flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary-fixed"></span>
+                        Review Needed
+                    </span>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h1 class="text-4xl font-extrabold tracking-tighter text-on-surface mb-4 leading-tight">Password reset email not received</h1>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2">
+<span class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Confidence Score</span>
+<div class="flex items-center gap-2">
+<div class="w-24 h-1.5 bg-primary-container rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 92%"></div>
+</div>
+<span class="text-xs font-bold text-primary">92%</span>
+</div>
+</div>
+<div class="flex items-center gap-2 border-l border-outline-variant/30 pl-6">
+<span class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Case Count</span>
+<span class="text-xs font-bold text-on-surface">18 instances</span>
+</div>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="p-2 bg-surface-container-lowest border border-outline-variant/20 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">edit</span>
+</button>
+<button class="flex items-center gap-2 px-5 py-2.5 bg-primary text-on-primary rounded-lg font-bold shadow-lg shadow-primary/10 hover:opacity-90">
+                            Approve
+                        </button>
+<button class="flex items-center gap-2 px-5 py-2.5 bg-surface-container-lowest border border-error-container/40 text-error rounded-lg font-bold hover:bg-error-container/10">
+                            Reject
+                        </button>
+</div>
+</div>
+</div>
+<div class="flex gap-12">
+<!-- Main Content (70%) -->
+<div class="w-[70%] space-y-12">
+<section class="bg-surface-container-lowest p-10 rounded-xl shadow-sm shadow-indigo-900/5 border border-indigo-50/50">
+<div class="max-w-none prose prose-slate">
+<div class="mb-10">
+<h3 class="text-[11px] font-bold text-on-surface-variant uppercase tracking-[0.2em] mb-4">Problem Statement</h3>
+<p class="text-lg text-on-surface leading-relaxed font-medium">
+                                    Users are reporting that after initiating a password reset request via the login portal, the expected recovery email never arrives in their primary inbox, preventing account access.
+                                </p>
+</div>
+<div class="mb-10">
+<h3 class="text-[11px] font-bold text-on-surface-variant uppercase tracking-[0.2em] mb-4">Cause Explanation</h3>
+<p class="text-on-surface-variant leading-relaxed">
+                                    Our analysis indicates that 85% of these cases are due to aggressive SMTP filtering on legacy corporate domains (e.g., .edu or .org) which flag our automated sender address as bulk mail. Secondary causes include account-level blocklists or typos in the initial registration phase.
+                                </p>
+</div>
+<div class="mb-10">
+<h3 class="text-[11px] font-bold text-on-surface-variant uppercase tracking-[0.2em] mb-6">Step-by-step fix</h3>
+<div class="space-y-6">
+<div class="flex gap-4">
+<div class="flex-shrink-0 w-6 h-6 rounded-full bg-primary-container text-primary text-xs font-bold flex items-center justify-center">1</div>
+<p class="text-on-surface leading-snug">Check the <strong>Spam, Junk, or Promotions</strong> folders specifically. Many filters reroute automated emails without notifying the user.</p>
+</div>
+<div class="flex gap-4">
+<div class="flex-shrink-0 w-6 h-6 rounded-full bg-primary-container text-primary text-xs font-bold flex items-center justify-center">2</div>
+<p class="text-on-surface leading-snug">Whitelist <code>no-reply@system.knowledge.base</code> in your email provider's settings to ensure future delivery.</p>
+</div>
+<div class="flex gap-4">
+<div class="flex-shrink-0 w-6 h-6 rounded-full bg-primary-container text-primary text-xs font-bold flex items-center justify-center">3</div>
+<p class="text-on-surface leading-snug">Wait at least <strong>10 minutes</strong>. High server load on legacy domains can sometimes delay delivery beyond the usual 30-second window.</p>
+</div>
+<div class="flex gap-4">
+<div class="flex-shrink-0 w-6 h-6 rounded-full bg-primary-container text-primary text-xs font-bold flex items-center justify-center">4</div>
+<p class="text-on-surface leading-snug">Re-attempt the reset request only once. Multiple rapid requests may trigger a security lock on the account for 24 hours.</p>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-8 mt-12 pt-12 border-t border-outline-variant/10">
+<div>
+<h3 class="text-[11px] font-bold text-on-surface-variant uppercase tracking-[0.2em] mb-4">Edge Cases</h3>
+<ul class="list-disc list-inside text-sm text-on-surface-variant space-y-2">
+<li>SSO-enabled accounts (Google/GitHub)</li>
+<li>Bounced emails due to mailbox full</li>
+<li>Dormant accounts marked for deletion</li>
+</ul>
+</div>
+<div>
+<h3 class="text-[11px] font-bold text-on-surface-variant uppercase tracking-[0.2em] mb-4">When to contact support</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">
+                                        If the user has verified the email is not in spam and has waited 30 minutes, escalate to Tier 2 to check SMTP logs for specific bounce codes.
+                                    </p>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Sidebar (30%) -->
+<aside class="w-[30%] space-y-8">
+<div class="bg-surface-container-low p-6 rounded-xl border border-outline-variant/10">
+<h3 class="text-[11px] font-bold text-on-surface-variant uppercase tracking-[0.2em] mb-4">Metadata</h3>
+<div class="space-y-4">
+<div class="flex justify-between items-center py-2 border-b border-outline-variant/10">
+<span class="text-xs text-on-surface-variant">Last Generated</span>
+<span class="text-xs font-semibold">Oct 24, 14:02</span>
+</div>
+<div class="flex justify-between items-center py-2 border-b border-outline-variant/10">
+<span class="text-xs text-on-surface-variant">AI Model</span>
+<span class="text-xs font-semibold">GPT-4-Turbo</span>
+</div>
+<div class="flex justify-between items-center py-2 border-b border-outline-variant/10">
+<span class="text-xs text-on-surface-variant">Reviewer</span>
+<span class="text-xs font-semibold text-primary">Assignee Required</span>
+</div>
+<div class="flex justify-between items-center py-2">
+<span class="text-xs text-on-surface-variant">Tags</span>
+<div class="flex gap-1">
+<span class="px-1.5 py-0.5 bg-surface-container-high rounded text-[10px] font-bold">SECURITY</span>
+<span class="px-1.5 py-0.5 bg-surface-container-high rounded text-[10px] font-bold">LOGIN</span>
+</div>
+</div>
+</div>
+</div>
+<div>
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-[11px] font-bold text-on-surface-variant uppercase tracking-[0.2em]">Evidence Cards</h3>
+<span class="text-[10px] font-bold text-primary">VIEW ALL</span>
+</div>
+<div class="space-y-3">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest p-4 rounded-lg border border-outline-variant/10 hover:border-primary/30 transition-all cursor-pointer">
+<div class="flex justify-between items-start mb-2">
+<span class="text-[10px] font-bold text-on-secondary-fixed-variant bg-secondary-fixed px-1.5 py-0.5 rounded">EMAIL</span>
+<span class="text-[10px] font-medium text-on-surface-variant">ID: #4920</span>
+</div>
+<p class="text-xs text-on-surface font-medium leading-snug line-clamp-2 mb-2">"Trying to reset since morning, still nothing in inbox. Already checked junk."</p>
+<p class="text-[10px] text-on-surface-variant">2 hours ago</p>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest p-4 rounded-lg border border-outline-variant/10 hover:border-primary/30 transition-all cursor-pointer">
+<div class="flex justify-between items-start mb-2">
+<span class="text-[10px] font-bold text-on-secondary-fixed-variant bg-secondary-fixed px-1.5 py-0.5 rounded">CHAT</span>
+<span class="text-[10px] font-medium text-on-surface-variant">ID: #4811</span>
+</div>
+<p class="text-xs text-on-surface font-medium leading-snug line-clamp-2 mb-2">"User on EDU domain reports no delivery. SMTP logs show 'Deferred' status."</p>
+<p class="text-[10px] text-on-surface-variant">5 hours ago</p>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest p-4 rounded-lg border border-outline-variant/10 hover:border-primary/30 transition-all cursor-pointer">
+<div class="flex justify-between items-start mb-2">
+<span class="text-[10px] font-bold text-on-secondary-fixed-variant bg-secondary-fixed px-1.5 py-0.5 rounded">EMAIL</span>
+<span class="text-[10px] font-medium text-on-surface-variant">ID: #4702</span>
+</div>
+<p class="text-xs text-on-surface font-medium leading-snug line-clamp-2 mb-2">"Forgotten password flow doesn't trigger email for user at company-x.com."</p>
+<p class="text-[10px] text-on-surface-variant">1 day ago</p>
+</div>
+</div>
+</div>
+<div class="p-6 bg-gradient-to-br from-indigo-600 to-indigo-800 rounded-xl text-on-primary">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-lg">auto_awesome</span>
+<span class="text-[11px] font-bold uppercase tracking-widest">AI Insights</span>
+</div>
+<p class="text-xs leading-relaxed opacity-90">
+                            This draft has a high confidence score because it synthesizes data from 18 recurring tickets over the last 48 hours. Most solutions involve ISP filtering.
+                        </p>
+<button class="mt-4 w-full py-2 bg-white/10 hover:bg-white/20 rounded-lg text-xs font-bold transition-all border border-white/20">
+                            Regenerate with New Data
+                        </button>
+</div>
+</aside>
+</div>
+</main>
+</div>
+</body></html>

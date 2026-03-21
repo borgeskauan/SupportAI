@@ -1,0 +1,65 @@
+[
+  {
+    "id": "case_001",
+    "source_type": "ticket",
+    "created_at": "2026-03-01T10:15:00Z",
+    "status": "resolved",
+    "product_area": "checkout",
+    "customer_message": "I paid but never got the confirmation email.",
+    "case_summary": "Customer completed payment successfully but did not receive confirmation email.",
+    "resolution_text": "Agent confirmed payment succeeded, asked customer to check spam, then re-triggered email successfully.",
+    "tags": ["email", "receipt", "checkout"],
+    "severity": "medium",
+    "sentiment": "frustrated"
+  },
+  {
+    "id": "case_002",
+    "source_type": "chat_log",
+    "created_at": "2026-03-02T14:30:00Z",
+    "status": "resolved",
+    "product_area": "authentication",
+    "customer_message": "I can't log in to my account.",
+    "case_summary": "Customer unable to log in with correct credentials.",
+    "resolution_text": "Cleared browser cache and cookies, customer able to log in successfully.",
+    "tags": ["login", "authentication", "browser"],
+    "severity": "high",
+    "sentiment": "frustrated"
+  },
+  {
+    "id": "case_003",
+    "source_type": "escalation",
+    "created_at": "2026-03-03T09:45:00Z",
+    "status": "resolved",
+    "product_area": "billing",
+    "case_summary": "Customer charged twice for one transaction.",
+    "resolution_text": "Manager reviewed transaction history, identified duplicate charge, and issued full refund to customer account.",
+    "tags": ["billing", "refund", "duplicate"],
+    "severity": "high",
+    "sentiment": "frustrated"
+  },
+  {
+    "id": "case_004",
+    "source_type": "call_transcript",
+    "created_at": "2026-03-04T11:20:00Z",
+    "status": "resolved",
+    "product_area": "shipping",
+    "customer_message": "Where is my order?",
+    "case_summary": "Customer inquiring about delayed shipment status.",
+    "resolution_text": "Agent located package stuck in transit, contacted carrier for expedited delivery, customer received tracking update.",
+    "tags": ["shipping", "delivery", "tracking"],
+    "severity": "medium",
+    "sentiment": "neutral"
+  },
+  {
+    "id": "case_005",
+    "source_type": "refund_reason",
+    "created_at": "2026-03-05T13:15:00Z",
+    "status": "resolved",
+    "product_area": "checkout",
+    "case_summary": "Customer requested refund due to defective product received.",
+    "resolution_text": "Processed full refund, sent return shipping label, issue resolved.",
+    "tags": ["refund", "quality", "return"],
+    "severity": "medium",
+    "sentiment": "neutral"
+  }
+]

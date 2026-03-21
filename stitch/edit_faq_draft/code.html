@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Editorial Dash - FAQ Edit Mode</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "inverse-on-surface": "#959cb5",
+              "surface-container-low": "#f2f3ff",
+              "primary-fixed": "#dee0ff",
+              "secondary-dim": "#465468",
+              "on-secondary": "#f8f8ff",
+              "tertiary-dim": "#764900",
+              "secondary-fixed-dim": "#c7d5ed",
+              "on-error-container": "#782232",
+              "outline": "#6079b7",
+              "primary-dim": "#3649ac",
+              "on-tertiary-fixed": "#2a1700",
+              "surface-container": "#eaedff",
+              "surface-tint": "#4355b9",
+              "outline-variant": "#98b1f2",
+              "surface": "#faf8ff",
+              "secondary": "#526074",
+              "on-secondary-fixed": "#324053",
+              "on-primary-fixed": "#203498",
+              "tertiary-container": "#f8a010",
+              "inverse-surface": "#060e20",
+              "on-primary-fixed-variant": "#4052b6",
+              "on-secondary-container": "#455367",
+              "on-tertiary": "#fff7f3",
+              "secondary-fixed": "#d5e3fc",
+              "surface-variant": "#d9e2ff",
+              "on-tertiary-container": "#4a2c00",
+              "background": "#faf8ff",
+              "on-secondary-fixed-variant": "#4e5c71",
+              "primary-container": "#dee0ff",
+              "error": "#9e3f4e",
+              "surface-dim": "#cdd9ff",
+              "surface-bright": "#faf8ff",
+              "on-primary": "#f9f6ff",
+              "inverse-primary": "#8596ff",
+              "tertiary": "#865400",
+              "secondary-container": "#d5e3fc",
+              "primary-fixed-dim": "#ccd2ff",
+              "error-dim": "#4f0116",
+              "on-error": "#fff7f7",
+              "tertiary-fixed": "#f8a010",
+              "on-primary-container": "#3648ac",
+              "surface-container-high": "#e2e7ff",
+              "tertiary-fixed-dim": "#e79400",
+              "on-background": "#113069",
+              "primary": "#4355b9",
+              "on-surface": "#113069",
+              "on-tertiary-fixed-variant": "#563400",
+              "surface-container-lowest": "#ffffff",
+              "error-container": "#ff8b9a",
+              "surface-container-highest": "#d9e2ff",
+              "on-surface-variant": "#445d99"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .glass {
+            background: rgba(217, 226, 255, 0.8);
+            backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
+<!-- SideNavBar -->
+<aside class="flex flex-col fixed left-0 top-0 h-full z-40 h-screen w-64 border-r-0 bg-indigo-50/50 dark:bg-slate-900/50 font-['Inter'] antialiased tracking-tight">
+<div class="p-6 flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-sm" data-icon="edit_note">edit_note</span>
+</div>
+<div>
+<h1 class="text-lg font-bold text-indigo-900 dark:text-indigo-100 tracking-tighter">Editorial Dash</h1>
+<p class="text-[10px] uppercase tracking-widest text-on-surface-variant/70 font-bold">Knowledge MVP</p>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-indigo-700 dark:text-indigo-300 font-semibold border-r-2 border-indigo-600 hover:bg-indigo-100/50 dark:hover:bg-indigo-900/30 transition-colors scale-98 active:opacity-80 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="edit_note">edit_note</span>
+<span>FAQ Drafts</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 dark:text-slate-400 hover:text-indigo-600 hover:bg-indigo-100/50 dark:hover:bg-indigo-900/30 transition-colors scale-98 active:opacity-80 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="report_problem">report_problem</span>
+<span>Issues</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 dark:text-slate-400 hover:text-indigo-600 hover:bg-indigo-100/50 dark:hover:bg-indigo-900/30 transition-colors scale-98 active:opacity-80 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="archive">archive</span>
+<span>Archive</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 dark:text-slate-400 hover:text-indigo-600 hover:bg-indigo-100/50 dark:hover:bg-indigo-900/30 transition-colors scale-98 active:opacity-80 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+<div class="p-4 mt-auto">
+<button class="w-full flex items-center justify-center gap-2 bg-primary text-on-primary py-2.5 rounded-lg font-medium text-sm shadow-sm hover:bg-primary-dim transition-all">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+                New Article
+            </button>
+<div class="mt-6 flex items-center gap-3 px-2">
+<img alt="User Profile" class="w-8 h-8 rounded-full bg-surface-container" data-alt="User avatar for Editorial Dash admin profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvGQJLvyk30DSmb4ds9vQ2LkZHP92TFIlJJxAtDf9O7nKi-M1R0ZkZiJraX_Sojxs0ePb555Ea7zMesMJpabpY-UELZ0yV8arunQ6klfM5jnn6nIM_NHtHaaFsLdUDAR0lXPHssCM78DP4GGnsdLk1b-iHQp4NwOBpS1Q5FrYpfLdpwgEIHH0DOCosmRSexyb-zyP6xyg-Ys5smGPf6FfWEbB38ufnXyjB8IIapK7lp6kKs-YteJ8S2fAQJbeojYZ9njewUti2FQ"/>
+<div class="overflow-hidden">
+<p class="text-xs font-bold truncate">Admin User</p>
+<p class="text-[10px] text-on-surface-variant truncate">Editor-in-Chief</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- TopNavBar -->
+<header class="flex items-center justify-between w-full pl-72 pr-8 py-3 z-30 docked full-width top-0 sticky bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl border-b border-indigo-100/20 dark:border-indigo-900/20 shadow-sm shadow-indigo-900/5 font-['Inter'] text-sm font-medium">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-lg" data-icon="search">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-full pl-10 pr-4 py-1.5 text-xs focus:ring-2 focus:ring-primary/20 transition-all outline-none" placeholder="Search knowledge base..." type="text"/>
+</div>
+<div class="flex items-center gap-2">
+<span class="bg-tertiary-container/10 text-tertiary-fixed text-[10px] font-extrabold px-2 py-0.5 rounded tracking-tighter">EDITING MODE</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="px-4 py-1.5 text-on-surface-variant hover:text-primary transition-colors font-semibold">Cancel</button>
+<button class="px-5 py-1.5 bg-primary text-on-primary rounded-lg font-semibold shadow-sm hover:shadow-md transition-all">Save Changes</button>
+<div class="h-4 w-px bg-outline-variant/30 mx-2"></div>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full transition-all">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full transition-all">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+</div>
+</header>
+<!-- Main Content Layout -->
+<main class="ml-64 pt-6 px-8 pb-20 grid grid-cols-12 gap-8">
+<!-- Editor Canvas -->
+<div class="col-span-8 space-y-8">
+<!-- Header Section -->
+<section class="space-y-2">
+<label class="text-[10px] font-extrabold uppercase tracking-[0.2em] text-on-surface-variant/60">Article Title</label>
+<input class="w-full text-4xl font-semibold tracking-tight bg-transparent border-none p-0 focus:ring-0 text-on-surface placeholder:text-on-surface-variant/30" placeholder="Enter title..." type="text" value="Password reset email not received"/>
+</section>
+<!-- Editor Grid -->
+<div class="space-y-12">
+<!-- Problem -->
+<section class="group">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-6 h-6 rounded bg-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-sm text-on-secondary-container" data-icon="help_center">help_center</span>
+</div>
+<h3 class="text-sm font-bold uppercase tracking-widest text-on-surface-variant">The Problem</h3>
+</div>
+<textarea class="w-full min-h-[100px] bg-surface-container-lowest border border-outline-variant/20 rounded-xl p-6 text-on-surface-variant leading-relaxed focus:border-primary focus:ring-4 focus:ring-primary/5 transition-all outline-none resize-none" placeholder="Describe the user's issue...">Users are reporting that after initiating a password reset request from the login screen, they do not receive the automated email containing the recovery link within the expected 5-minute window.</textarea>
+</section>
+<!-- Cause -->
+<section class="group">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-6 h-6 rounded bg-tertiary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-sm text-tertiary-fixed" data-icon="biotech">biotech</span>
+</div>
+<h3 class="text-sm font-bold uppercase tracking-widest text-on-surface-variant">Root Cause</h3>
+</div>
+<textarea class="w-full min-h-[120px] bg-surface-container-lowest border border-outline-variant/20 rounded-xl p-6 text-on-surface-variant leading-relaxed focus:border-primary focus:ring-4 focus:ring-primary/5 transition-all outline-none resize-none" placeholder="What is causing this?">Investigation reveals that high-volume SMTP queuing on the legacy mail server (Relay-B) is causing significant latency. Furthermore, certain DMARC policies on Microsoft 365 domains are flagging the reset emails as 'low-reputation' due to missing DKIM signatures for the sub-domain.</textarea>
+</section>
+<!-- Fix -->
+<section class="group">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-6 h-6 rounded bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-sm text-primary" data-icon="build">build</span>
+</div>
+<h3 class="text-sm font-bold uppercase tracking-widest text-on-surface-variant">The Fix</h3>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant/20 rounded-xl overflow-hidden">
+<div class="flex items-center gap-1 p-2 border-b border-outline-variant/10 bg-surface-container-low/50">
+<button class="p-1.5 hover:bg-surface-container rounded transition-all"><span class="material-symbols-outlined text-lg" data-icon="format_bold">format_bold</span></button>
+<button class="p-1.5 hover:bg-surface-container rounded transition-all"><span class="material-symbols-outlined text-lg" data-icon="format_italic">format_italic</span></button>
+<button class="p-1.5 hover:bg-surface-container rounded transition-all"><span class="material-symbols-outlined text-lg" data-icon="format_list_bulleted">format_list_bulleted</span></button>
+<button class="p-1.5 hover:bg-surface-container rounded transition-all"><span class="material-symbols-outlined text-lg" data-icon="link">link</span></button>
+</div>
+<textarea class="w-full min-h-[200px] p-6 text-on-surface-variant leading-relaxed focus:ring-0 border-none transition-all outline-none resize-none" placeholder="Step-by-step resolution...">1. Instruct the user to check their 'Promotions' or 'Junk' folders specifically.
+2. Verify if the email address matches the one on the encrypted profile.
+3. If the user is on an enterprise domain (@company.com), ask their IT to whitelist `auth-notify@knowledgebase.app`.
+4. Manual override: Administrators can generate a 24-hour one-time recovery token via the internal Support Tool (Module: User Auth).</textarea>
+</div>
+</section>
+<!-- Edge Cases & Contact -->
+<div class="grid grid-cols-2 gap-6">
+<section>
+<h3 class="text-[10px] font-extrabold uppercase tracking-widest text-on-surface-variant/60 mb-3">Edge Cases</h3>
+<textarea class="w-full min-h-[100px] bg-surface-container-low border-none rounded-lg p-4 text-xs text-on-surface-variant leading-relaxed focus:ring-2 focus:ring-primary/20 outline-none resize-none">Expired tokens, locked accounts, and accounts authenticated via SSO (Google/Okta) which do not support password resets.</textarea>
+</section>
+<section>
+<h3 class="text-[10px] font-extrabold uppercase tracking-widest text-on-surface-variant/60 mb-3">Escalation Contact</h3>
+<input class="w-full bg-surface-container-low border-none rounded-lg p-4 text-xs text-on-surface-variant font-medium focus:ring-2 focus:ring-primary/20 outline-none" type="text" value="DevOps Team (Tier 3)"/>
+<p class="mt-2 text-[10px] text-on-surface-variant/50 px-1 italic">Average response time: 2 hours</p>
+</section>
+</div>
+</div>
+</div>
+<!-- Sidebar Metadata (Read-Only) -->
+<aside class="col-span-4 space-y-6">
+<div class="bg-surface-container-low/50 rounded-2xl p-6 space-y-6 border border-outline-variant/10">
+<h3 class="text-sm font-bold text-on-surface">Article Metadata</h3>
+<div class="space-y-4">
+<div class="flex justify-between items-center text-xs">
+<span class="text-on-surface-variant">Status</span>
+<span class="px-2 py-0.5 bg-tertiary-container/20 text-tertiary-dim rounded font-bold uppercase text-[9px]">Review Needed</span>
+</div>
+<div class="flex justify-between items-center text-xs">
+<span class="text-on-surface-variant">Assignee</span>
+<div class="flex items-center gap-2">
+<img alt="Assignee" class="w-5 h-5 rounded-full" data-alt="Avatar of Jordan Doe the technical reviewer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7V5lwsBDci_ttVzRwzYPpUBbOqFhQfmWT4cnEFqNXYG7tnzO7gI4ok9GovlE15ag6dwy-jM5in2hyU3j6vKXwxaxEzxCbKSjomBo8phphENw7xuQ8wKQ_T5K9eoU7OSh4660Rjx324n0VUj4qyVRpbqW0sjpj9DGoxxyr7qz_w3t_mZs4x61uX3fMOj-2vDf2zfv4Sy-ZwsDZLGF75JoeCBhE_ti49ANQS7SuLjXr8omG4uPit3uzEsenDjhiHfqAZRbW-CxgHQ"/>
+<span class="font-medium">Jordan Doe</span>
+</div>
+</div>
+<div class="flex justify-between items-center text-xs">
+<span class="text-on-surface-variant">Priority</span>
+<div class="flex items-center gap-1 text-error font-bold">
+<span class="material-symbols-outlined text-sm" data-icon="priority_high">priority_high</span>
+<span>High</span>
+</div>
+</div>
+<div class="flex justify-between items-center text-xs">
+<span class="text-on-surface-variant">Last Edited</span>
+<span class="font-medium">2 hours ago</span>
+</div>
+</div>
+<div class="pt-6 border-t border-outline-variant/10">
+<h4 class="text-[10px] font-extrabold uppercase tracking-widest text-on-surface-variant mb-4">Supporting Evidence</h4>
+<div class="space-y-3">
+<div class="group flex items-start gap-3 p-3 bg-surface-container-lowest rounded-xl border border-outline-variant/5 hover:border-primary/20 transition-all cursor-default">
+<div class="mt-1">
+<span class="material-symbols-outlined text-lg text-primary" data-icon="description">description</span>
+</div>
+<div class="overflow-hidden">
+<p class="text-[11px] font-bold truncate">Server_Log_2023_10_24.txt</p>
+<p class="text-[10px] text-on-surface-variant">Auth-Server Error Trace</p>
+</div>
+</div>
+<div class="group flex items-start gap-3 p-3 bg-surface-container-lowest rounded-xl border border-outline-variant/5 hover:border-primary/20 transition-all cursor-default">
+<div class="mt-1">
+<span class="material-symbols-outlined text-lg text-secondary" data-icon="image">image</span>
+</div>
+<div class="overflow-hidden">
+<p class="text-[11px] font-bold truncate">User_Screenshot_01.png</p>
+<p class="text-[10px] text-on-surface-variant">Spam Folder Example</p>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-4">
+<button class="w-full flex items-center justify-center gap-2 py-2 text-xs font-bold text-primary hover:bg-primary/5 rounded-lg transition-all">
+<span class="material-symbols-outlined text-sm" data-icon="attach_file">attach_file</span>
+                        Add Evidence
+                    </button>
+</div>
+</div>
+<!-- Activity Feed -->
+<div class="px-6">
+<h4 class="text-[10px] font-extrabold uppercase tracking-widest text-on-surface-variant mb-4">Revision History</h4>
+<div class="space-y-4 relative before:absolute before:left-[7px] before:top-2 before:bottom-2 before:w-px before:bg-outline-variant/20">
+<div class="relative pl-6">
+<div class="absolute left-0 top-1 w-3.5 h-3.5 rounded-full bg-primary ring-4 ring-surface"></div>
+<p class="text-[11px] font-bold">Reviewer requested changes</p>
+<p class="text-[10px] text-on-surface-variant">Today, 10:45 AM by Sarah K.</p>
+<p class="mt-1 text-[10px] text-on-surface-variant italic leading-snug">"Please clarify the whitelisting steps for Azure AD users."</p>
+</div>
+<div class="relative pl-6">
+<div class="absolute left-0 top-1 w-3.5 h-3.5 rounded-full bg-surface-container ring-4 ring-surface border border-outline-variant/30"></div>
+<p class="text-[11px] font-bold text-on-surface-variant/70">Draft Created</p>
+<p class="text-[10px] text-on-surface-variant/50">Oct 23, 4:12 PM by System</p>
+</div>
+</div>
+</div>
+</aside>
+</main>
+<!-- Floating Help Button -->
+<div class="fixed bottom-6 right-6">
+<button class="w-12 h-12 bg-white text-on-surface rounded-full shadow-lg border border-outline-variant/10 flex items-center justify-center hover:shadow-xl transition-all">
+<span class="material-symbols-outlined" data-icon="keyboard">keyboard</span>
+</button>
+</div>
+</body></html>
