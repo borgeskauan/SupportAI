@@ -1,4 +1,4 @@
-"""Validation utilities for support records."""
+"""Validation and embedding formatting utilities for support records."""
 
 import json
 from pathlib import Path
@@ -7,6 +7,7 @@ from typing import Optional
 from pydantic import ValidationError
 
 from backend.models import SupportRecord, SupportStatus
+from backend.core.embeddings import format_for_embedding, format_batch_for_embedding
 
 
 def validate_record(data: dict) -> tuple[bool, Optional[SupportRecord], Optional[str]]:

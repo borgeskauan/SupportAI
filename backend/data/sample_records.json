@@ -2,64 +2,984 @@
   {
     "id": "case_001",
     "source_type": "ticket",
-    "created_at": "2026-03-01T10:15:00Z",
+    "created_at": "2026-01-03T11:37:00Z",
     "status": "resolved",
     "product_area": "checkout",
-    "customer_message": "I paid but never got the confirmation email.",
-    "case_summary": "Customer completed payment successfully but did not receive confirmation email.",
-    "resolution_text": "Agent confirmed payment succeeded, asked customer to check spam, then re-triggered email successfully.",
-    "tags": ["email", "receipt", "checkout"],
+    "case_summary": "Customer completed checkout and the payment went through, but no confirmation email arrived.",
+    "resolution_text": "Agent verified the order and payment were successful, asked the customer to check spam and promotions folders, then re-sent the confirmation email successfully.",
+    "tags": [
+      "email",
+      "receipt",
+      "checkout"
+    ],
     "severity": "medium",
-    "sentiment": "frustrated"
+    "sentiment": "frustrated",
+    "customer_message": "I completed checkout and my card was charged, but I never got a confirmation email."
   },
   {
     "id": "case_002",
     "source_type": "chat_log",
-    "created_at": "2026-03-02T14:30:00Z",
+    "created_at": "2026-01-04T14:44:00Z",
     "status": "resolved",
-    "product_area": "authentication",
-    "customer_message": "I can't log in to my account.",
-    "case_summary": "Customer unable to log in with correct credentials.",
-    "resolution_text": "Cleared browser cache and cookies, customer able to log in successfully.",
-    "tags": ["login", "authentication", "browser"],
-    "severity": "high",
-    "sentiment": "frustrated"
+    "product_area": "notifications",
+    "case_summary": "Paid for the order successfully but never received the order confirmation message.",
+    "resolution_text": "Support confirmed the transaction was captured, verified the email address on file, and manually re-triggered the confirmation email after asking the customer to check spam.",
+    "tags": [
+      "confirmation",
+      "email",
+      "payment"
+    ],
+    "severity": "low",
+    "sentiment": "concerned",
+    "customer_message": "I paid for my order but the confirmation email still hasn't shown up."
   },
   {
     "id": "case_003",
     "source_type": "escalation",
-    "created_at": "2026-03-03T09:45:00Z",
+    "created_at": "2026-01-05T17:51:00Z",
     "status": "resolved",
-    "product_area": "billing",
-    "case_summary": "Customer charged twice for one transaction.",
-    "resolution_text": "Manager reviewed transaction history, identified duplicate charge, and issued full refund to customer account.",
-    "tags": ["billing", "refund", "duplicate"],
-    "severity": "high",
+    "product_area": "checkout",
+    "case_summary": "Customer reports a successful card charge with no receipt or confirmation email after purchase.",
+    "resolution_text": "Escalation reviewed payment logs, confirmed the order existed, and found a temporary notification delivery failure. The email was re-sent and delivered.",
+    "tags": [
+      "receipt",
+      "notification",
+      "payments"
+    ],
+    "severity": "medium",
     "sentiment": "frustrated"
   },
   {
     "id": "case_004",
     "source_type": "call_transcript",
-    "created_at": "2026-03-04T11:20:00Z",
+    "created_at": "2026-01-06T20:58:00Z",
     "status": "resolved",
-    "product_area": "shipping",
-    "customer_message": "Where is my order?",
-    "case_summary": "Customer inquiring about delayed shipment status.",
-    "resolution_text": "Agent located package stuck in transit, contacted carrier for expedited delivery, customer received tracking update.",
-    "tags": ["shipping", "delivery", "tracking"],
+    "product_area": "orders",
+    "case_summary": "Caller said payment completed but the confirmation email did not appear in the inbox.",
+    "resolution_text": "Agent confirmed order creation, recommended checking spam and waiting a few minutes, then re-triggered the message from the admin tool which resolved the issue.",
+    "tags": [
+      "email",
+      "order-confirmation"
+    ],
     "severity": "medium",
-    "sentiment": "neutral"
+    "sentiment": "upset"
   },
   {
     "id": "case_005",
     "source_type": "refund_reason",
-    "created_at": "2026-03-05T13:15:00Z",
+    "created_at": "2026-01-08T00:05:00Z",
     "status": "resolved",
     "product_area": "checkout",
-    "case_summary": "Customer requested refund due to defective product received.",
-    "resolution_text": "Processed full refund, sent return shipping label, issue resolved.",
-    "tags": ["refund", "quality", "return"],
+    "case_summary": "Customer requested help because payment succeeded and there was concern the missing confirmation email meant the order failed.",
+    "resolution_text": "Support confirmed the purchase was valid and explained the confirmation email had been delayed. The message was re-sent and no refund was needed.",
+    "tags": [
+      "refund-avoid",
+      "email",
+      "checkout"
+    ],
     "severity": "medium",
-    "sentiment": "neutral"
+    "sentiment": "anxious",
+    "customer_message": "I was charged but never received the confirmation email, so I'm not sure whether the order went through."
+  },
+  {
+    "id": "case_006",
+    "source_type": "ticket",
+    "created_at": "2026-01-09T03:12:00Z",
+    "status": "resolved",
+    "product_area": "notifications",
+    "case_summary": "Order was placed and charged correctly, but the customer did not receive the confirmation email or receipt.",
+    "resolution_text": "Support checked the notification queue, confirmed a backlog delay, and re-sent the receipt. Customer confirmed receipt after checking spam.",
+    "tags": [
+      "receipt",
+      "queue-delay",
+      "email"
+    ],
+    "severity": "medium",
+    "sentiment": "frustrated",
+    "customer_message": "My order was charged correctly, but I didn't receive the receipt or confirmation email."
+  },
+  {
+    "id": "case_007",
+    "source_type": "chat_log",
+    "created_at": "2026-01-10T06:19:00Z",
+    "status": "resolved",
+    "product_area": "billing",
+    "case_summary": "Customer worried payment may have failed because the inbox never received a confirmation after checkout.",
+    "resolution_text": "Agent verified the charge and order ID, explained that email delivery can lag, and reissued the confirmation email successfully.",
+    "tags": [
+      "billing",
+      "confirmation",
+      "delivery-delay"
+    ],
+    "severity": "low",
+    "sentiment": "worried",
+    "customer_message": "I finished checkout and there's still no confirmation in my inbox."
+  },
+  {
+    "id": "case_008",
+    "source_type": "escalation",
+    "created_at": "2026-01-10T09:26:00Z",
+    "status": "resolved",
+    "product_area": "notifications",
+    "case_summary": "Customer completed a purchase during a notification outage and never got the post-purchase confirmation email.",
+    "resolution_text": "Escalation matched the charge to a valid order, confirmed the outage window, and manually re-sent the email while advising the customer to whitelist the sender.",
+    "tags": [
+      "outage",
+      "email",
+      "purchase"
+    ],
+    "severity": "medium",
+    "sentiment": "frustrated"
+  },
+  {
+    "id": "case_009",
+    "source_type": "call_transcript",
+    "created_at": "2026-01-11T11:33:00Z",
+    "status": "resolved",
+    "product_area": "checkout",
+    "case_summary": "Caller received a bank charge but no checkout confirmation email, leading to uncertainty about the order status.",
+    "resolution_text": "Support validated the order in the backend, confirmed the email address, and sent a new confirmation email after ruling out payment failure.",
+    "tags": [
+      "checkout",
+      "email",
+      "bank-charge"
+    ],
+    "severity": "medium",
+    "sentiment": "stressed"
+  },
+  {
+    "id": "case_010",
+    "source_type": "ticket",
+    "created_at": "2026-01-12T14:40:00Z",
+    "status": "resolved",
+    "product_area": "auth",
+    "case_summary": "Customer cannot reset the password because the reset link expired before it was used.",
+    "resolution_text": "Agent generated a fresh reset link, advised the customer to use the newest email only, and confirmed the password reset completed successfully.",
+    "tags": [
+      "auth",
+      "password-reset",
+      "expired-link"
+    ],
+    "severity": "medium",
+    "sentiment": "frustrated",
+    "customer_message": "The reset link expires before I can use it, so I still can't get into my account."
+  },
+  {
+    "id": "case_011",
+    "source_type": "chat_log",
+    "created_at": "2026-01-13T17:47:00Z",
+    "status": "resolved",
+    "product_area": "auth",
+    "case_summary": "Password reset email never arrived, so the customer could not regain account access.",
+    "resolution_text": "Support confirmed the account email, asked the customer to check spam, and re-sent the password reset email. The second email arrived and the issue was resolved.",
+    "tags": [
+      "login",
+      "reset-email",
+      "auth"
+    ],
+    "severity": "medium",
+    "sentiment": "anxious",
+    "customer_message": "I'm not receiving the password reset email, so I can't log in."
+  },
+  {
+    "id": "case_012",
+    "source_type": "escalation",
+    "created_at": "2026-01-14T20:54:00Z",
+    "status": "resolved",
+    "product_area": "identity",
+    "case_summary": "User reports that every password reset link says invalid or expired immediately after opening it.",
+    "resolution_text": "Escalation found multiple reset requests invalidating earlier links. Customer was told to use only the latest message and a fresh link fixed the problem.",
+    "tags": [
+      "identity",
+      "reset-link",
+      "expired"
+    ],
+    "severity": "high",
+    "sentiment": "frustrated"
+  },
+  {
+    "id": "case_013",
+    "source_type": "call_transcript",
+    "created_at": "2026-01-16T00:01:00Z",
+    "status": "resolved",
+    "product_area": "auth",
+    "case_summary": "Caller could not sign in because the reset email had not shown up and prior links no longer worked.",
+    "resolution_text": "Agent checked deliverability, verified the account address, issued one final reset email, and instructed the customer to ignore older reset messages. Login access was restored.",
+    "tags": [
+      "call",
+      "auth",
+      "email-delivery"
+    ],
+    "severity": "medium",
+    "sentiment": "upset"
+  },
+  {
+    "id": "case_014",
+    "source_type": "refund_reason",
+    "created_at": "2026-01-17T03:08:00Z",
+    "status": "resolved",
+    "product_area": "auth",
+    "case_summary": "Customer asked for cancellation help after being locked out when password reset emails were missing.",
+    "resolution_text": "Support re-sent the reset email, confirmed inbox delivery after spam check, and the customer regained access so the cancellation request was withdrawn.",
+    "tags": [
+      "locked-out",
+      "reset",
+      "retention"
+    ],
+    "severity": "low",
+    "sentiment": "concerned",
+    "customer_message": "I need help because I'm locked out and the password reset emails never arrive."
+  },
+  {
+    "id": "case_015",
+    "source_type": "ticket",
+    "created_at": "2026-01-18T06:15:00Z",
+    "status": "resolved",
+    "product_area": "accounts",
+    "case_summary": "Reset email received late, and the link had already expired by the time the customer opened it.",
+    "resolution_text": "Agent explained reset links are single-use and time-limited, sent a new one, and confirmed the customer successfully changed the password.",
+    "tags": [
+      "accounts",
+      "password",
+      "single-use-link"
+    ],
+    "severity": "medium",
+    "sentiment": "frustrated",
+    "customer_message": "The reset email showed up too late and the link was already expired."
+  },
+  {
+    "id": "case_016",
+    "source_type": "chat_log",
+    "created_at": "2026-01-18T09:22:00Z",
+    "status": "resolved",
+    "product_area": "auth",
+    "case_summary": "Customer clicked a password reset link from an earlier email and kept seeing an invalid-token message.",
+    "resolution_text": "Support clarified that multiple reset requests deactivate older links, sent a fresh reset email, and the customer completed the flow using the newest link.",
+    "tags": [
+      "token",
+      "reset",
+      "authentication"
+    ],
+    "severity": "low",
+    "sentiment": "annoyed",
+    "customer_message": "Every reset link I open says it's invalid."
+  },
+  {
+    "id": "case_017",
+    "source_type": "escalation",
+    "created_at": "2026-01-19T12:29:00Z",
+    "status": "resolved",
+    "product_area": "security",
+    "case_summary": "Customer was stuck in the reset flow because reset emails were delayed and older links had expired.",
+    "resolution_text": "Escalation reviewed email logs, re-issued the reset email, and recommended waiting for the latest message only. The customer reset the password successfully.",
+    "tags": [
+      "security",
+      "email-delay",
+      "reset"
+    ],
+    "severity": "medium",
+    "sentiment": "frustrated"
+  },
+  {
+    "id": "case_018",
+    "source_type": "ticket",
+    "created_at": "2026-01-20T14:36:00Z",
+    "status": "resolved",
+    "product_area": "billing",
+    "case_summary": "Customer sees two card charges for a single checkout attempt and believes they were billed twice.",
+    "resolution_text": "Support verified only one completed order existed. The second charge was a temporary authorization hold that would drop automatically within a few business days.",
+    "tags": [
+      "billing",
+      "duplicate-charge",
+      "authorization"
+    ],
+    "severity": "high",
+    "sentiment": "angry",
+    "customer_message": "I only placed one order, but my card shows two charges."
+  },
+  {
+    "id": "case_019",
+    "source_type": "chat_log",
+    "created_at": "2026-01-21T17:43:00Z",
+    "status": "resolved",
+    "product_area": "payments",
+    "case_summary": "Two pending transactions appeared after one purchase, but the customer only intended to submit the order once.",
+    "resolution_text": "Agent confirmed a single successful payment capture and explained that the second pending line was a duplicate authorization hold, not an extra settled charge.",
+    "tags": [
+      "payments",
+      "pending",
+      "duplicate"
+    ],
+    "severity": "medium",
+    "sentiment": "worried",
+    "customer_message": "I checked out once and now I see two pending charges."
+  },
+  {
+    "id": "case_020",
+    "source_type": "escalation",
+    "created_at": "2026-01-22T20:50:00Z",
+    "status": "resolved",
+    "product_area": "checkout",
+    "case_summary": "Customer was charged twice after retrying checkout, but only one order record was created.",
+    "resolution_text": "Escalation found one settled payment and one voided authorization. Customer was informed the bank would release the duplicate hold automatically.",
+    "tags": [
+      "checkout",
+      "voided-auth",
+      "charge"
+    ],
+    "severity": "high",
+    "sentiment": "frustrated"
+  },
+  {
+    "id": "case_021",
+    "source_type": "call_transcript",
+    "created_at": "2026-01-23T23:57:00Z",
+    "status": "resolved",
+    "product_area": "billing",
+    "case_summary": "Caller reported two bank notifications for the same order and feared double billing.",
+    "resolution_text": "Agent reviewed payment status, confirmed one capture and one pending authorization, and advised the customer that the duplicate hold would disappear without further action.",
+    "tags": [
+      "bank-notification",
+      "double-charge"
+    ],
+    "severity": "medium",
+    "sentiment": "stressed"
+  },
+  {
+    "id": "case_022",
+    "source_type": "refund_reason",
+    "created_at": "2026-01-25T03:04:00Z",
+    "status": "resolved",
+    "product_area": "payments",
+    "case_summary": "Customer requested a refund because they thought the order was billed twice.",
+    "resolution_text": "Support confirmed only one completed charge and one temporary authorization. Customer withdrew the refund request after the explanation.",
+    "tags": [
+      "refund-avoid",
+      "authorization-hold",
+      "payments"
+    ],
+    "severity": "medium",
+    "sentiment": "upset",
+    "customer_message": "I think I was billed twice for the same order and want the extra charge refunded."
+  },
+  {
+    "id": "case_023",
+    "source_type": "ticket",
+    "created_at": "2026-01-26T06:11:00Z",
+    "status": "resolved",
+    "product_area": "orders",
+    "case_summary": "Customer clicked Pay twice after a slow checkout page and now sees two transactions.",
+    "resolution_text": "Support checked the gateway logs, verified a single order and a single settled payment, and explained the other entry was an authorization hold caused by the retry.",
+    "tags": [
+      "slow-checkout",
+      "retry",
+      "billing"
+    ],
+    "severity": "high",
+    "sentiment": "frustrated",
+    "customer_message": "The checkout page was slow, I clicked pay again, and now I have two transactions."
+  },
+  {
+    "id": "case_024",
+    "source_type": "chat_log",
+    "created_at": "2026-01-26T09:18:00Z",
+    "status": "resolved",
+    "product_area": "billing",
+    "case_summary": "Customer's statement shows a second pending charge from the same merchant right after purchase.",
+    "resolution_text": "Agent matched both payment IDs, confirmed one payment was reversed automatically, and explained bank statements can temporarily show both lines.",
+    "tags": [
+      "statement",
+      "pending-charge",
+      "merchant"
+    ],
+    "severity": "medium",
+    "sentiment": "worried",
+    "customer_message": "My statement is showing a second pending charge right after the purchase."
+  },
+  {
+    "id": "case_025",
+    "source_type": "escalation",
+    "created_at": "2026-01-27T12:25:00Z",
+    "status": "resolved",
+    "product_area": "payments",
+    "case_summary": "Customer insisted there were two completed charges for one order, requiring deeper payment review.",
+    "resolution_text": "Escalation traced the payment events and confirmed one capture plus one canceled authorization. Documentation from the gateway was provided to reassure the customer.",
+    "tags": [
+      "gateway",
+      "capture",
+      "authorization"
+    ],
+    "severity": "high",
+    "sentiment": "angry"
+  },
+  {
+    "id": "case_026",
+    "source_type": "call_transcript",
+    "created_at": "2026-01-28T14:32:00Z",
+    "status": "resolved",
+    "product_area": "checkout",
+    "case_summary": "Caller said checkout froze, so they retried and later noticed two identical card charges.",
+    "resolution_text": "Support confirmed there was no duplicate order and only one final settlement. The extra line item was identified as a temporary hold that would expire.",
+    "tags": [
+      "retry-payment",
+      "temporary-hold"
+    ],
+    "severity": "medium",
+    "sentiment": "frustrated"
+  },
+  {
+    "id": "case_027",
+    "source_type": "ticket",
+    "created_at": "2026-01-29T17:39:00Z",
+    "status": "resolved",
+    "product_area": "promotions",
+    "case_summary": "Customer says a valid promo code is rejected at checkout even though the offer is still active.",
+    "resolution_text": "Support confirmed the code was valid but limited to first-time purchases. The customer was given the correct eligibility details and applied a different eligible offer successfully.",
+    "tags": [
+      "promo",
+      "discount",
+      "eligibility"
+    ],
+    "severity": "medium",
+    "sentiment": "confused",
+    "customer_message": "My promo code is still active, but checkout keeps saying it's invalid."
+  },
+  {
+    "id": "case_028",
+    "source_type": "chat_log",
+    "created_at": "2026-01-30T20:46:00Z",
+    "status": "resolved",
+    "product_area": "checkout",
+    "case_summary": "Promo code from a campaign email returns invalid during checkout.",
+    "resolution_text": "Agent reviewed the campaign rules, found the code required a minimum cart value, and explained the requirement. Customer adjusted the cart and applied the code successfully.",
+    "tags": [
+      "checkout",
+      "promo-code",
+      "cart-threshold"
+    ],
+    "severity": "low",
+    "sentiment": "annoyed",
+    "customer_message": "The discount code from your campaign email won't work at checkout."
+  },
+  {
+    "id": "case_029",
+    "source_type": "escalation",
+    "created_at": "2026-01-31T23:53:00Z",
+    "status": "resolved",
+    "product_area": "promotions",
+    "case_summary": "Customer reports a marketing coupon should work but the checkout page keeps rejecting it.",
+    "resolution_text": "Escalation found the code was region-limited and not applicable to the customer's account locale. Support clarified the restriction and offered an alternative active promotion.",
+    "tags": [
+      "coupon",
+      "region",
+      "campaign"
+    ],
+    "severity": "medium",
+    "sentiment": "frustrated"
+  },
+  {
+    "id": "case_030",
+    "source_type": "call_transcript",
+    "created_at": "2026-02-02T03:00:00Z",
+    "status": "resolved",
+    "product_area": "subscriptions",
+    "case_summary": "Caller tried to redeem a discount code but the system said the code was invalid.",
+    "resolution_text": "Agent verified the code was active, then found it applied only to annual plans and not monthly subscriptions. Customer switched plan type and redeemed the discount.",
+    "tags": [
+      "subscription",
+      "discount",
+      "plan-rule"
+    ],
+    "severity": "low",
+    "sentiment": "confused"
+  },
+  {
+    "id": "case_031",
+    "source_type": "refund_reason",
+    "created_at": "2026-02-03T06:07:00Z",
+    "status": "resolved",
+    "product_area": "checkout",
+    "case_summary": "Customer requested a refund after paying full price because a promo code was rejected during purchase.",
+    "resolution_text": "Support reviewed the code rules, confirmed the customer used an ineligible code, and applied a post-purchase courtesy credit instead of a full refund.",
+    "tags": [
+      "refund",
+      "promo",
+      "ineligible"
+    ],
+    "severity": "medium",
+    "sentiment": "disappointed",
+    "customer_message": "My promo code was rejected, so I ended up paying full price and want help."
+  },
+  {
+    "id": "case_032",
+    "source_type": "ticket",
+    "created_at": "2026-02-03T09:14:00Z",
+    "status": "resolved",
+    "product_area": "promotions",
+    "case_summary": "Discount code looked active but failed during checkout on an account that had used a similar offer before.",
+    "resolution_text": "Support confirmed the campaign was one-time-use per account. Customer was informed of the usage limit and the checkout completed without further errors.",
+    "tags": [
+      "discount",
+      "one-time-use",
+      "account-limit"
+    ],
+    "severity": "low",
+    "sentiment": "frustrated",
+    "customer_message": "The code looks valid, but it fails when I try to apply it during checkout."
+  },
+  {
+    "id": "case_033",
+    "source_type": "chat_log",
+    "created_at": "2026-02-04T12:21:00Z",
+    "status": "resolved",
+    "product_area": "payments",
+    "case_summary": "Customer entered a promo code copied from social media and got an expired or invalid error.",
+    "resolution_text": "Agent validated the code and found the public post referenced an expired campaign. A currently active code was shared and the customer completed checkout.",
+    "tags": [
+      "social-campaign",
+      "expired-code"
+    ],
+    "severity": "low",
+    "sentiment": "neutral",
+    "customer_message": "I copied the promo code and it says expired or invalid."
+  },
+  {
+    "id": "case_034",
+    "source_type": "escalation",
+    "created_at": "2026-02-05T15:28:00Z",
+    "status": "resolved",
+    "product_area": "checkout",
+    "case_summary": "Promo code kept failing even though the customer believed all campaign conditions were met.",
+    "resolution_text": "Escalation found the offer excluded gift-card items in the basket. After the excluded item was removed, the code applied normally.",
+    "tags": [
+      "basket-rules",
+      "gift-card",
+      "discount"
+    ],
+    "severity": "medium",
+    "sentiment": "frustrated"
+  },
+  {
+    "id": "case_035",
+    "source_type": "ticket",
+    "created_at": "2026-02-06T17:35:00Z",
+    "status": "resolved",
+    "product_area": "auth",
+    "case_summary": "Customer enters MFA code successfully but is sent back to the login page instead of getting into the account.",
+    "resolution_text": "Support identified a stale browser session cookie, asked the customer to clear cookies and sign in again, which resolved the MFA login loop.",
+    "tags": [
+      "mfa",
+      "login-loop",
+      "cookies"
+    ],
+    "severity": "high",
+    "sentiment": "frustrated",
+    "customer_message": "I enter the MFA code successfully, but the app sends me back to the login page."
+  },
+  {
+    "id": "case_036",
+    "source_type": "chat_log",
+    "created_at": "2026-02-07T20:42:00Z",
+    "status": "resolved",
+    "product_area": "mobile_app",
+    "case_summary": "After completing two-factor verification in the mobile app, the customer returns to the sign-in screen repeatedly.",
+    "resolution_text": "Agent had the customer update the app and clear local session data. After signing in again, the MFA loop stopped.",
+    "tags": [
+      "app",
+      "2fa",
+      "session"
+    ],
+    "severity": "medium",
+    "sentiment": "annoyed",
+    "customer_message": "After two-factor verification, it keeps taking me back to sign-in."
+  },
+  {
+    "id": "case_037",
+    "source_type": "escalation",
+    "created_at": "2026-02-08T23:49:00Z",
+    "status": "resolved",
+    "product_area": "security",
+    "case_summary": "User passes multi-factor authentication but never reaches the dashboard because the session refresh fails.",
+    "resolution_text": "Escalation traced the issue to an outdated app build with a token refresh bug. Updating the client resolved the post-MFA redirect loop.",
+    "tags": [
+      "security",
+      "token-refresh",
+      "mobile"
+    ],
+    "severity": "high",
+    "sentiment": "frustrated"
+  },
+  {
+    "id": "case_038",
+    "source_type": "call_transcript",
+    "created_at": "2026-02-10T02:56:00Z",
+    "status": "resolved",
+    "product_area": "accounts",
+    "case_summary": "Caller can enter the verification code but is immediately asked to log in again.",
+    "resolution_text": "Agent walked the customer through clearing cached browser data and disabling an old bookmarked login path. The next login worked normally.",
+    "tags": [
+      "browser-cache",
+      "auth",
+      "redirect"
+    ],
+    "severity": "medium",
+    "sentiment": "upset"
+  },
+  {
+    "id": "case_039",
+    "source_type": "refund_reason",
+    "created_at": "2026-02-11T06:03:00Z",
+    "status": "resolved",
+    "product_area": "auth",
+    "case_summary": "Customer asked to cancel because they were stuck in a login loop even after passing MFA.",
+    "resolution_text": "Support found corrupted session data, had the customer sign out everywhere and retry on the latest app version, and access was restored.",
+    "tags": [
+      "retention",
+      "login-loop",
+      "session-reset"
+    ],
+    "severity": "medium",
+    "sentiment": "frustrated",
+    "customer_message": "I can't get into my account because it loops back to login after MFA."
+  },
+  {
+    "id": "case_040",
+    "source_type": "ticket",
+    "created_at": "2026-02-11T09:10:00Z",
+    "status": "resolved",
+    "product_area": "mobile_app",
+    "case_summary": "The app accepts the one-time passcode but instantly returns to the authentication screen.",
+    "resolution_text": "Support confirmed the account was healthy and resolved the issue by having the customer force-close the app, clear local storage, and re-authenticate.",
+    "tags": [
+      "otp",
+      "mobile",
+      "local-storage"
+    ],
+    "severity": "medium",
+    "sentiment": "frustrated",
+    "customer_message": "The one-time passcode is accepted, then I'm returned to the authentication screen."
+  },
+  {
+    "id": "case_041",
+    "source_type": "chat_log",
+    "created_at": "2026-02-12T12:17:00Z",
+    "status": "resolved",
+    "product_area": "auth",
+    "case_summary": "Customer completes verification but the website keeps bouncing back to sign-in.",
+    "resolution_text": "Agent identified blocked third-party cookies in the browser, recommended enabling required cookies for the session, and the user logged in successfully.",
+    "tags": [
+      "browser",
+      "cookies",
+      "2fa"
+    ],
+    "severity": "low",
+    "sentiment": "confused",
+    "customer_message": "Verification works, but the site keeps bouncing me back to the login page."
+  },
+  {
+    "id": "case_042",
+    "source_type": "escalation",
+    "created_at": "2026-02-13T15:24:00Z",
+    "status": "resolved",
+    "product_area": "accounts",
+    "case_summary": "Repeated MFA success still led to a login loop across multiple attempts.",
+    "resolution_text": "Escalation confirmed the customer was using an outdated deep-link path from an old email. Access worked after navigating to the current login page and starting a fresh session.",
+    "tags": [
+      "deep-link",
+      "stale-session",
+      "mfa"
+    ],
+    "severity": "medium",
+    "sentiment": "frustrated"
+  },
+  {
+    "id": "case_043",
+    "source_type": "ticket",
+    "created_at": "2026-02-14T17:31:00Z",
+    "status": "resolved",
+    "product_area": "refunds",
+    "case_summary": "Customer received notice that the refund was processed but the bank balance has not updated yet.",
+    "resolution_text": "Support confirmed the refund had been issued and explained that banks can take several business days to post the credit to the original payment method.",
+    "tags": [
+      "refund",
+      "bank-delay",
+      "card"
+    ],
+    "severity": "medium",
+    "sentiment": "worried",
+    "customer_message": "I got a message saying my refund was processed, but the money isn't back in my account yet."
+  },
+  {
+    "id": "case_044",
+    "source_type": "chat_log",
+    "created_at": "2026-02-15T20:38:00Z",
+    "status": "resolved",
+    "product_area": "billing",
+    "case_summary": "Refund email says completed, but the card statement still does not show the returned amount.",
+    "resolution_text": "Agent verified the refund transaction ID and explained that card issuers often display the credit after additional processing time.",
+    "tags": [
+      "refund-status",
+      "statement-delay"
+    ],
+    "severity": "low",
+    "sentiment": "concerned",
+    "customer_message": "The refund email says completed, but I still don't see anything on my card statement."
+  },
+  {
+    "id": "case_045",
+    "source_type": "escalation",
+    "created_at": "2026-02-16T23:45:00Z",
+    "status": "resolved",
+    "product_area": "payments",
+    "case_summary": "Customer insists the refund was never sent because the bank account still looks unchanged.",
+    "resolution_text": "Escalation confirmed the refund settled from the merchant side and provided the refund reference while explaining bank posting delays.",
+    "tags": [
+      "payments",
+      "refund-reference",
+      "bank"
+    ],
+    "severity": "medium",
+    "sentiment": "frustrated"
+  },
+  {
+    "id": "case_046",
+    "source_type": "call_transcript",
+    "created_at": "2026-02-18T02:52:00Z",
+    "status": "resolved",
+    "product_area": "refunds",
+    "case_summary": "Caller says support promised a refund, but nothing has appeared on the debit card yet.",
+    "resolution_text": "Agent confirmed the refund date, noted that debit-card refunds can take multiple business days, and advised the customer when to follow up if still missing.",
+    "tags": [
+      "debit-card",
+      "refund-timing"
+    ],
+    "severity": "medium",
+    "sentiment": "worried"
+  },
+  {
+    "id": "case_047",
+    "source_type": "refund_reason",
+    "created_at": "2026-02-19T05:59:00Z",
+    "status": "resolved",
+    "product_area": "refunds",
+    "case_summary": "Customer submitted a second refund request because the first processed refund was not visible in banking yet.",
+    "resolution_text": "Support confirmed the original refund was already completed and explained expected bank posting windows, so no duplicate refund was issued.",
+    "tags": [
+      "duplicate-refund-request",
+      "bank-window"
+    ],
+    "severity": "low",
+    "sentiment": "anxious",
+    "customer_message": "My refund shows as processed on your side, but my bank still hasn't posted it."
+  },
+  {
+    "id": "case_048",
+    "source_type": "ticket",
+    "created_at": "2026-02-19T09:06:00Z",
+    "status": "resolved",
+    "product_area": "subscriptions",
+    "case_summary": "Subscription cancellation refund shows as processed in the account but not on the customer's card.",
+    "resolution_text": "Support verified the refund status and explained that issuer processing time can vary by bank, usually several business days.",
+    "tags": [
+      "subscription",
+      "refund",
+      "issuer-delay"
+    ],
+    "severity": "medium",
+    "sentiment": "frustrated",
+    "customer_message": "My account says the refund was processed, but nothing has appeared on my card."
+  },
+  {
+    "id": "case_049",
+    "source_type": "chat_log",
+    "created_at": "2026-02-20T12:13:00Z",
+    "status": "resolved",
+    "product_area": "orders",
+    "case_summary": "Customer wants to know why the refund appears as done on our side but pending nowhere on the bank side.",
+    "resolution_text": "Agent shared the refund timestamp and explained that some banks do not show a pending credit before final posting.",
+    "tags": [
+      "bank-pending",
+      "refund-credit"
+    ],
+    "severity": "low",
+    "sentiment": "confused",
+    "customer_message": "Why does the refund show as done in the app when my bank doesn't show it at all?"
+  },
+  {
+    "id": "case_050",
+    "source_type": "escalation",
+    "created_at": "2026-02-21T15:20:00Z",
+    "status": "resolved",
+    "product_area": "billing",
+    "case_summary": "Customer expected same-day refund visibility after cancellation but the account still showed no credit.",
+    "resolution_text": "Escalation confirmed the refund left the merchant processor and asked the customer to allow the standard bank settlement period before escalating further.",
+    "tags": [
+      "cancellation",
+      "settlement",
+      "refund"
+    ],
+    "severity": "medium",
+    "sentiment": "annoyed"
+  },
+  {
+    "id": "case_051",
+    "source_type": "call_transcript",
+    "created_at": "2026-02-22T18:27:00Z",
+    "status": "resolved",
+    "product_area": "payments",
+    "case_summary": "Caller says the app shows refunded, but the original payment method has not been credited yet.",
+    "resolution_text": "Support confirmed the refund completed internally and advised waiting through the bank's posting timeframe, then contacting support with the reference number if needed.",
+    "tags": [
+      "payment-method",
+      "credit-delay"
+    ],
+    "severity": "medium",
+    "sentiment": "concerned"
+  },
+  {
+    "id": "case_052",
+    "source_type": "ticket",
+    "created_at": "2026-02-23T20:34:00Z",
+    "status": "resolved",
+    "product_area": "subscriptions",
+    "case_summary": "Customer says the subscription was canceled but a renewal charge still appeared this billing cycle.",
+    "resolution_text": "Support found the cancellation was scheduled for period end, so the renewal processed before access ended. The timing was explained and a courtesy refund was issued where policy allowed.",
+    "tags": [
+      "subscription",
+      "renewal",
+      "cancellation"
+    ],
+    "severity": "high",
+    "sentiment": "angry",
+    "customer_message": "I canceled my subscription, but I was still charged for renewal."
+  },
+  {
+    "id": "case_053",
+    "source_type": "chat_log",
+    "created_at": "2026-02-24T23:41:00Z",
+    "status": "resolved",
+    "product_area": "billing",
+    "case_summary": "Customer believed they had canceled already, but a new subscription charge was posted.",
+    "resolution_text": "Agent checked the account and saw auto-renew remained active because cancellation was not completed in the final confirmation step. Support canceled the plan and handled the billing outcome according to policy.",
+    "tags": [
+      "auto-renew",
+      "confirmation-step",
+      "billing"
+    ],
+    "severity": "high",
+    "sentiment": "frustrated",
+    "customer_message": "I thought I had already canceled, so why did another subscription charge go through?"
+  },
+  {
+    "id": "case_054",
+    "source_type": "escalation",
+    "created_at": "2026-02-26T02:48:00Z",
+    "status": "resolved",
+    "product_area": "subscriptions",
+    "case_summary": "Customer disputes a renewal fee after attempting to cancel from the mobile app.",
+    "resolution_text": "Escalation found the in-app cancellation did not finish due to store-side interruption. Customer was guided through the correct cancellation path and the disputed renewal was resolved.",
+    "tags": [
+      "app-store",
+      "renewal-fee",
+      "cancel-flow"
+    ],
+    "severity": "high",
+    "sentiment": "angry"
+  },
+  {
+    "id": "case_055",
+    "source_type": "call_transcript",
+    "created_at": "2026-02-27T05:55:00Z",
+    "status": "resolved",
+    "product_area": "accounts",
+    "case_summary": "Caller says the subscription showed canceled in their mind, but they were billed again this month.",
+    "resolution_text": "Agent reviewed the timeline and confirmed the subscription stayed active until the end of the paid term. The customer misunderstood the delayed cancellation model, which was clarified.",
+    "tags": [
+      "billing-cycle",
+      "subscription-end"
+    ],
+    "severity": "medium",
+    "sentiment": "upset"
+  },
+  {
+    "id": "case_056",
+    "source_type": "refund_reason",
+    "created_at": "2026-02-27T09:02:00Z",
+    "status": "resolved",
+    "product_area": "subscriptions",
+    "case_summary": "Customer requested a refund after being charged following what they thought was a completed cancellation.",
+    "resolution_text": "Support verified the cancellation attempt was incomplete, canceled the subscription immediately, and issued a refund under the exception policy.",
+    "tags": [
+      "refund",
+      "cancel-attempt",
+      "renewal"
+    ],
+    "severity": "high",
+    "sentiment": "frustrated",
+    "customer_message": "I believed my subscription was canceled, but I was charged again and want a refund."
+  },
+  {
+    "id": "case_057",
+    "source_type": "ticket",
+    "created_at": "2026-02-28T12:09:00Z",
+    "status": "resolved",
+    "product_area": "billing",
+    "case_summary": "Customer turned off the service and expected no further charges, but renewal still happened.",
+    "resolution_text": "Support explained that disabling usage does not cancel billing. The subscription itself was still active, so the customer was shown the correct cancellation workflow.",
+    "tags": [
+      "service-disabled",
+      "billing-active"
+    ],
+    "severity": "medium",
+    "sentiment": "confused",
+    "customer_message": "I turned the service off and expected no more charges, but renewal still happened."
+  },
+  {
+    "id": "case_058",
+    "source_type": "chat_log",
+    "created_at": "2026-03-01T15:16:00Z",
+    "status": "resolved",
+    "product_area": "subscriptions",
+    "case_summary": "Customer canceled on the last day and was still charged overnight.",
+    "resolution_text": "Agent explained that the renewal had already queued before cancellation completed. Support applied the appropriate policy outcome and confirmed the plan was no longer renewing.",
+    "tags": [
+      "queued-renewal",
+      "timing"
+    ],
+    "severity": "medium",
+    "sentiment": "annoyed",
+    "customer_message": "I canceled on the last day and still got charged overnight."
+  },
+  {
+    "id": "case_059",
+    "source_type": "escalation",
+    "created_at": "2026-03-02T18:23:00Z",
+    "status": "resolved",
+    "product_area": "payments",
+    "case_summary": "Customer says they removed the card but still got charged for renewal.",
+    "resolution_text": "Escalation confirmed that removing a payment method does not cancel the subscription contract. The account was canceled properly and the charge dispute was resolved.",
+    "tags": [
+      "payment-method",
+      "renewal",
+      "contract"
+    ],
+    "severity": "high",
+    "sentiment": "angry"
+  },
+  {
+    "id": "case_060",
+    "source_type": "call_transcript",
+    "created_at": "2026-03-03T20:30:00Z",
+    "status": "resolved",
+    "product_area": "subscriptions",
+    "case_summary": "Caller thought uninstalling the app canceled the subscription, but another monthly charge appeared.",
+    "resolution_text": "Agent clarified that uninstalling does not end billing, verified the active plan, and walked the customer through cancellation. Billing remediation followed policy.",
+    "tags": [
+      "uninstall",
+      "active-plan",
+      "monthly"
+    ],
+    "severity": "medium",
+    "sentiment": "frustrated"
   }
 ]
