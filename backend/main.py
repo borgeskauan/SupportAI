@@ -12,6 +12,7 @@ from backend.startup import (
     initialize_embedding_provider,
     generate_embeddings_and_cluster,
 )
+from backend.core.similarity import compute_similarity_matrix
 
 
 # Setup logging
@@ -84,6 +85,46 @@ async def list_records():
         "total": len(app.state.records),
         "records": [record.model_dump(mode="json") for record in app.state.records],
     }
+
+
+@app.get("/similarity-matrix")
+async def get_similarity_matrix():
+    """
+    Get pairwise cosine similarity matrix for all record embeddings.
+
+    Returns:
+        JSON with record_ids (axis labels) and N×N similarity matrix
+    """
+    if not app.state.record_embeddings:
+        return {
+            "record_ids": [],
+            "similarity_matrix": [],
+            "metadata": {
+                "dimension": 0,
+                "records_counted": 0,
+                "method": "cosine",
+            },
+        }
+
+    try:
+        record_ids, similarity_matrix = compute_similarity_matrix(app.state.record_embeddings)
+        
+        return {
+            "record_ids": record_ids,
+            "similarity_matrix": similarity_matrix.tolist(),
+            "metadata": {
+                "dimension": app.state.record_embeddings[record_ids[0]].__len__() if record_ids else 0,
+                "records_counted": len(record_ids),
+                "method": "cosine",
+            },
+        }
+    except Exception as e:
+        logger.error(f"Error computing similarity matrix: {e}")
+        return {
+            "error": str(e),
+            "record_ids": [],
+            "similarity_matrix": [],
+        }
 
 
 if __name__ == "__main__":

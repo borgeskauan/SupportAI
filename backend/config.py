@@ -37,7 +37,7 @@ class Settings:
     
     # Clustering configuration
     CLUSTERING_MIN_CLUSTER_SIZE = int(os.getenv("CLUSTERING_MIN_CLUSTER_SIZE", "3"))
-    CLUSTERING_SIMILARITY_THRESHOLD = float(os.getenv("CLUSTERING_SIMILARITY_THRESHOLD", "0.70"))
+    CLUSTERING_SIMILARITY_THRESHOLD = float(os.getenv("CLUSTERING_SIMILARITY_THRESHOLD", "0.90"))
     
     # Data directory
     DATA_DIR = os.getenv("DATA_DIR", "backend/data")
