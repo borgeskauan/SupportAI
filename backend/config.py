@@ -21,12 +21,24 @@ class EmbeddingProviderType(str, Enum):
     GEMINI = "gemini"
 
 
+class LLMProviderType(str, Enum):
+    """Supported LLM providers."""
+
+    MOCK = "mock"
+    GEMINI = "gemini"
+    OPENAI = "openai"
+
+
 class Settings:
     """Application settings, loaded from environment variables."""
 
     # Embedding configuration
     EMBEDDING_PROVIDER = os.getenv("EMBEDDING_PROVIDER", EmbeddingProviderType.MOCK.value)
     EMBEDDING_DIMENSION = int(os.getenv("EMBEDDING_DIMENSION", "768"))
+    
+    # LLM configuration
+    LLM_PROVIDER = os.getenv("LLM_PROVIDER", LLMProviderType.MOCK.value)
+    LLM_API_KEY = os.getenv("LLM_API_KEY")
     
     # OpenAI API configuration (for future use)
     OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")

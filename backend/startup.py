@@ -10,11 +10,13 @@ from pathlib import Path
 
 from backend.core import validate_file, filter_resolved_only, format_batch_for_embedding
 from backend.core.clustering import cluster_similar_records
+from backend.core.labeling import generate_cluster_labels
 from backend.models import SupportRecord
 from backend.models.cluster_group import ClusterGroup
 from backend.config import Settings
-from backend.providers import get_embedding_provider
+from backend.providers import get_embedding_provider, get_llm_provider
 from backend.core import EmbeddingProvider
+from backend.core.llm_protocol import LLM
 
 
 logger = logging.getLogger(__name__)
@@ -128,6 +130,29 @@ def initialize_embedding_provider(settings: Settings = None) -> EmbeddingProvide
     return provider
 
 
+def initialize_llm_provider(settings: Settings = None) -> LLM:
+    """
+    Initialize the LLM provider for label generation.
+
+    Args:
+        settings: Settings instance (uses Settings class if not provided)
+
+    Returns:
+        An instance implementing the LLM protocol
+
+    Raises:
+        ValueError: If configured provider is invalid
+    """
+    if settings is None:
+        settings = Settings
+    
+    # Get and initialize the provider
+    provider = get_llm_provider(settings=settings)
+    logger.info(f"LLM provider initialized: {settings.LLM_PROVIDER}")
+    
+    return provider
+
+
 def generate_embeddings_and_cluster(
     records: list[SupportRecord],
     embedding_provider: EmbeddingProvider,
@@ -189,3 +214,43 @@ def generate_embeddings_and_cluster(
     logger.info(f"Clustering complete: {len(clusters)} issue families identified")
 
     return embeddings, clusters
+
+
+def generate_labels_for_clusters(
+    clusters: list[ClusterGroup],
+    records: list[SupportRecord],
+    llm_provider: LLM,
+) -> list[ClusterGroup]:
+    """
+    Generate human-readable labels for clusters using an LLM provider.
+
+    Args:
+        clusters: List of ClusterGroup objects
+        records: List of SupportRecord objects (will be converted to dict)
+        llm_provider: LLM provider instance
+
+    Returns:
+        List of ClusterGroup objects with labels populated
+
+    Raises:
+        ValueError: If clusters or records are empty
+    """
+    if not clusters:
+        logger.warning("No clusters provided for label generation")
+        return []
+
+    if not records:
+        logger.warning("No records provided for label generation")
+        return []
+
+    # Convert records list to dict for label generation
+    records_dict = {record.id: record for record in records}
+
+    logger.info(f"Generating labels for {len(clusters)} clusters...")
+
+    # Call label generation
+    labeled_clusters = generate_cluster_labels(clusters, records_dict, llm_provider)
+
+    logger.info(f"Label generation complete: {len(labeled_clusters)} clusters labeled")
+
+    return labeled_clusters

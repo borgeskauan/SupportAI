@@ -43,6 +43,11 @@ class ClusterGroup(BaseModel):
         description="Number of records in this cluster",
         ge=0,
     )
+    label: Optional[str] = Field(
+        default=None,
+        description="Human-readable label for this issue family",
+        examples=["Payment Email Confirmation Issues"],
+    )
 
     class Config:
         """Pydantic model configuration."""
@@ -54,6 +59,7 @@ class ClusterGroup(BaseModel):
                 "similarity_threshold": 0.70,
                 "confidence_score": 0.85,
                 "size": 3,
+                "label": "Payment Email Confirmation Issues",
             }
         }
 

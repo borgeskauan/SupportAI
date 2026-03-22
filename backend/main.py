@@ -10,7 +10,9 @@ from backend.startup import (
     validate_records_on_startup,
     setup_logging,
     initialize_embedding_provider,
+    initialize_llm_provider,
     generate_embeddings_and_cluster,
+    generate_labels_for_clusters,
 )
 from backend.core.similarity import compute_similarity_matrix
 
@@ -50,12 +52,20 @@ async def startup_event():
     embedding_provider = initialize_embedding_provider()
     app.state.embedding_provider = embedding_provider
     
+    # Initialize LLM provider
+    llm_provider = initialize_llm_provider()
+    app.state.llm_provider = llm_provider
+    
     # Generate embeddings and cluster records
     if records:
         embeddings, clusters = generate_embeddings_and_cluster(records, embedding_provider)
         app.state.record_embeddings = embeddings
-        app.state.issue_clusters = clusters
-        logger.info(f"Generated {len(embeddings)} embeddings and identified {len(clusters)} issue families")
+        
+        # Generate labels for clusters
+        labeled_clusters = generate_labels_for_clusters(clusters, records, llm_provider)
+        app.state.issue_clusters = labeled_clusters
+        
+        logger.info(f"Generated {len(embeddings)} embeddings and identified {len(labeled_clusters)} issue families")
     else:
         app.state.record_embeddings = {}
         app.state.issue_clusters = []
