@@ -97,6 +97,17 @@ async def list_records():
     }
 
 
+@app.get("/clusters")
+async def list_clusters():
+    """List all issue clusters with generated labels."""
+    clusters = getattr(app.state, "issue_clusters", [])
+
+    return {
+        "total": len(clusters),
+        "clusters": [cluster.model_dump(mode="json") for cluster in clusters],
+    }
+
+
 @app.get("/similarity-matrix")
 async def get_similarity_matrix():
     """
