@@ -39,6 +39,7 @@ class Settings:
     # LLM configuration
     LLM_PROVIDER = os.getenv("LLM_PROVIDER", LLMProviderType.MOCK.value)
     LLM_API_KEY = os.getenv("LLM_API_KEY")
+    LLM_MODEL = os.getenv("LLM_MODEL", "gemini-2.0-flash")
     
     # OpenAI API configuration (for future use)
     OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")

@@ -8,6 +8,7 @@ from backend.core.llm_protocol import LLM
 from backend.providers.mock_provider import MockEmbeddingProvider
 from backend.providers.gemini_provider import GeminiEmbeddingProvider
 from backend.providers.mock_llm import MockLLM
+from backend.providers.gemini_llm import GeminiLLM
 
 
 logger = logging.getLogger(__name__)
@@ -100,9 +101,13 @@ def get_llm_provider(
     if provider_enum == LLMProviderType.MOCK:
         return MockLLM()
     
-    # TODO: Add Gemini LLM provider
-    # elif provider_enum == LLMProviderType.GEMINI:
-    #     return GeminiLLMProvider(api_key=settings.LLM_API_KEY)
+    elif provider_enum == LLMProviderType.GEMINI:
+        if not settings.GEMINI_API_KEY:
+            raise ValueError("GEMINI_API_KEY required for Gemini LLM provider")
+        return GeminiLLM(
+            api_key=settings.GEMINI_API_KEY,
+            model=settings.LLM_MODEL,
+        )
     
     # TODO: Add OpenAI LLM provider
     # elif provider_enum == LLMProviderType.OPENAI:
