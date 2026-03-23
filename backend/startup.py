@@ -11,7 +11,7 @@ from pathlib import Path
 from backend.core import validate_file, filter_resolved_only, format_batch_for_embedding
 from backend.core.clustering import cluster_similar_records
 from backend.core.labeling import generate_cluster_labels
-from backend.models import SupportRecord
+from backend.models import SupportRecord, IssueFamily
 from backend.models.cluster_group import ClusterGroup
 from backend.config import Settings
 from backend.providers import get_embedding_provider, get_llm_provider
@@ -254,3 +254,60 @@ def generate_labels_for_clusters(
     logger.info(f"Label generation complete: {len(labeled_clusters)} clusters labeled")
 
     return labeled_clusters
+
+
+def build_issue_families(
+    clusters: list[ClusterGroup],
+    records: list[SupportRecord],
+) -> list[IssueFamily]:
+    """
+    Build standardized issue-family output from labeled clusters.
+
+    Args:
+        clusters: List of labeled ClusterGroup objects
+        records: Full list of SupportRecord objects
+
+    Returns:
+        List of IssueFamily objects
+    """
+    if not clusters:
+        return []
+
+    if not records:
+        return []
+
+    records_by_id = {record.id: record for record in records}
+    issue_families: list[IssueFamily] = []
+
+    for cluster in clusters:
+        family_records: list[SupportRecord] = []
+        product_areas_set: set[str] = set()
+        tags_set: set[str] = set()
+
+        for record_id in cluster.record_ids:
+            record = records_by_id.get(record_id)
+            if not record:
+                continue
+
+            family_records.append(record)
+
+            if record.product_area:
+                product_areas_set.add(record.product_area)
+
+            if record.tags:
+                for tag in record.tags:
+                    if tag:
+                        tags_set.add(tag)
+
+        issue_families.append(
+            IssueFamily(
+                issue_family_label=cluster.label or f"Issue Family {cluster.cluster_id}",
+                supporting_case_ids=cluster.record_ids,
+                confidence_score=cluster.confidence_score,
+                product_areas=sorted(product_areas_set),
+                tags=sorted(tags_set),
+                records=family_records,
+            )
+        )
+
+    return issue_families

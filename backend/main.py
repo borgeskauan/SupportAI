@@ -13,6 +13,7 @@ from backend.startup import (
     initialize_llm_provider,
     generate_embeddings_and_cluster,
     generate_labels_for_clusters,
+    build_issue_families,
 )
 from backend.core.similarity import compute_similarity_matrix
 
@@ -64,11 +65,13 @@ async def startup_event():
         # Generate labels for clusters
         labeled_clusters = generate_labels_for_clusters(clusters, records, llm_provider)
         app.state.issue_clusters = labeled_clusters
+        app.state.issue_families = build_issue_families(labeled_clusters, records)
         
         logger.info(f"Generated {len(embeddings)} embeddings and identified {len(labeled_clusters)} issue families")
     else:
         app.state.record_embeddings = {}
         app.state.issue_clusters = []
+        app.state.issue_families = []
     
     logger.info("Startup complete")
 
@@ -99,12 +102,12 @@ async def list_records():
 
 @app.get("/clusters")
 async def list_clusters():
-    """List all issue clusters with generated labels."""
-    clusters = getattr(app.state, "issue_clusters", [])
+    """List standardized issue families with full supporting records."""
+    issue_families = getattr(app.state, "issue_families", [])
 
     return {
-        "total": len(clusters),
-        "clusters": [cluster.model_dump(mode="json") for cluster in clusters],
+        "total": len(issue_families),
+        "clusters": [family.model_dump(mode="json") for family in issue_families],
     }
 
 
