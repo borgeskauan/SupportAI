@@ -1,10 +1,10 @@
 """Main FastAPI application."""
 
 import logging
-from pathlib import Path
 
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel, Field
 
 from backend.startup import (
     validate_records_on_startup,
@@ -15,6 +15,7 @@ from backend.startup import (
     generate_labels_for_clusters,
     build_issue_families,
 )
+from backend.core.faq_generation import FAQGenerationService
 from backend.core.similarity import compute_similarity_matrix
 
 
@@ -38,6 +39,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
+class GenerateFAQRequest(BaseModel):
+    """Payload for generating one FAQ draft from one issue family."""
+
+    issue_family_index: int = Field(..., ge=0, description="Zero-based index from /clusters")
+
 # Store validated records in app state
 @app.on_event("startup")
 async def startup_event():
@@ -56,6 +63,7 @@ async def startup_event():
     # Initialize LLM provider
     llm_provider = initialize_llm_provider()
     app.state.llm_provider = llm_provider
+    app.state.faq_drafts = {}
     
     # Generate embeddings and cluster records
     if records:
@@ -72,6 +80,7 @@ async def startup_event():
         app.state.record_embeddings = {}
         app.state.issue_clusters = []
         app.state.issue_families = []
+        app.state.faq_drafts = {}
     
     logger.info("Startup complete")
 
@@ -149,6 +158,45 @@ async def get_similarity_matrix():
             "record_ids": [],
             "similarity_matrix": [],
         }
+
+
+@app.post("/faqs/generate")
+async def generate_faq(request: GenerateFAQRequest):
+    """Generate one FAQ draft from one issue family by index."""
+    issue_families = getattr(app.state, "issue_families", [])
+    llm_provider = getattr(app.state, "llm_provider", None)
+
+    if llm_provider is None:
+        raise HTTPException(status_code=500, detail="LLM provider not initialized")
+
+    if request.issue_family_index >= len(issue_families):
+        raise HTTPException(status_code=404, detail="Issue family index out of range")
+
+    target_family = issue_families[request.issue_family_index]
+    service = FAQGenerationService(llm_provider)
+
+    try:
+        draft = service.generate_faq_draft(target_family)
+    except ValueError as exc:
+        raise HTTPException(status_code=422, detail=str(exc)) from exc
+    except Exception as exc:
+        logger.error(f"Unexpected FAQ generation error: {exc}")
+        raise HTTPException(status_code=500, detail="FAQ generation failed") from exc
+
+    app.state.faq_drafts[draft.faq_id] = draft
+
+    return draft.model_dump(mode="json")
+
+
+@app.get("/faqs")
+async def list_faqs():
+    """List generated FAQ drafts currently stored in memory."""
+    faq_drafts = getattr(app.state, "faq_drafts", {})
+
+    return {
+        "total": len(faq_drafts),
+        "faqs": [draft.model_dump(mode="json") for draft in faq_drafts.values()],
+    }
 
 
 if __name__ == "__main__":

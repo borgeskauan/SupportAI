@@ -1,6 +1,7 @@
 """Mock LLM implementation using keyword extraction."""
 
 import logging
+import json
 import re
 from collections import Counter
 from typing import Optional
@@ -48,6 +49,9 @@ class MockLLM:
             Synthetic 4-8 word label
         """
         try:
+            if self._is_faq_generation_prompt(prompt):
+                return self._generate_mock_faq_json(prompt)
+
             # Extract numbered cluster summaries from prompt
             summaries = self._extract_summaries(prompt)
 
@@ -69,6 +73,35 @@ class MockLLM:
         except Exception as e:
             logger.error(f"Error in MockLLM.generate: {e}")
             return "Support Issues"
+
+    def _is_faq_generation_prompt(self, prompt: str) -> bool:
+        """Detect whether the prompt requests full FAQ JSON generation."""
+        prompt_lower = prompt.lower()
+        return "customer support content writer" in prompt_lower and "return only valid json" in prompt_lower
+
+    def _generate_mock_faq_json(self, prompt: str) -> str:
+        """Generate deterministic JSON FAQ content for local development."""
+        summaries = self._extract_summaries(prompt)
+        title_topic = summaries[0] if summaries else "my issue"
+        short_topic = title_topic[:80].rstrip(".")
+
+        payload = {
+            "title": f"How can I fix {short_topic}?",
+            "problem_statement": "Some customers may run into this issue even after completing the expected action.",
+            "cause_explanation": "This usually happens because of timing delays, temporary service issues, or input mismatches.",
+            "step_by_step_fix": [
+                "Confirm the information you entered is correct.",
+                "Retry the action and wait a few minutes.",
+                "Refresh the page or app and check again.",
+                "If the issue continues, contact support with your case details.",
+            ],
+            "edge_cases": [
+                "The action may succeed even if confirmation is delayed.",
+            ],
+            "when_to_contact_support": "Contact support if the issue continues after retrying and waiting a few minutes.",
+        }
+
+        return json.dumps(payload)
 
     def _extract_summaries(self, prompt: str) -> list[str]:
         """

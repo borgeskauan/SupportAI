@@ -3,6 +3,7 @@
 from .support_record import SupportRecord, SupportSourceType, SupportStatus
 from .cluster_group import ClusterGroup
 from .issue_family import IssueFamily
+from .faq_draft import FAQDraft, FAQContent, FAQStatus, SupportingEvidence
 
 __all__ = [
 	"SupportRecord",
@@ -10,4 +11,8 @@ __all__ = [
 	"SupportStatus",
 	"ClusterGroup",
 	"IssueFamily",
+	"FAQDraft",
+	"FAQContent",
+	"FAQStatus",
+	"SupportingEvidence",
 ]
