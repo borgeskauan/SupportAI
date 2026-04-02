@@ -4,7 +4,6 @@ import logging
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel, Field
 
 from backend.startup import (
     validate_records_on_startup,
@@ -38,13 +37,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-
-class GenerateFAQRequest(BaseModel):
-    """Payload for generating one FAQ draft from one issue family."""
-
-    issue_family_index: int = Field(..., ge=0, description="Zero-based index from /clusters")
-
 # Store validated records in app state
 @app.on_event("startup")
 async def startup_event():
@@ -160,8 +152,8 @@ async def get_similarity_matrix():
         }
 
 
-@app.post("/faqs/generate")
-async def generate_faq(request: GenerateFAQRequest):
+@app.post("/faqs/generate/{index}")
+async def generate_faq(index: int):
     """Generate one FAQ draft from one issue family by index."""
     issue_families = getattr(app.state, "issue_families", [])
     llm_provider = getattr(app.state, "llm_provider", None)
@@ -169,10 +161,10 @@ async def generate_faq(request: GenerateFAQRequest):
     if llm_provider is None:
         raise HTTPException(status_code=500, detail="LLM provider not initialized")
 
-    if request.issue_family_index >= len(issue_families):
+    if index < 0 or index >= len(issue_families):
         raise HTTPException(status_code=404, detail="Issue family index out of range")
 
-    target_family = issue_families[request.issue_family_index]
+    target_family = issue_families[index]
     service = FAQGenerationService(llm_provider)
 
     try:
@@ -183,9 +175,42 @@ async def generate_faq(request: GenerateFAQRequest):
         logger.error(f"Unexpected FAQ generation error: {exc}")
         raise HTTPException(status_code=500, detail="FAQ generation failed") from exc
 
-    app.state.faq_drafts[draft.faq_id] = draft
+    # Overwrite prior draft for the same issue family label.
+    faq_drafts = getattr(app.state, "faq_drafts", {})
+    stale_ids = [
+        faq_id
+        for faq_id, existing in faq_drafts.items()
+        if existing.issue_family_label == draft.issue_family_label
+    ]
+    for stale_id in stale_ids:
+        del faq_drafts[stale_id]
+
+    faq_drafts[draft.faq_id] = draft
+    app.state.faq_drafts = faq_drafts
 
     return draft.model_dump(mode="json")
+
+
+@app.post("/faqs/generate")
+async def generate_all_faqs():
+    """Generate FAQ drafts for all issue families using always-on best effort."""
+    issue_families = getattr(app.state, "issue_families", [])
+    llm_provider = getattr(app.state, "llm_provider", None)
+
+    if llm_provider is None:
+        raise HTTPException(status_code=500, detail="LLM provider not initialized")
+
+    service = FAQGenerationService(llm_provider)
+    drafts, failures = service.generate_all_faq_drafts(issue_families)
+
+    # Overwrite the whole FAQ draft store with results from this bulk run.
+    app.state.faq_drafts = {draft.faq_id: draft for draft in drafts}
+
+    return {
+        "total": len(app.state.faq_drafts),
+        "faqs": [draft.model_dump(mode="json") for draft in app.state.faq_drafts.values()],
+        "failures": failures,
+    }
 
 
 @app.get("/faqs")

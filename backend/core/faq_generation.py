@@ -61,6 +61,29 @@ class FAQGenerationService:
             faq=faq_content,
         )
 
+    def generate_all_faq_drafts(
+        self,
+        issue_families: list[IssueFamily],
+    ) -> tuple[list[FAQDraft], list[dict[str, str | int]]]:
+        """Generate FAQ drafts for all issue families using always-on best effort."""
+        drafts: list[FAQDraft] = []
+        failures: list[dict[str, str | int]] = []
+
+        for index, issue_family in enumerate(issue_families):
+            try:
+                draft = self.generate_faq_draft(issue_family)
+                drafts.append(draft)
+            except Exception as exc:
+                failures.append(
+                    {
+                        "index": index,
+                        "issue_family_label": issue_family.issue_family_label,
+                        "error": str(exc),
+                    }
+                )
+
+        return drafts, failures
+
     def _build_prompt(self, issue_family: IssueFamily) -> str:
         """Build the LLM prompt from issue family records."""
         case_lines = []
