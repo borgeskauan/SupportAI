@@ -1,0 +1,96 @@
+<main class="page-shell">
+  <aside class="side-nav">
+    <div class="brand-block">
+      <h1>Editorial Dash</h1>
+      <p>Knowledge MVP</p>
+    </div>
+
+    <nav aria-label="Primary">
+      <a class="active" href="#">FAQ Drafts</a>
+      <a href="#">Issues</a>
+      <a href="#">Archive</a>
+      <a href="#">Settings</a>
+    </nav>
+  </aside>
+
+  <section class="content-shell">
+    <header class="page-header">
+      <div>
+        <h2>FAQ Drafts</h2>
+        <p class="subtitle">Review and refine AI-generated FAQ entries from recent customer inquiries.</p>
+      </div>
+
+      <div class="header-actions" role="group" aria-label="List actions">
+        <button
+          type="button"
+          class="generate-btn"
+          [disabled]="isRegenerating()"
+          (click)="regenerate()"
+        >
+          @if (isRegenerating()) {
+            <span class="btn-spinner" aria-hidden="true"></span>
+            Regenerating...
+          } @else {
+            Generate / Regenerate FAQs
+          }
+        </button>
+      </div>
+    </header>
+
+    @if (regenerationNotice()) {
+      <p class="regen-toast" role="status" aria-live="polite">{{ regenerationNotice() }}</p>
+    }
+
+    <section class="insights-grid" aria-label="Quick stats">
+      <article class="insight-card">
+        <p class="label">Avg Confidence</p>
+        <p class="value">{{ averageConfidence() }}%</p>
+      </article>
+      <article class="insight-card">
+        <p class="label">Draft Count</p>
+        <p class="value">{{ drafts().length }}</p>
+      </article>
+    </section>
+
+    <section class="table-wrap" aria-label="FAQ drafts table">
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Issue Family</th>
+            <th>Status</th>
+            <th>Confidence</th>
+            <th>Cases</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (draft of drafts(); track draft.id) {
+            <tr>
+              <td>
+                <a class="title-link" [routerLink]="['/faq-drafts', draft.id]">
+                  <p class="title">{{ draft.title }}</p>
+                </a>
+                <p class="intent">{{ draft.intent }}</p>
+              </td>
+              <td>
+                <span class="family-chip">{{ draft.family }}</span>
+              </td>
+              <td>
+                <span class="status-chip" [class]="'status-chip ' + draft.status.toLowerCase()">{{ draft.status }}</span>
+              </td>
+              <td>
+                <div class="confidence-wrap">
+                  <div class="confidence-track" aria-hidden="true">
+                    <div class="confidence-fill" [style.width.%]="formatConfidence(draft.confidence)"></div>
+                  </div>
+                  <span>{{ formatConfidence(draft.confidence) }}%</span>
+                </div>
+              </td>
+              <td>{{ draft.caseCount }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </section>
+  </section>
+</main>

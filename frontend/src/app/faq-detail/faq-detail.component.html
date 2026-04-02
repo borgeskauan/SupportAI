@@ -1,0 +1,116 @@
+<main class="detail-shell">
+  <aside class="side-nav">
+    <div class="brand-block">
+      <h2>Editorial Dash</h2>
+      <p>Knowledge MVP</p>
+    </div>
+
+    <nav aria-label="Primary">
+      <a class="active" routerLink="/">FAQ Drafts</a>
+      <a href="#">Issues</a>
+      <a href="#">Archive</a>
+      <a href="#">Settings</a>
+    </nav>
+  </aside>
+
+  <section class="main-shell">
+    <header class="top-strip">
+      <a class="back-link" routerLink="/">Back to drafts</a>
+      <a class="edit-link" [routerLink]="['/faq-drafts', detail().id, 'edit']">Edit Draft</a>
+    </header>
+
+    <section class="canvas">
+      <div class="heading-block">
+        <div class="badges">
+          <span class="badge family">{{ detail().family }}</span>
+          <span class="badge status" [class]="'badge status ' + statusClass(detail().status)">{{ detail().status }}</span>
+          @if (detail().reviewNeeded) {
+            <span class="badge review">Review Needed</span>
+          }
+        </div>
+
+        <div class="decision-actions">
+          <button type="button" class="approve-btn" (click)="approve()">Approve</button>
+          <button type="button" class="reject-btn" (click)="reject()">Reject</button>
+        </div>
+
+        <h1>{{ detail().title }}</h1>
+
+        <div class="score-strip">
+          <div class="score-row">
+            <span>Confidence Score</span>
+            <div class="bar-wrap">
+              <div class="bar-track" aria-hidden="true">
+                <div class="bar-fill" [style.width.%]="formatConfidence(detail().confidence)"></div>
+              </div>
+              <strong>{{ formatConfidence(detail().confidence) }}%</strong>
+            </div>
+          </div>
+          <div class="score-row cases">
+            <span>Case Count</span>
+            <strong>{{ detail().caseCount }} instances</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-grid">
+        <article class="faq-card">
+          <section>
+            <h3>Problem Statement</h3>
+            <p>{{ detail().problemStatement }}</p>
+          </section>
+
+          <section>
+            <h3>Cause Explanation</h3>
+            <p>{{ detail().causeExplanation }}</p>
+          </section>
+
+          <section>
+            <h3>Step-by-Step Fix</h3>
+            <ol>
+              @for (step of detail().steps; track step) {
+                <li>{{ step }}</li>
+              }
+            </ol>
+          </section>
+
+          <section class="split-grid">
+            <div>
+              <h3>Edge Cases</h3>
+              <ul>
+                @for (item of detail().edgeCases; track item) {
+                  <li>{{ item }}</li>
+                }
+              </ul>
+            </div>
+
+            <div>
+              <h3>When To Contact Support</h3>
+              <p>{{ detail().contactSupport }}</p>
+            </div>
+          </section>
+        </article>
+
+        <aside class="evidence-column">
+          <div class="panel-head">
+            <h3>Supporting Evidence</h3>
+            <span>{{ detail().evidence.length }} items</span>
+          </div>
+
+          <div class="evidence-list">
+            @for (ev of detail().evidence; track ev.id) {
+              <article class="evidence-card">
+                <div class="evidence-top">
+                  <span class="source">{{ ev.source }}</span>
+                  <span class="id">{{ ev.id }}</span>
+                </div>
+                <p>{{ ev.summary }}</p>
+                <time>{{ ev.timeAgo }}</time>
+              </article>
+            }
+          </div>
+        </aside>
+      </div>
+    </section>
+  </section>
+</main>

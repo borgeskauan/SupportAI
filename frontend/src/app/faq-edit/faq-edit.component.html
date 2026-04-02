@@ -1,0 +1,63 @@
+<main class="edit-shell">
+  <aside class="side-nav">
+    <div class="brand-block">
+      <h2>Editorial Dash</h2>
+      <p>Knowledge MVP</p>
+    </div>
+
+    <nav aria-label="Primary">
+      <a class="active" routerLink="/">FAQ Drafts</a>
+      <a href="#">Issues</a>
+      <a href="#">Archive</a>
+      <a href="#">Settings</a>
+    </nav>
+  </aside>
+
+  <section class="main-shell">
+    <header class="top-strip">
+      <a class="back-link" [routerLink]="['/faq-drafts', detailId()]">Cancel</a>
+      <button class="save-btn" type="button" (click)="save()">Save Changes</button>
+    </header>
+
+    <section class="canvas">
+      <h1>Edit FAQ Draft</h1>
+
+      <div class="field-group">
+        <label for="title">Article Title</label>
+        <input id="title" type="text" [(ngModel)]="title" />
+      </div>
+
+      <div class="field-group">
+        <label for="intent">Intent Summary</label>
+        <input id="intent" type="text" [(ngModel)]="intent" />
+      </div>
+
+      <div class="field-group">
+        <label for="problem">The Problem</label>
+        <textarea id="problem" rows="4" [(ngModel)]="problemStatement"></textarea>
+      </div>
+
+      <div class="field-group">
+        <label for="cause">Root Cause</label>
+        <textarea id="cause" rows="5" [(ngModel)]="causeExplanation"></textarea>
+      </div>
+
+      <div class="field-group">
+        <label for="steps">The Fix (one step per line)</label>
+        <textarea id="steps" rows="6" [(ngModel)]="stepsText"></textarea>
+      </div>
+
+      <div class="split-grid">
+        <div class="field-group">
+          <label for="edgeCases">Edge Cases (one per line)</label>
+          <textarea id="edgeCases" rows="5" [(ngModel)]="edgeCasesText"></textarea>
+        </div>
+
+        <div class="field-group">
+          <label for="contact">Escalation Contact</label>
+          <textarea id="contact" rows="5" [(ngModel)]="contactSupport"></textarea>
+        </div>
+      </div>
+    </section>
+  </section>
+</main>

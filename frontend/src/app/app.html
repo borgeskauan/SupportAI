@@ -1,0 +1,5 @@
+@if (errorMessage()) {
+  <app-error-overlay [message]="errorMessage()!"></app-error-overlay>
+} @else {
+  <router-outlet></router-outlet>
+}

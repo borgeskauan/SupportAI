@@ -1,0 +1,12 @@
+<div class="error-overlay">
+  <div class="error-content">
+    <div class="error-icon">⚠️</div>
+    <h1>Service Unavailable</h1>
+    <p class="error-message">{{ message }}</p>
+    <div class="hint">
+      <p>The backend service is currently unreachable.</p>
+      <p>Please try refreshing the page or contact support if the issue persists.</p>
+    </div>
+    <button class="refresh-btn" (click)="window.location.reload()">Refresh Page</button>
+  </div>
+</div>
