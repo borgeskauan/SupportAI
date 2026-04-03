@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template" target-language="pt-BR">
+    <body>
+      <trans-unit id="error_service_unavailable" datatype="html">
+        <source>Service Unavailable</source><target state="translated">Serviço indisponível</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/error-overlay/error-overlay.component.html</context>
+          <context context-type="linenumber">4,5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="error_backend_unreachable" datatype="html">
+        <source>The backend service is currently unreachable.</source><target state="translated">O serviço de backend está inacessível no momento.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/error-overlay/error-overlay.component.html</context>
+          <context context-type="linenumber">7,8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="error_recovery_hint" datatype="html">
+        <source>Please try refreshing the page or contact support if the issue persists.</source><target state="translated">Tente atualizar a página ou entre em contato com o suporte se o problema persistir.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/error-overlay/error-overlay.component.html</context>
+          <context context-type="linenumber">8,10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="btn_refresh_page" datatype="html">
+        <source>Refresh Page</source><target state="translated">Atualizar página</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/error-overlay/error-overlay.component.html</context>
+          <context context-type="linenumber">10,13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nav_faq_drafts" datatype="html">
+        <source>FAQ Drafts</source><target state="translated">Rascunhos de FAQ</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/faq-detail/faq-detail.component.html</context>
+          <context context-type="linenumber">9,10</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/faq-drafts-list/faq-drafts-list.component.html</context>
+          <context context-type="linenumber">9,10</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/faq-edit/faq-edit.component.html</context>
+          <context context-type="linenumber">9,10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nav_issues" datatype="html">
+        <source>Issues</source><target state="translated">Problemas</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/faq-detail/faq-detail.component.html</context>
+          <context context-type="linenumber">10,11</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/faq-drafts-list/faq-drafts-list.component.html</context>
+          <context context-type="linenumber">10,11</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/faq-edit/faq-edit.component.html</context>
+          <context context-type="linenumber">10,11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nav_archive" datatype="html">
+        <source>Archive</source><target state="translated">Arquivo</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/faq-detail/faq-detail.component.html</context>
+          <context context-type="linenumber">11,12</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/faq-drafts-list/faq-drafts-list.component.html</context>
+          <context context-type="linenumber">11,12</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/faq-edit/faq-edit.component.html</context>
+          <context context-type="linenumber">11,12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nav_settings" datatype="html">
+        <source>Settings</source><target state="translated">Configurações</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/faq-detail/faq-detail.component.html</context>
+          <context context-type="linenumber">12,15</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/faq-drafts-list/faq-drafts-list.component.html</context>
+          <context context-type="linenumber">12,15</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/faq-edit/faq-edit.component.html</context>
+          <context context-type="linenumber">12,15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="link_back_to_drafts" datatype="html">
+        <source>Back to drafts</source><target state="translated">Voltar aos rascunhos</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/faq-detail/faq-detail.component.html</context>
+          <context context-type="linenumber">18,19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="link_edit_draft" datatype="html">
+        <source>Edit Draft</source><target state="translated">Editar rascunho</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/faq-detail/faq-detail.component.html</context>
+          <context context-type="linenumber">19,22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="badge_review_needed" datatype="html">
+        <source>Review Needed</source><target state="translated">Revisão necessária</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/faq-detail/faq-detail.component.html</context>
+          <context context-type="linenumber">28,30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="btn_approve" datatype="html">
+        <source>Approve</source><target state="translated">Aprovar</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/faq-detail/faq-detail.component.html</context>
+          <context context-type="linenumber">33,34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="btn_reject" datatype="html">
+        <source>Reject</source><target state="translated">Rejeitar</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/faq-detail/faq-detail.component.html</context>
+          <context context-type="linenumber">34,36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="score_confidence_value" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{ formatConfidence(detail().confidence) }}"/>%</source><target state="translated"><x xmlns="urn:oasis:names:tc:xliff:document:1.2" id="INTERPOLATION" equiv-text="{{ formatConfidence(detail().confidence) }}"/>%</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/faq-detail/faq-detail.component.html</context>
+          <context context-type="linenumber">46,47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="score_case_count" datatype="html">
+        <source>Case Count</source><target state="translated">Número de casos</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/faq-detail/faq-detail.component.html</context>
+          <context context-type="linenumber">50,51</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="score_case_value" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{ detail().caseCount }}"/> instances</source><target state="translated"><x xmlns="urn:oasis:names:tc:xliff:document:1.2" id="INTERPOLATION" equiv-text="{{ detail().caseCount }}"/> instâncias</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/faq-detail/faq-detail.component.html</context>
+          <context context-type="linenumber">51,52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="section_problem_statement" datatype="html">
+        <source>Problem Statement</source><target state="translated">Descrição do problema</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/faq-detail/faq-detail.component.html</context>
+          <context context-type="linenumber">59,60</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="section_cause_explanation" datatype="html">
+        <source>Cause Explanation</source><target state="translated">Explicação da causa</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/faq-detail/faq-detail.component.html</context>
+          <context context-type="linenumber">64,65</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="section_step_by_step_fix" datatype="html">
+        <source>Step-by-Step Fix</source><target state="translated">Solução passo a passo</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/faq-detail/faq-detail.component.html</context>
+          <context context-type="linenumber">69,71</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="section_edge_cases" datatype="html">
+        <source>Edge Cases</source><target state="translated">Casos limite</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/faq-detail/faq-detail.component.html</context>
+          <context context-type="linenumber">79,81</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="section_contact_support" datatype="html">
+        <source>When To Contact Support</source><target state="translated">Quando entrar em contato com o suporte</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/faq-detail/faq-detail.component.html</context>
+          <context context-type="linenumber">88,89</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="section_evidence" datatype="html">
+        <source>Supporting Evidence</source><target state="translated">Evidências de apoio</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/faq-detail/faq-detail.component.html</context>
+          <context context-type="linenumber">96,97</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="page_title_drafts" datatype="html">
+        <source>FAQ Drafts</source><target state="translated">Rascunhos de FAQ</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/faq-drafts-list/faq-drafts-list.component.html</context>
+          <context context-type="linenumber">19,20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="page_subtitle_drafts" datatype="html">
+        <source>Review and refine AI-generated FAQ entries from recent customer inquiries.</source><target state="translated">Revise e refine entradas de FAQ geradas por IA a partir de consultas recentes de clientes.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/faq-drafts-list/faq-drafts-list.component.html</context>
+          <context context-type="linenumber">20,23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="btn_regenerating" datatype="html">
+        <source>Regenerating...</source><target state="translated">Regenerando...</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/faq-drafts-list/faq-drafts-list.component.html</context>
+          <context context-type="linenumber">32,34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="btn_generate_faqs" datatype="html">
+        <source>Generate / Regenerate FAQs</source><target state="translated">Gerar / Regenerar FAQs</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/faq-drafts-list/faq-drafts-list.component.html</context>
+          <context context-type="linenumber">34,36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="stat_avg_confidence" datatype="html">
+        <source>Avg Confidence</source><target state="translated">Confiança média</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/faq-drafts-list/faq-drafts-list.component.html</context>
+          <context context-type="linenumber">46,47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="stat_draft_count" datatype="html">
+        <source>Draft Count</source><target state="translated">Número de rascunhos</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/faq-drafts-list/faq-drafts-list.component.html</context>
+          <context context-type="linenumber">50,51</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="table_col_title" datatype="html">
+        <source>Title</source><target state="translated">Título</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/faq-drafts-list/faq-drafts-list.component.html</context>
+          <context context-type="linenumber">59,60</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="table_col_family" datatype="html">
+        <source>Issue Family</source><target state="translated">Família do problema</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/faq-drafts-list/faq-drafts-list.component.html</context>
+          <context context-type="linenumber">60,61</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="table_col_status" datatype="html">
+        <source>Status</source><target state="translated">Status</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/faq-drafts-list/faq-drafts-list.component.html</context>
+          <context context-type="linenumber">61,62</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="table_col_confidence" datatype="html">
+        <source>Confidence</source><target state="translated">Confiança</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/faq-drafts-list/faq-drafts-list.component.html</context>
+          <context context-type="linenumber">62,63</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="table_col_cases" datatype="html">
+        <source>Cases</source><target state="translated">Casos</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/faq-drafts-list/faq-drafts-list.component.html</context>
+          <context context-type="linenumber">63,65</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="btn_cancel" datatype="html">
+        <source>Cancel</source><target state="translated">Cancelar</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/faq-edit/faq-edit.component.html</context>
+          <context context-type="linenumber">18,19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="btn_save_changes" datatype="html">
+        <source>Save Changes</source><target state="translated">Salvar alterações</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/faq-edit/faq-edit.component.html</context>
+          <context context-type="linenumber">19,22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="page_title_edit_draft" datatype="html">
+        <source>Edit FAQ Draft</source><target state="translated">Editar rascunho de FAQ</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/faq-edit/faq-edit.component.html</context>
+          <context context-type="linenumber">23,25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label_article_title" datatype="html">
+        <source>Article Title</source><target state="translated">Título do artigo</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/faq-edit/faq-edit.component.html</context>
+          <context context-type="linenumber">26,27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label_intent_summary" datatype="html">
+        <source>Intent Summary</source><target state="translated">Resumo da intenção</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/faq-edit/faq-edit.component.html</context>
+          <context context-type="linenumber">31,32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label_the_problem" datatype="html">
+        <source>The Problem</source><target state="translated">O problema</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/faq-edit/faq-edit.component.html</context>
+          <context context-type="linenumber">36,37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label_root_cause" datatype="html">
+        <source>Root Cause</source><target state="translated">Causa raiz</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/faq-edit/faq-edit.component.html</context>
+          <context context-type="linenumber">41,42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label_the_fix" datatype="html">
+        <source>The Fix (one step per line)</source><target state="translated">A solução (uma etapa por linha)</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/faq-edit/faq-edit.component.html</context>
+          <context context-type="linenumber">46,47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label_edge_cases" datatype="html">
+        <source>Edge Cases (one per line)</source><target state="translated">Casos limite (um por linha)</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/faq-edit/faq-edit.component.html</context>
+          <context context-type="linenumber">52,53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label_escalation_contact" datatype="html">
+        <source>Escalation Contact</source><target state="translated">Contato para escalonamento</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/faq-edit/faq-edit.component.html</context>
+          <context context-type="linenumber">57,58</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

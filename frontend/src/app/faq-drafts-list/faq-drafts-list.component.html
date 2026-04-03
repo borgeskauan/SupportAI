@@ -6,18 +6,18 @@
     </div>
 
     <nav aria-label="Primary">
-      <a class="active" href="#">FAQ Drafts</a>
-      <a href="#">Issues</a>
-      <a href="#">Archive</a>
-      <a href="#">Settings</a>
+      <a class="active" href="#" i18n="@@nav_faq_drafts">FAQ Drafts</a>
+      <a href="#" i18n="@@nav_issues">Issues</a>
+      <a href="#" i18n="@@nav_archive">Archive</a>
+      <a href="#" i18n="@@nav_settings">Settings</a>
     </nav>
   </aside>
 
   <section class="content-shell">
     <header class="page-header">
       <div>
-        <h2>FAQ Drafts</h2>
-        <p class="subtitle">Review and refine AI-generated FAQ entries from recent customer inquiries.</p>
+        <h2 i18n="@@page_title_drafts">FAQ Drafts</h2>
+        <p class="subtitle" i18n="@@page_subtitle_drafts">Review and refine AI-generated FAQ entries from recent customer inquiries.</p>
       </div>
 
       <div class="header-actions" role="group" aria-label="List actions">
@@ -29,9 +29,9 @@
         >
           @if (isRegenerating()) {
             <span class="btn-spinner" aria-hidden="true"></span>
-            Regenerating...
+            <span i18n="@@btn_regenerating">Regenerating...</span>
           } @else {
-            Generate / Regenerate FAQs
+            <span i18n="@@btn_generate_faqs">Generate / Regenerate FAQs</span>
           }
         </button>
       </div>
@@ -43,11 +43,11 @@
 
     <section class="insights-grid" aria-label="Quick stats">
       <article class="insight-card">
-        <p class="label">Avg Confidence</p>
+        <p class="label" i18n="@@stat_avg_confidence">Avg Confidence</p>
         <p class="value">{{ averageConfidence() }}%</p>
       </article>
       <article class="insight-card">
-        <p class="label">Draft Count</p>
+        <p class="label" i18n="@@stat_draft_count">Draft Count</p>
         <p class="value">{{ drafts().length }}</p>
       </article>
     </section>
@@ -56,11 +56,11 @@
       <table>
         <thead>
           <tr>
-            <th>Title</th>
-            <th>Issue Family</th>
-            <th>Status</th>
-            <th>Confidence</th>
-            <th>Cases</th>
+            <th i18n="@@table_col_title">Title</th>
+            <th i18n="@@table_col_family">Issue Family</th>
+            <th i18n="@@table_col_status">Status</th>
+            <th i18n="@@table_col_confidence">Confidence</th>
+            <th i18n="@@table_col_cases">Cases</th>
           </tr>
         </thead>
         <tbody>

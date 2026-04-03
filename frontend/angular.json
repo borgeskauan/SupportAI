@@ -12,6 +12,14 @@
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
+      "i18n": {
+        "sourceLocale": "en",
+        "locales": {
+          "pt-BR": {
+            "translation": "src/locale/messages.pt-BR.xlf"
+          }
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular/build:application",
@@ -24,9 +32,8 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/styles.css"
-            ]
+            "styles": ["src/styles.css"],
+            "polyfills": ["@angular/localize/init"]
           },
           "configurations": {
             "production": {
@@ -48,6 +55,11 @@
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
+            },
+            "pt-BR": {
+              "localize": ["pt-BR"],
+              "outputPath": "dist/supportai-frontend/pt-BR",
+              "outputHashing": "all"
             }
           },
           "defaultConfiguration": "production"
@@ -60,12 +72,12 @@
             },
             "development": {
               "buildTarget": "supportai-frontend:build:development"
+            },
+            "pt-BR": {
+              "buildTarget": "supportai-frontend:build:development,pt-BR"
             }
           },
           "defaultConfiguration": "development"
-        },
-        "test": {
-          "builder": "@angular/build:unit-test"
         }
       }
     }

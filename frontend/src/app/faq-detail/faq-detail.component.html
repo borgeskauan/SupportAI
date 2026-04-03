@@ -6,17 +6,17 @@
     </div>
 
     <nav aria-label="Primary">
-      <a class="active" routerLink="/">FAQ Drafts</a>
-      <a href="#">Issues</a>
-      <a href="#">Archive</a>
-      <a href="#">Settings</a>
+      <a class="active" routerLink="/" i18n="@@nav_faq_drafts">FAQ Drafts</a>
+      <a href="#" i18n="@@nav_issues">Issues</a>
+      <a href="#" i18n="@@nav_archive">Archive</a>
+      <a href="#" i18n="@@nav_settings">Settings</a>
     </nav>
   </aside>
 
   <section class="main-shell">
     <header class="top-strip">
-      <a class="back-link" routerLink="/">Back to drafts</a>
-      <a class="edit-link" [routerLink]="['/faq-drafts', detail().id, 'edit']">Edit Draft</a>
+      <a class="back-link" routerLink="/" i18n="@@link_back_to_drafts">Back to drafts</a>
+      <a class="edit-link" [routerLink]="['/faq-drafts', detail().id, 'edit']" i18n="@@link_edit_draft">Edit Draft</a>
     </header>
 
     <section class="canvas">
@@ -25,13 +25,13 @@
           <span class="badge family">{{ detail().family }}</span>
           <span class="badge status" [class]="'badge status ' + statusClass(detail().status)">{{ detail().status }}</span>
           @if (detail().reviewNeeded) {
-            <span class="badge review">Review Needed</span>
+            <span class="badge review" i18n="@@badge_review_needed">Review Needed</span>
           }
         </div>
 
         <div class="decision-actions">
-          <button type="button" class="approve-btn" (click)="approve()">Approve</button>
-          <button type="button" class="reject-btn" (click)="reject()">Reject</button>
+          <button type="button" class="approve-btn" (click)="approve()" i18n="@@btn_approve">Approve</button>
+          <button type="button" class="reject-btn" (click)="reject()" i18n="@@btn_reject">Reject</button>
         </div>
 
         <h1>{{ detail().title }}</h1>
@@ -43,12 +43,12 @@
               <div class="bar-track" aria-hidden="true">
                 <div class="bar-fill" [style.width.%]="formatConfidence(detail().confidence)"></div>
               </div>
-              <strong>{{ formatConfidence(detail().confidence) }}%</strong>
+              <strong i18n="@@score_confidence_value">{{ formatConfidence(detail().confidence) }}%</strong>
             </div>
           </div>
           <div class="score-row cases">
-            <span>Case Count</span>
-            <strong>{{ detail().caseCount }} instances</strong>
+            <span i18n="@@score_case_count">Case Count</span>
+            <strong i18n="@@score_case_value">{{ detail().caseCount }} instances</strong>
           </div>
         </div>
       </div>
@@ -56,17 +56,17 @@
       <div class="content-grid">
         <article class="faq-card">
           <section>
-            <h3>Problem Statement</h3>
+            <h3 i18n="@@section_problem_statement">Problem Statement</h3>
             <p>{{ detail().problemStatement }}</p>
           </section>
 
           <section>
-            <h3>Cause Explanation</h3>
+            <h3 i18n="@@section_cause_explanation">Cause Explanation</h3>
             <p>{{ detail().causeExplanation }}</p>
           </section>
 
           <section>
-            <h3>Step-by-Step Fix</h3>
+            <h3 i18n="@@section_step_by_step_fix">Step-by-Step Fix</h3>
             <ol>
               @for (step of detail().steps; track step) {
                 <li>{{ step }}</li>
@@ -76,7 +76,7 @@
 
           <section class="split-grid">
             <div>
-              <h3>Edge Cases</h3>
+              <h3 i18n="@@section_edge_cases">Edge Cases</h3>
               <ul>
                 @for (item of detail().edgeCases; track item) {
                   <li>{{ item }}</li>
@@ -85,7 +85,7 @@
             </div>
 
             <div>
-              <h3>When To Contact Support</h3>
+              <h3 i18n="@@section_contact_support">When To Contact Support</h3>
               <p>{{ detail().contactSupport }}</p>
             </div>
           </section>
@@ -93,7 +93,7 @@
 
         <aside class="evidence-column">
           <div class="panel-head">
-            <h3>Supporting Evidence</h3>
+            <h3 i18n="@@section_evidence">Supporting Evidence</h3>
             <span>{{ detail().evidence.length }} items</span>
           </div>
 
