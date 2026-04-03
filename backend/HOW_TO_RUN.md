@@ -31,10 +31,10 @@ venv\Scripts\activate
 
 ### 2. Install Dependencies
 
-Install all required Python packages from `requirements.txt`:
+Install all required Python packages from `backend/requirements.txt`:
 
 ```bash
-pip install -r requirements.txt
+pip install -r backend/requirements.txt
 ```
 
 This will install:
@@ -54,7 +54,7 @@ backend/data/
 └── sample_records.json
 ```
 
-Records should follow the schema defined in `SCHEMA.md` and include:
+Records should follow the schema defined in `./SCHEMA.md` and include:
 - Support case/problem text
 - Resolution text
 - Source type (tickets, chat logs, escalations, call transcripts, refund reasons)
@@ -64,10 +64,10 @@ Records should follow the schema defined in `SCHEMA.md` and include:
 
 ### Before starting (One Command)
 
-For the easiest setup:
+For the easiest setup, run from the project root:
 
 ```bash
-source venv/bin/activate && pip install -r requirements.txt
+source venv/bin/activate && pip install -r backend/requirements.txt
 ```
 
 ### Manual Run
@@ -91,18 +91,26 @@ Either way will:
 
 ## Project Structure
 
+The backend has been organized separately from the frontend:
+
 ```
 SupportAI/
 ├── backend/
 │   ├── main.py              # FastAPI application entry point
 │   ├── startup.py           # Startup validation and logging setup
+│   ├── config.py            # Configuration and environment variables
 │   ├── core/                # Core validation and filtering logic
 │   ├── models/              # Pydantic data models
-│   └── data/                # Input JSON records
-├── stitch/                  # Frontend components (HTML/UI)
-├── Backend-Spec.md          # Backend specification and requirements
-├── SCHEMA.md                # Data schema definition
-└── requirements.txt         # Python dependencies
+│   ├── providers/           # LLM and embedding providers
+│   ├── data/                # Input JSON records
+│   ├── Backend-Spec.md      # Backend specification and requirements
+│   ├── SCHEMA.md            # Data schema definition
+│   ├── HOW_TO_RUN.md        # This file - Backend setup guide
+│   └── requirements.txt     # Python dependencies
+├── frontend/                # Angular frontend application
+├── stitch/                  # Design components (HTML/UI)
+├── README.md                # Main project documentation
+└── venv/                    # Python virtual environment
 ```
 
 ## Key Features
@@ -130,5 +138,5 @@ pytest -v
 ## Troubleshooting
 
 - **Port already in use**: Change the port with `python -m uvicorn backend.main:app --reload --port 8001`
-- **Missing dependencies**: Ensure you ran `pip install -r requirements.txt`
-- **Validation errors**: Check that JSON files in `backend/data/` follow the `SCHEMA.md` format
+- **Missing dependencies**: Ensure you ran `pip install -r backend/requirements.txt` from the project root
+- **Validation errors**: Check that JSON files in `backend/data/` follow the `./SCHEMA.md` format

@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 
 
 # Load environment variables from .env file
-env_file = Path(__file__).parent.parent / ".env"
+env_file = Path(__file__).parent / ".env"
 if env_file.exists():
     load_dotenv(env_file)
 
