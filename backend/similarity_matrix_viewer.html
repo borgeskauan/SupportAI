@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Similarity Matrix Viewer</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #131a2e;
+      --panel-2: #1a2340;
+      --border: #2b3558;
+      --text: #edf2ff;
+      --muted: #aeb8d6;
+      --accent: #7aa2ff;
+      --good: #74d99f;
+      --warn: #ffd166;
+      --bad: #ff7b7b;
+      --shadow: 0 8px 30px rgba(0,0,0,.25);
+      --radius: 16px;
+      --font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; background: var(--bg); color: var(--text); font-family: var(--font); }
+    body { display: grid; grid-template-columns: minmax(520px, 1fr) 430px; gap: 16px; padding: 16px; }
+
+    .panel {
+      background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      min-height: 0;
+    }
+
+    .left {
+      display: grid;
+      grid-template-rows: auto auto 1fr auto;
+      min-height: 0;
+    }
+
+    .header {
+      padding: 16px 18px 8px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(255,255,255,.02);
+    }
+
+    h1 {
+      margin: 0 0 6px;
+      font-size: 20px;
+      line-height: 1.2;
+    }
+
+    .sub {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(180px, 1fr));
+      gap: 12px;
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .controls .full { grid-column: 1 / -1; }
+
+    label {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 6px;
+      letter-spacing: .02em;
+    }
+
+    input[type="file"], input[type="text"], input[type="number"], select, button {
+      width: 100%;
+      border: 1px solid var(--border);
+      background: var(--panel-2);
+      color: var(--text);
+      border-radius: 12px;
+      padding: 10px 12px;
+      font: inherit;
+      outline: none;
+    }
+
+    button { cursor: pointer; }
+    button:hover { border-color: var(--accent); }
+    button.secondary { background: transparent; }
+
+    .button-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+    }
+
+    .stats {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      padding: 12px 18px 0;
+    }
+
+    .chip {
+      background: rgba(122,162,255,.12);
+      border: 1px solid rgba(122,162,255,.26);
+      color: #dbe6ff;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+    }
+
+    .viewer-wrap {
+      position: relative;
+      min-height: 0;
+      overflow: auto;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01)),
+        #0d1325;
+    }
+
+    .viewer {
+      position: relative;
+      min-width: max-content;
+      min-height: max-content;
+      padding: 20px 20px 28px 92px;
+    }
+
+    canvas {
+      display: block;
+      background: #0b1224;
+      border-radius: 10px;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.04);
+      cursor: crosshair;
+    }
+
+    .axis-top, .axis-left {
+      position: sticky;
+      z-index: 2;
+      pointer-events: none;
+      font-size: 11px;
+      color: var(--muted);
+      text-shadow: 0 1px 0 rgba(0,0,0,.5);
+    }
+
+    .axis-top {
+      top: 0;
+      left: 92px;
+      height: 72px;
+      background: linear-gradient(180deg, rgba(11,16,32,.95), rgba(11,16,32,.35), transparent);
+      margin-left: 92px;
+    }
+
+    .axis-left {
+      left: 0;
+      top: 72px;
+      width: 88px;
+      background: linear-gradient(90deg, rgba(11,16,32,.95), rgba(11,16,32,.35), transparent);
+    }
+
+    .side {
+      display: grid;
+      grid-template-rows: auto auto 1fr;
+      min-height: 0;
+    }
+
+    .side-header {
+      padding: 16px 18px 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .legend {
+      padding: 12px 18px;
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      gap: 8px;
+    }
+
+    .gradient {
+      height: 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: linear-gradient(90deg,
+        rgb(47, 79, 79),
+        rgb(63, 100, 130),
+        rgb(77, 128, 183),
+        rgb(111, 168, 220),
+        rgb(161, 215, 247),
+        rgb(240, 249, 255),
+        rgb(255, 237, 160),
+        rgb(255, 190, 90),
+        rgb(248, 129, 82),
+        rgb(220, 70, 65)
+      );
+    }
+
+    .legend-scale {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .details {
+      overflow: auto;
+      padding: 14px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .empty {
+      border: 1px dashed var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      color: var(--muted);
+      background: rgba(255,255,255,.02);
+      line-height: 1.5;
+    }
+
+    .pair-summary {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: rgba(255,255,255,.02);
+      padding: 14px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .score {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 14px;
+    }
+
+    .score strong { font-size: 20px; }
+
+    .records-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .record-card {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--panel);
+      overflow: hidden;
+    }
+
+    .record-head {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(255,255,255,.02);
+      display: grid;
+      gap: 8px;
+    }
+
+    .record-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 12px;
+      font-size: 14px;
+    }
+
+    .record-id {
+      font-weight: 700;
+      color: #dfe7ff;
+    }
+
+    .mini {
+      color: var(--muted);
+      font-size: 12px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tag-list {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.08);
+      color: #dbe4ff;
+    }
+
+    .record-body {
+      padding: 14px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .field {
+      display: grid;
+      gap: 4px;
+    }
+
+    .field-name {
+      color: var(--muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+
+    .field-value {
+      line-height: 1.55;
+      font-size: 14px;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .footer-note {
+      padding: 12px 18px 16px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .status {
+      color: var(--muted);
+      font-size: 13px;
+      padding: 0 18px 12px;
+    }
+
+    .status.ok { color: var(--good); }
+    .status.warn { color: var(--warn); }
+    .status.bad { color: var(--bad); }
+
+    @media (max-width: 1200px) {
+      body { grid-template-columns: 1fr; }
+      .side { min-height: 560px; }
+    }
+  </style>
+</head>
+<body>
+  <section class="panel left">
+    <div class="header">
+      <h1>Similarity Matrix Viewer</h1>
+      <div class="sub">Upload a similarity matrix JSON and a records JSON file. Click any cell in the matrix to inspect both records side by side.</div>
+    </div>
+
+    <div class="controls">
+      <div>
+        <label for="matrixFile">Similarity matrix JSON</label>
+        <input id="matrixFile" type="file" accept=".json,application/json" />
+      </div>
+      <div>
+        <label for="recordsFile">Records JSON</label>
+        <input id="recordsFile" type="file" accept=".json,application/json" />
+      </div>
+
+      <div>
+        <label for="cellSize">Cell size</label>
+        <input id="cellSize" type="number" min="8" max="48" step="1" value="16" />
+      </div>
+      <div>
+        <label for="threshold">Highlight threshold</label>
+        <input id="threshold" type="number" min="0" max="1" step="0.01" value="0.90" />
+      </div>
+
+      <div>
+        <label for="jumpTo">Jump to record ID</label>
+        <input id="jumpTo" type="text" placeholder="e.g. case_023" />
+      </div>
+      <div>
+        <label>&nbsp;</label>
+        <div class="button-row">
+          <button id="jumpBtn">Go</button>
+          <button id="diagonalBtn" class="secondary">Hide diagonal</button>
+          <button id="resetBtn" class="secondary">Reset</button>
+        </div>
+      </div>
+
+      <div class="full status" id="statusText">Waiting for files.</div>
+    </div>
+
+    <div class="stats" id="stats"></div>
+
+    <div class="viewer-wrap" id="viewerWrap">
+      <div class="axis-top" id="axisTop"></div>
+      <div class="axis-left" id="axisLeft"></div>
+      <div class="viewer" id="viewer">
+        <canvas id="matrixCanvas"></canvas>
+      </div>
+    </div>
+
+    <div class="footer-note">
+      Tips: 60×60 is fully supported. Increase cell size for readability, or jump directly to a specific record ID. The matrix stays local in your browser; nothing is uploaded anywhere.
+    </div>
+  </section>
+
+  <aside class="panel side">
+    <div class="side-header">
+      <h1 style="font-size:18px; margin:0 0 6px;">Selected comparison</h1>
+      <div class="sub">Click a matrix cell to inspect the similarity score and both records.</div>
+    </div>
+
+    <div class="legend">
+      <div class="gradient"></div>
+      <div class="legend-scale"><span>Lower similarity</span><span>Higher similarity</span></div>
+    </div>
+
+    <div class="details" id="details">
+      <div class="empty">No cell selected yet.</div>
+    </div>
+  </aside>
+
+  <script>
+    const state = {
+      matrixData: null,
+      records: [],
+      recordsById: new Map(),
+      cellSize: 16,
+      threshold: 0.9,
+      selected: null,
+      hover: null,
+      hideDiagonal: false,
+      dpr: window.devicePixelRatio || 1,
+    };
+
+    const els = {
+      matrixFile: document.getElementById('matrixFile'),
+      recordsFile: document.getElementById('recordsFile'),
+      cellSize: document.getElementById('cellSize'),
+      threshold: document.getElementById('threshold'),
+      jumpTo: document.getElementById('jumpTo'),
+      jumpBtn: document.getElementById('jumpBtn'),
+      diagonalBtn: document.getElementById('diagonalBtn'),
+      resetBtn: document.getElementById('resetBtn'),
+      statusText: document.getElementById('statusText'),
+      stats: document.getElementById('stats'),
+      canvas: document.getElementById('matrixCanvas'),
+      viewer: document.getElementById('viewer'),
+      viewerWrap: document.getElementById('viewerWrap'),
+      axisTop: document.getElementById('axisTop'),
+      axisLeft: document.getElementById('axisLeft'),
+      details: document.getElementById('details'),
+    };
+
+    const ctx = els.canvas.getContext('2d');
+
+    function setStatus(message, tone = '') {
+      els.statusText.textContent = message;
+      els.statusText.className = `full status ${tone}`.trim();
+    }
+
+    async function readJsonFile(file) {
+      const text = await file.text();
+      try {
+        return JSON.parse(text);
+      } catch (err) {
+        throw new Error(`Could not parse ${file.name} as JSON.`);
+      }
+    }
+
+    function isValidMatrixPayload(payload) {
+      return payload && Array.isArray(payload.record_ids) && Array.isArray(payload.similarity_matrix);
+    }
+
+    function isValidRecordsPayload(payload) {
+      return Array.isArray(payload) && payload.every(item => item && typeof item === 'object' && item.id);
+    }
+
+    function percentile(values, p) {
+      if (!values.length) return null;
+      const sorted = [...values].sort((a, b) => a - b);
+      const idx = Math.min(sorted.length - 1, Math.max(0, Math.floor((sorted.length - 1) * p)));
+      return sorted[idx];
+    }
+
+    function flattenUpperTriangle(matrix) {
+      const values = [];
+      for (let i = 0; i < matrix.length; i++) {
+        for (let j = i + 1; j < matrix[i].length; j++) values.push(matrix[i][j]);
+      }
+      return values;
+    }
+
+    function fmt(value, digits = 3) {
+      return Number.isFinite(value) ? value.toFixed(digits) : '—';
+    }
+
+    function similarityColor(v) {
+      if (!Number.isFinite(v)) return '#111827';
+      const t = Math.max(0, Math.min(1, v));
+      const stops = [
+        [47, 79, 79],
+        [63, 100, 130],
+        [77, 128, 183],
+        [111, 168, 220],
+        [161, 215, 247],
+        [240, 249, 255],
+        [255, 237, 160],
+        [255, 190, 90],
+        [248, 129, 82],
+        [220, 70, 65],
+      ];
+      const scaled = t * (stops.length - 1);
+      const i = Math.floor(scaled);
+      const frac = scaled - i;
+      const a = stops[i];
+      const b = stops[Math.min(stops.length - 1, i + 1)];
+      const mix = (x, y) => Math.round(x + (y - x) * frac);
+      return `rgb(${mix(a[0], b[0])}, ${mix(a[1], b[1])}, ${mix(a[2], b[2])})`;
+    }
+
+    function getRowColFromEvent(event) {
+      if (!state.matrixData) return null;
+      const rect = els.canvas.getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+      const c = Math.floor(x / state.cellSize);
+      const r = Math.floor(y / state.cellSize);
+      const n = state.matrixData.record_ids.length;
+      if (r < 0 || c < 0 || r >= n || c >= n) return null;
+      return { row: r, col: c };
+    }
+
+    function renderAxes() {
+      const data = state.matrixData;
+      if (!data) {
+        els.axisTop.innerHTML = '';
+        els.axisLeft.innerHTML = '';
+        return;
+      }
+
+      const ids = data.record_ids;
+      const every = state.cellSize >= 24 ? 1 : state.cellSize >= 18 ? 2 : state.cellSize >= 14 ? 3 : 5;
+
+      els.axisTop.innerHTML = ids.map((id, i) => {
+        if (i % every !== 0) return '';
+        return `<div style="position:absolute; left:${i * state.cellSize + 4}px; top:8px; transform: rotate(-55deg); transform-origin: left top; width:120px;">${id}</div>`;
+      }).join('');
+      els.axisTop.style.width = `${ids.length * state.cellSize}px`;
+
+      els.axisLeft.innerHTML = ids.map((id, i) => {
+        if (i % every !== 0) return '';
+        return `<div style="position:absolute; left:6px; top:${i * state.cellSize + 2}px; width:80px; text-align:right;">${id}</div>`;
+      }).join('');
+      els.axisLeft.style.height = `${ids.length * state.cellSize}px`;
+    }
+
+    function updateStats() {
+      const data = state.matrixData;
+      if (!data) {
+        els.stats.innerHTML = '';
+        return;
+      }
+      const values = flattenUpperTriangle(data.similarity_matrix);
+      const min = Math.min(...values);
+      const max = Math.max(...values);
+      const avg = values.reduce((a, b) => a + b, 0) / values.length;
+      const p90 = percentile(values, 0.9);
+      const above = values.filter(v => v >= state.threshold).length;
+      els.stats.innerHTML = [
+        `Records: ${data.record_ids.length}`,
+        `Min: ${fmt(min)}`,
+        `Avg: ${fmt(avg)}`,
+        `Max: ${fmt(max)}`,
+        `P90: ${fmt(p90)}`,
+        `≥ ${fmt(state.threshold, 2)}: ${above}`,
+      ].map(s => `<span class="chip">${s}</span>`).join('');
+    }
+
+    function drawMatrix() {
+      const data = state.matrixData;
+      if (!data) {
+        ctx.clearRect(0, 0, els.canvas.width, els.canvas.height);
+        return;
+      }
+
+      const n = data.record_ids.length;
+      const size = state.cellSize;
+      const width = n * size;
+      const height = n * size;
+
+      els.canvas.style.width = `${width}px`;
+      els.canvas.style.height = `${height}px`;
+      els.canvas.width = Math.floor(width * state.dpr);
+      els.canvas.height = Math.floor(height * state.dpr);
+      ctx.setTransform(state.dpr, 0, 0, state.dpr, 0, 0);
+      ctx.clearRect(0, 0, width, height);
+
+      for (let r = 0; r < n; r++) {
+        for (let c = 0; c < n; c++) {
+          const v = data.similarity_matrix[r][c];
+          if (state.hideDiagonal && r === c) {
+            ctx.fillStyle = '#0f172a';
+          } else {
+            ctx.fillStyle = similarityColor(v);
+          }
+          ctx.fillRect(c * size, r * size, size, size);
+        }
+      }
+
+      if (size >= 14) {
+        ctx.strokeStyle = 'rgba(255,255,255,.05)';
+        ctx.lineWidth = 1;
+        for (let i = 0; i <= n; i++) {
+          const p = i * size + 0.5;
+          ctx.beginPath();
+          ctx.moveTo(0, p);
+          ctx.lineTo(width, p);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.moveTo(p, 0);
+          ctx.lineTo(p, height);
+          ctx.stroke();
+        }
+      }
+
+      if (state.threshold > 0) {
+        ctx.strokeStyle = 'rgba(255,255,255,.28)';
+        ctx.lineWidth = Math.max(1, size * 0.08);
+        for (let r = 0; r < n; r++) {
+          for (let c = 0; c < n; c++) {
+            if (r === c) continue;
+            const v = data.similarity_matrix[r][c];
+            if (v >= state.threshold) {
+              ctx.strokeRect(c * size + 0.5, r * size + 0.5, size - 1, size - 1);
+            }
+          }
+        }
+      }
+
+      if (state.hover) {
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(state.hover.col * size + 1, state.hover.row * size + 1, size - 2, size - 2);
+      }
+
+      if (state.selected) {
+        const { row, col } = state.selected;
+        ctx.strokeStyle = '#7aa2ff';
+        ctx.lineWidth = 3;
+        ctx.strokeRect(col * size + 1.5, row * size + 1.5, size - 3, size - 3);
+      }
+
+      renderAxes();
+    }
+
+    function buildRecordCard(record, title) {
+      if (!record) {
+        return `<div class="record-card"><div class="record-body"><div class="field-value">Record not found in records file.</div></div></div>`;
+      }
+
+      const topFields = [
+        ['Source type', record.source_type],
+        ['Product area', record.product_area],
+        ['Status', record.status],
+        ['Severity', record.severity],
+        ['Sentiment', record.sentiment],
+        ['Created at', record.created_at],
+      ].filter(([, value]) => value);
+
+      const bodyFields = [
+        ['Case summary', record.case_summary],
+        ['Customer message', record.customer_message],
+        ['Resolution text', record.resolution_text],
+      ].filter(([, value]) => value);
+
+      return `
+        <div class="record-card">
+          <div class="record-head">
+            <div class="record-title">
+              <div>
+                <div class="field-name">${title}</div>
+                <div class="record-id">${record.id}</div>
+              </div>
+            </div>
+            <div class="mini">${topFields.map(([k, v]) => `<span><strong>${k}:</strong> ${v}</span>`).join('')}</div>
+            ${Array.isArray(record.tags) && record.tags.length ? `<div class="tag-list">${record.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div>` : ''}
+          </div>
+          <div class="record-body">
+            ${bodyFields.map(([name, value]) => `
+              <div class="field">
+                <div class="field-name">${name}</div>
+                <div class="field-value">${escapeHtml(String(value))}</div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    function escapeHtml(str) {
+      return str
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#39;');
+    }
+
+    function renderDetails() {
+      const sel = state.selected;
+      if (!sel || !state.matrixData) {
+        els.details.innerHTML = '<div class="empty">No cell selected yet.</div>';
+        return;
+      }
+
+      const { row, col } = sel;
+      const ids = state.matrixData.record_ids;
+      const idA = ids[row];
+      const idB = ids[col];
+      const score = state.matrixData.similarity_matrix[row][col];
+      const recordA = state.recordsById.get(idA);
+      const recordB = state.recordsById.get(idB);
+
+      els.details.innerHTML = `
+        <div class="pair-summary">
+          <div class="score">
+            <div>
+              <div class="field-name">Similarity score</div>
+              <strong>${fmt(score, 4)}</strong>
+            </div>
+            <div class="mini">
+              <span>Row ${row + 1}: ${idA}</span>
+              <span>Col ${col + 1}: ${idB}</span>
+            </div>
+          </div>
+        </div>
+        <div class="records-grid">
+          ${buildRecordCard(recordA, 'Record A')}
+          ${buildRecordCard(recordB, 'Record B')}
+        </div>
+      `;
+    }
+
+    function selectCell(row, col) {
+      state.selected = { row, col };
+      drawMatrix();
+      renderDetails();
+    }
+
+    function jumpToRecord(id) {
+      const data = state.matrixData;
+      if (!data) return;
+      const index = data.record_ids.indexOf(id.trim());
+      if (index === -1) {
+        setStatus(`Record ID not found: ${id}`, 'warn');
+        return;
+      }
+      const size = state.cellSize;
+      els.viewerWrap.scrollTo({
+        left: Math.max(0, index * size - els.viewerWrap.clientWidth / 3),
+        top: Math.max(0, index * size - els.viewerWrap.clientHeight / 3),
+        behavior: 'smooth',
+      });
+      selectCell(index, index);
+      setStatus(`Jumped to ${id}.`, 'ok');
+    }
+
+    function validateAndHydrate() {
+      const m = state.matrixData;
+      if (!m || !state.records.length) return false;
+
+      const n = m.record_ids.length;
+      if (m.similarity_matrix.length !== n) throw new Error('The matrix row count does not match record_ids length.');
+      for (const row of m.similarity_matrix) {
+        if (!Array.isArray(row) || row.length !== n) throw new Error('The similarity matrix must be square.');
+      }
+
+      state.recordsById = new Map(state.records.map(r => [r.id, r]));
+      const missing = m.record_ids.filter(id => !state.recordsById.has(id));
+      const extras = state.records.filter(r => !m.record_ids.includes(r.id));
+
+      let msg = `Loaded ${n} matrix IDs and ${state.records.length} records.`;
+      let tone = 'ok';
+      if (missing.length) {
+        msg += ` Missing ${missing.length} record(s) from records JSON.`;
+        tone = 'warn';
+      }
+      if (extras.length) msg += ` ${extras.length} extra record(s) are unused.`;
+
+      setStatus(msg, tone);
+      updateStats();
+      drawMatrix();
+      if (n) selectCell(0, 0);
+      return true;
+    }
+
+    async function maybeLoadFiles() {
+      try {
+        const matrixFile = els.matrixFile.files[0];
+        const recordsFile = els.recordsFile.files[0];
+        if (!matrixFile || !recordsFile) return;
+
+        setStatus('Reading files...', '');
+        const [matrixPayload, recordsPayload] = await Promise.all([
+          readJsonFile(matrixFile),
+          readJsonFile(recordsFile),
+        ]);
+
+        if (!isValidMatrixPayload(matrixPayload)) throw new Error('Similarity matrix JSON must contain record_ids and similarity_matrix.');
+        if (!isValidRecordsPayload(recordsPayload)) throw new Error('Records JSON must be an array of objects with at least an id field.');
+
+        state.matrixData = matrixPayload;
+        state.records = recordsPayload;
+        validateAndHydrate();
+      } catch (err) {
+        setStatus(err.message || 'Failed to load files.', 'bad');
+      }
+    }
+
+    els.matrixFile.addEventListener('change', maybeLoadFiles);
+    els.recordsFile.addEventListener('change', maybeLoadFiles);
+
+    els.cellSize.addEventListener('input', () => {
+      state.cellSize = Math.max(8, Math.min(48, Number(els.cellSize.value) || 16));
+      drawMatrix();
+    });
+
+    els.threshold.addEventListener('input', () => {
+      state.threshold = Math.max(0, Math.min(1, Number(els.threshold.value) || 0));
+      updateStats();
+      drawMatrix();
+    });
+
+    els.jumpBtn.addEventListener('click', () => jumpToRecord(els.jumpTo.value));
+    els.jumpTo.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') jumpToRecord(els.jumpTo.value);
+    });
+
+    els.diagonalBtn.addEventListener('click', () => {
+      state.hideDiagonal = !state.hideDiagonal;
+      els.diagonalBtn.textContent = state.hideDiagonal ? 'Show diagonal' : 'Hide diagonal';
+      drawMatrix();
+    });
+
+    els.resetBtn.addEventListener('click', () => {
+      state.selected = null;
+      state.hover = null;
+      els.jumpTo.value = '';
+      renderDetails();
+      drawMatrix();
+      setStatus('Selection reset.', 'ok');
+    });
+
+    els.canvas.addEventListener('mousemove', (event) => {
+      const rc = getRowColFromEvent(event);
+      state.hover = rc;
+      drawMatrix();
+      if (rc && state.matrixData) {
+        const idA = state.matrixData.record_ids[rc.row];
+        const idB = state.matrixData.record_ids[rc.col];
+        const value = state.matrixData.similarity_matrix[rc.row][rc.col];
+        setStatus(`Hovering ${idA} × ${idB} — score ${fmt(value, 4)}`);
+      }
+    });
+
+    els.canvas.addEventListener('mouseleave', () => {
+      state.hover = null;
+      drawMatrix();
+      if (state.matrixData) setStatus('Ready. Click a cell to inspect both records.', 'ok');
+    });
+
+    els.canvas.addEventListener('click', (event) => {
+      const rc = getRowColFromEvent(event);
+      if (!rc) return;
+      selectCell(rc.row, rc.col);
+      const idA = state.matrixData.record_ids[rc.row];
+      const idB = state.matrixData.record_ids[rc.col];
+      const value = state.matrixData.similarity_matrix[rc.row][rc.col];
+      setStatus(`Selected ${idA} × ${idB} — score ${fmt(value, 4)}`, 'ok');
+    });
+
+    window.addEventListener('resize', () => {
+      state.dpr = window.devicePixelRatio || 1;
+      drawMatrix();
+    });
+  </script>
+</body>
+</html>
