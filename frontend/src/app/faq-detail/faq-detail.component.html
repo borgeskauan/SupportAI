@@ -23,7 +23,7 @@
       <div class="heading-block">
         <div class="badges">
           <span class="badge family">{{ detail().family }}</span>
-          <span class="badge status" [class]="'badge status ' + statusClass(detail().status)">{{ detail().status }}</span>
+          <span class="badge status" [class]="'badge status ' + statusClass(detail().status)">{{ statusLabel(detail().status) }}</span>
           @if (detail().reviewNeeded) {
             <span class="badge review" i18n="@@badge_review_needed">Review Needed</span>
           }
@@ -38,7 +38,7 @@
 
         <div class="score-strip">
           <div class="score-row">
-            <span>Confidence Score</span>
+            <span i18n="@@score_confidence_label">Confidence Score</span>
             <div class="bar-wrap">
               <div class="bar-track" aria-hidden="true">
                 <div class="bar-fill" [style.width.%]="formatConfidence(detail().confidence)"></div>

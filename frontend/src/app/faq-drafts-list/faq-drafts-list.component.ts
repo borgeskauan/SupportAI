@@ -4,7 +4,7 @@ import { toObservable } from '@angular/core/rxjs-interop';
 import { RouterLink } from '@angular/router';
 import { finalize, switchMap } from 'rxjs';
 import { FaqDataService } from '../data-access/faq-data.service';
-import { FaqDraft } from '../data-access/faq.models';
+import { DraftStatus, FaqDraft, localizeDraftStatus } from '../data-access/faq.models';
 
 @Component({
   selector: 'app-faq-drafts-list',
@@ -53,6 +53,10 @@ export class FaqDraftsListComponent {
    */
   protected formatConfidence(score: number): number {
     return Math.round(score * 100);
+  }
+
+  protected statusLabel(status: DraftStatus): string {
+    return localizeDraftStatus(status);
   }
 
   protected regenerate(): void {

@@ -5,16 +5,12 @@
     "created_at": "2026-01-03T11:37:00Z",
     "status": "resolved",
     "product_area": "checkout",
-    "case_summary": "Customer completed checkout and the payment went through, but no confirmation email arrived.",
-    "resolution_text": "Agent verified the order and payment were successful, asked the customer to check spam and promotions folders, then re-sent the confirmation email successfully.",
-    "tags": [
-      "email",
-      "receipt",
-      "checkout"
-    ],
+    "case_summary": "Cliente concluiu o checkout e o pagamento foi processado, mas nenhum e-mail de confirmação chegou.",
+    "resolution_text": "O agente verificou que o pedido e o pagamento foram bem-sucedidos, pediu ao cliente para verificar as pastas de spam e promoções e depois reenviou o e-mail de confirmação com sucesso.",
+    "tags": ["email", "receipt", "checkout"],
     "severity": "medium",
     "sentiment": "frustrated",
-    "customer_message": "I completed checkout and my card was charged, but I never got a confirmation email."
+    "customer_message": "Concluí o checkout e meu cartão foi cobrado, mas nunca recebi um e-mail de confirmação."
   },
   {
     "id": "case_002",
@@ -22,16 +18,12 @@
     "created_at": "2026-01-04T14:44:00Z",
     "status": "resolved",
     "product_area": "notifications",
-    "case_summary": "Paid for the order successfully but never received the order confirmation message.",
-    "resolution_text": "Support confirmed the transaction was captured, verified the email address on file, and manually re-triggered the confirmation email after asking the customer to check spam.",
-    "tags": [
-      "confirmation",
-      "email",
-      "payment"
-    ],
+    "case_summary": "Pagou pelo pedido com sucesso, mas nunca recebeu a mensagem de confirmação do pedido.",
+    "resolution_text": "O suporte confirmou que a transação foi capturada, verificou o endereço de e-mail cadastrado e acionou manualmente o reenvio do e-mail de confirmação após pedir ao cliente para verificar o spam.",
+    "tags": ["confirmation", "email", "payment"],
     "severity": "low",
     "sentiment": "concerned",
-    "customer_message": "I paid for my order but the confirmation email still hasn't shown up."
+    "customer_message": "Paguei pelo meu pedido, mas o e-mail de confirmação ainda não apareceu."
   },
   {
     "id": "case_003",
@@ -39,13 +31,9 @@
     "created_at": "2026-01-05T17:51:00Z",
     "status": "resolved",
     "product_area": "checkout",
-    "case_summary": "Customer reports a successful card charge with no receipt or confirmation email after purchase.",
-    "resolution_text": "Escalation reviewed payment logs, confirmed the order existed, and found a temporary notification delivery failure. The email was re-sent and delivered.",
-    "tags": [
-      "receipt",
-      "notification",
-      "payments"
-    ],
+    "case_summary": "Cliente relata uma cobrança bem-sucedida no cartão, mas sem recibo nem e-mail de confirmação após a compra.",
+    "resolution_text": "A escalada revisou os logs de pagamento, confirmou que o pedido existia e identificou uma falha temporária na entrega da notificação. O e-mail foi reenviado e entregue.",
+    "tags": ["receipt", "notification", "payments"],
     "severity": "medium",
     "sentiment": "frustrated"
   },
@@ -55,12 +43,9 @@
     "created_at": "2026-01-06T20:58:00Z",
     "status": "resolved",
     "product_area": "orders",
-    "case_summary": "Caller said payment completed but the confirmation email did not appear in the inbox.",
-    "resolution_text": "Agent confirmed order creation, recommended checking spam and waiting a few minutes, then re-triggered the message from the admin tool which resolved the issue.",
-    "tags": [
-      "email",
-      "order-confirmation"
-    ],
+    "case_summary": "A pessoa informou que o pagamento foi concluído, mas o e-mail de confirmação não apareceu na caixa de entrada.",
+    "resolution_text": "O agente confirmou a criação do pedido, recomendou verificar o spam e aguardar alguns minutos, depois reacionou a mensagem pela ferramenta administrativa, o que resolveu o problema.",
+    "tags": ["email", "order-confirmation"],
     "severity": "medium",
     "sentiment": "upset"
   },
@@ -70,16 +55,12 @@
     "created_at": "2026-01-08T00:05:00Z",
     "status": "resolved",
     "product_area": "checkout",
-    "case_summary": "Customer requested help because payment succeeded and there was concern the missing confirmation email meant the order failed.",
-    "resolution_text": "Support confirmed the purchase was valid and explained the confirmation email had been delayed. The message was re-sent and no refund was needed.",
-    "tags": [
-      "refund-avoid",
-      "email",
-      "checkout"
-    ],
+    "case_summary": "Cliente pediu ajuda porque o pagamento foi concluído e havia preocupação de que o e-mail de confirmação ausente significasse que o pedido falhou.",
+    "resolution_text": "O suporte confirmou que a compra era válida e explicou que o e-mail de confirmação havia sofrido atraso. A mensagem foi reenviada e não foi necessário reembolso.",
+    "tags": ["refund-avoid", "email", "checkout"],
     "severity": "medium",
     "sentiment": "anxious",
-    "customer_message": "I was charged but never received the confirmation email, so I'm not sure whether the order went through."
+    "customer_message": "Fui cobrado, mas nunca recebi o e-mail de confirmação, então não tenho certeza se o pedido foi concluído."
   },
   {
     "id": "case_006",
@@ -87,16 +68,12 @@
     "created_at": "2026-01-09T03:12:00Z",
     "status": "resolved",
     "product_area": "notifications",
-    "case_summary": "Order was placed and charged correctly, but the customer did not receive the confirmation email or receipt.",
-    "resolution_text": "Support checked the notification queue, confirmed a backlog delay, and re-sent the receipt. Customer confirmed receipt after checking spam.",
-    "tags": [
-      "receipt",
-      "queue-delay",
-      "email"
-    ],
+    "case_summary": "O pedido foi feito e cobrado corretamente, mas o cliente não recebeu o e-mail de confirmação nem o recibo.",
+    "resolution_text": "O suporte verificou a fila de notificações, confirmou um atraso por acúmulo na fila e reenviou o recibo. O cliente confirmou o recebimento após verificar o spam.",
+    "tags": ["receipt", "queue-delay", "email"],
     "severity": "medium",
     "sentiment": "frustrated",
-    "customer_message": "My order was charged correctly, but I didn't receive the receipt or confirmation email."
+    "customer_message": "Meu pedido foi cobrado corretamente, mas eu não recebi o recibo nem o e-mail de confirmação."
   },
   {
     "id": "case_007",
@@ -104,16 +81,12 @@
     "created_at": "2026-01-10T06:19:00Z",
     "status": "resolved",
     "product_area": "billing",
-    "case_summary": "Customer worried payment may have failed because the inbox never received a confirmation after checkout.",
-    "resolution_text": "Agent verified the charge and order ID, explained that email delivery can lag, and reissued the confirmation email successfully.",
-    "tags": [
-      "billing",
-      "confirmation",
-      "delivery-delay"
-    ],
+    "case_summary": "Cliente ficou preocupado que o pagamento pudesse ter falhado porque a caixa de entrada nunca recebeu uma confirmação após o checkout.",
+    "resolution_text": "O agente verificou a cobrança e o ID do pedido, explicou que a entrega de e-mails pode atrasar e reenviou o e-mail de confirmação com sucesso.",
+    "tags": ["billing", "confirmation", "delivery-delay"],
     "severity": "low",
     "sentiment": "worried",
-    "customer_message": "I finished checkout and there's still no confirmation in my inbox."
+    "customer_message": "Terminei o checkout e ainda não há confirmação na minha caixa de entrada."
   },
   {
     "id": "case_008",
@@ -121,13 +94,9 @@
     "created_at": "2026-01-10T09:26:00Z",
     "status": "resolved",
     "product_area": "notifications",
-    "case_summary": "Customer completed a purchase during a notification outage and never got the post-purchase confirmation email.",
-    "resolution_text": "Escalation matched the charge to a valid order, confirmed the outage window, and manually re-sent the email while advising the customer to whitelist the sender.",
-    "tags": [
-      "outage",
-      "email",
-      "purchase"
-    ],
+    "case_summary": "Cliente concluiu uma compra durante uma indisponibilidade nas notificações e nunca recebeu o e-mail de confirmação pós-compra.",
+    "resolution_text": "A escalada associou a cobrança a um pedido válido, confirmou a janela da indisponibilidade e reenviou manualmente o e-mail, orientando o cliente a adicionar o remetente à lista de permitidos.",
+    "tags": ["outage", "email", "purchase"],
     "severity": "medium",
     "sentiment": "frustrated"
   },
@@ -137,13 +106,9 @@
     "created_at": "2026-01-11T11:33:00Z",
     "status": "resolved",
     "product_area": "checkout",
-    "case_summary": "Caller received a bank charge but no checkout confirmation email, leading to uncertainty about the order status.",
-    "resolution_text": "Support validated the order in the backend, confirmed the email address, and sent a new confirmation email after ruling out payment failure.",
-    "tags": [
-      "checkout",
-      "email",
-      "bank-charge"
-    ],
+    "case_summary": "A pessoa recebeu uma cobrança bancária, mas nenhum e-mail de confirmação do checkout, o que gerou incerteza sobre o status do pedido.",
+    "resolution_text": "O suporte validou o pedido no backend, confirmou o endereço de e-mail e enviou um novo e-mail de confirmação após descartar falha no pagamento.",
+    "tags": ["checkout", "email", "bank-charge"],
     "severity": "medium",
     "sentiment": "stressed"
   },
@@ -153,16 +118,12 @@
     "created_at": "2026-01-12T14:40:00Z",
     "status": "resolved",
     "product_area": "auth",
-    "case_summary": "Customer cannot reset the password because the reset link expired before it was used.",
-    "resolution_text": "Agent generated a fresh reset link, advised the customer to use the newest email only, and confirmed the password reset completed successfully.",
-    "tags": [
-      "auth",
-      "password-reset",
-      "expired-link"
-    ],
+    "case_summary": "Cliente não consegue redefinir a senha porque o link de redefinição expirou antes de ser usado.",
+    "resolution_text": "O agente gerou um novo link de redefinição, orientou o cliente a usar apenas o e-mail mais recente e confirmou que a redefinição de senha foi concluída com sucesso.",
+    "tags": ["auth", "password-reset", "expired-link"],
     "severity": "medium",
     "sentiment": "frustrated",
-    "customer_message": "The reset link expires before I can use it, so I still can't get into my account."
+    "customer_message": "O link de redefinição expira antes que eu consiga usá-lo, então ainda não consigo entrar na minha conta."
   },
   {
     "id": "case_011",
@@ -170,16 +131,12 @@
     "created_at": "2026-01-13T17:47:00Z",
     "status": "resolved",
     "product_area": "auth",
-    "case_summary": "Password reset email never arrived, so the customer could not regain account access.",
-    "resolution_text": "Support confirmed the account email, asked the customer to check spam, and re-sent the password reset email. The second email arrived and the issue was resolved.",
-    "tags": [
-      "login",
-      "reset-email",
-      "auth"
-    ],
+    "case_summary": "O e-mail de redefinição de senha nunca chegou, então o cliente não conseguiu recuperar o acesso à conta.",
+    "resolution_text": "O suporte confirmou o e-mail da conta, pediu ao cliente para verificar o spam e reenviou o e-mail de redefinição de senha. O segundo e-mail chegou e o problema foi resolvido.",
+    "tags": ["login", "reset-email", "auth"],
     "severity": "medium",
     "sentiment": "anxious",
-    "customer_message": "I'm not receiving the password reset email, so I can't log in."
+    "customer_message": "Não estou recebendo o e-mail de redefinição de senha, então não consigo entrar."
   },
   {
     "id": "case_012",
@@ -187,13 +144,9 @@
     "created_at": "2026-01-14T20:54:00Z",
     "status": "resolved",
     "product_area": "identity",
-    "case_summary": "User reports that every password reset link says invalid or expired immediately after opening it.",
-    "resolution_text": "Escalation found multiple reset requests invalidating earlier links. Customer was told to use only the latest message and a fresh link fixed the problem.",
-    "tags": [
-      "identity",
-      "reset-link",
-      "expired"
-    ],
+    "case_summary": "Usuário relata que todo link de redefinição de senha aparece como inválido ou expirado imediatamente após ser aberto.",
+    "resolution_text": "A escalada identificou que múltiplas solicitações de redefinição invalidavam links anteriores. O cliente foi orientado a usar apenas a mensagem mais recente, e um novo link resolveu o problema.",
+    "tags": ["identity", "reset-link", "expired"],
     "severity": "high",
     "sentiment": "frustrated"
   },
@@ -203,13 +156,9 @@
     "created_at": "2026-01-16T00:01:00Z",
     "status": "resolved",
     "product_area": "auth",
-    "case_summary": "Caller could not sign in because the reset email had not shown up and prior links no longer worked.",
-    "resolution_text": "Agent checked deliverability, verified the account address, issued one final reset email, and instructed the customer to ignore older reset messages. Login access was restored.",
-    "tags": [
-      "call",
-      "auth",
-      "email-delivery"
-    ],
+    "case_summary": "A pessoa não conseguia entrar porque o e-mail de redefinição não aparecia e os links anteriores já não funcionavam.",
+    "resolution_text": "O agente verificou a entregabilidade, confirmou o endereço da conta, emitiu um último e-mail de redefinição e instruiu o cliente a ignorar mensagens antigas de redefinição. O acesso ao login foi restaurado.",
+    "tags": ["call", "auth", "email-delivery"],
     "severity": "medium",
     "sentiment": "upset"
   },
@@ -219,16 +168,12 @@
     "created_at": "2026-01-17T03:08:00Z",
     "status": "resolved",
     "product_area": "auth",
-    "case_summary": "Customer asked for cancellation help after being locked out when password reset emails were missing.",
-    "resolution_text": "Support re-sent the reset email, confirmed inbox delivery after spam check, and the customer regained access so the cancellation request was withdrawn.",
-    "tags": [
-      "locked-out",
-      "reset",
-      "retention"
-    ],
+    "case_summary": "Cliente pediu ajuda para cancelamento após ficar sem acesso quando os e-mails de redefinição de senha não chegaram.",
+    "resolution_text": "O suporte reenviou o e-mail de redefinição, confirmou a entrega na caixa de entrada após verificação do spam, e o cliente recuperou o acesso, então o pedido de cancelamento foi retirado.",
+    "tags": ["locked-out", "reset", "retention"],
     "severity": "low",
     "sentiment": "concerned",
-    "customer_message": "I need help because I'm locked out and the password reset emails never arrive."
+    "customer_message": "Preciso de ajuda porque estou sem acesso e os e-mails de redefinição de senha nunca chegam."
   },
   {
     "id": "case_015",
@@ -236,16 +181,12 @@
     "created_at": "2026-01-18T06:15:00Z",
     "status": "resolved",
     "product_area": "accounts",
-    "case_summary": "Reset email received late, and the link had already expired by the time the customer opened it.",
-    "resolution_text": "Agent explained reset links are single-use and time-limited, sent a new one, and confirmed the customer successfully changed the password.",
-    "tags": [
-      "accounts",
-      "password",
-      "single-use-link"
-    ],
+    "case_summary": "O e-mail de redefinição chegou com atraso, e o link já tinha expirado quando o cliente o abriu.",
+    "resolution_text": "O agente explicou que links de redefinição são de uso único e têm tempo limitado, enviou um novo e confirmou que o cliente alterou a senha com sucesso.",
+    "tags": ["accounts", "password", "single-use-link"],
     "severity": "medium",
     "sentiment": "frustrated",
-    "customer_message": "The reset email showed up too late and the link was already expired."
+    "customer_message": "O e-mail de redefinição chegou tarde demais e o link já estava expirado."
   },
   {
     "id": "case_016",
@@ -253,16 +194,12 @@
     "created_at": "2026-01-18T09:22:00Z",
     "status": "resolved",
     "product_area": "auth",
-    "case_summary": "Customer clicked a password reset link from an earlier email and kept seeing an invalid-token message.",
-    "resolution_text": "Support clarified that multiple reset requests deactivate older links, sent a fresh reset email, and the customer completed the flow using the newest link.",
-    "tags": [
-      "token",
-      "reset",
-      "authentication"
-    ],
+    "case_summary": "Cliente clicou em um link de redefinição de senha de um e-mail anterior e continuava vendo uma mensagem de token inválido.",
+    "resolution_text": "O suporte esclareceu que múltiplas solicitações de redefinição desativam links antigos, enviou um novo e-mail de redefinição e o cliente concluiu o processo usando o link mais recente.",
+    "tags": ["token", "reset", "authentication"],
     "severity": "low",
     "sentiment": "annoyed",
-    "customer_message": "Every reset link I open says it's invalid."
+    "customer_message": "Todo link de redefinição que eu abro diz que é inválido."
   },
   {
     "id": "case_017",
@@ -270,13 +207,9 @@
     "created_at": "2026-01-19T12:29:00Z",
     "status": "resolved",
     "product_area": "security",
-    "case_summary": "Customer was stuck in the reset flow because reset emails were delayed and older links had expired.",
-    "resolution_text": "Escalation reviewed email logs, re-issued the reset email, and recommended waiting for the latest message only. The customer reset the password successfully.",
-    "tags": [
-      "security",
-      "email-delay",
-      "reset"
-    ],
+    "case_summary": "Cliente ficou preso no fluxo de redefinição porque os e-mails de redefinição atrasaram e os links antigos expiraram.",
+    "resolution_text": "A escalada revisou os logs de e-mail, reenviou o e-mail de redefinição e recomendou aguardar apenas a mensagem mais recente. O cliente redefiniu a senha com sucesso.",
+    "tags": ["security", "email-delay", "reset"],
     "severity": "medium",
     "sentiment": "frustrated"
   },
@@ -286,16 +219,12 @@
     "created_at": "2026-01-20T14:36:00Z",
     "status": "resolved",
     "product_area": "billing",
-    "case_summary": "Customer sees two card charges for a single checkout attempt and believes they were billed twice.",
-    "resolution_text": "Support verified only one completed order existed. The second charge was a temporary authorization hold that would drop automatically within a few business days.",
-    "tags": [
-      "billing",
-      "duplicate-charge",
-      "authorization"
-    ],
+    "case_summary": "Cliente vê duas cobranças no cartão para uma única tentativa de checkout e acredita que foi cobrado em duplicidade.",
+    "resolution_text": "O suporte verificou que existia apenas um pedido concluído. A segunda cobrança era uma retenção temporária de autorização que seria removida automaticamente em alguns dias úteis.",
+    "tags": ["billing", "duplicate-charge", "authorization"],
     "severity": "high",
     "sentiment": "angry",
-    "customer_message": "I only placed one order, but my card shows two charges."
+    "customer_message": "Fiz apenas um pedido, mas meu cartão mostra duas cobranças."
   },
   {
     "id": "case_019",
@@ -303,16 +232,12 @@
     "created_at": "2026-01-21T17:43:00Z",
     "status": "resolved",
     "product_area": "payments",
-    "case_summary": "Two pending transactions appeared after one purchase, but the customer only intended to submit the order once.",
-    "resolution_text": "Agent confirmed a single successful payment capture and explained that the second pending line was a duplicate authorization hold, not an extra settled charge.",
-    "tags": [
-      "payments",
-      "pending",
-      "duplicate"
-    ],
+    "case_summary": "Duas transações pendentes apareceram após uma compra, mas o cliente pretendia enviar o pedido apenas uma vez.",
+    "resolution_text": "O agente confirmou uma única captura de pagamento bem-sucedida e explicou que a segunda linha pendente era uma retenção de autorização duplicada, não uma cobrança liquidada extra.",
+    "tags": ["payments", "pending", "duplicate"],
     "severity": "medium",
     "sentiment": "worried",
-    "customer_message": "I checked out once and now I see two pending charges."
+    "customer_message": "Fiz o checkout uma vez e agora vejo duas cobranças pendentes."
   },
   {
     "id": "case_020",
@@ -320,13 +245,9 @@
     "created_at": "2026-01-22T20:50:00Z",
     "status": "resolved",
     "product_area": "checkout",
-    "case_summary": "Customer was charged twice after retrying checkout, but only one order record was created.",
-    "resolution_text": "Escalation found one settled payment and one voided authorization. Customer was informed the bank would release the duplicate hold automatically.",
-    "tags": [
-      "checkout",
-      "voided-auth",
-      "charge"
-    ],
+    "case_summary": "Cliente foi cobrado duas vezes após tentar novamente o checkout, mas apenas um registro de pedido foi criado.",
+    "resolution_text": "A escalada encontrou um pagamento liquidado e uma autorização estornada. O cliente foi informado de que o banco liberaria automaticamente a retenção duplicada.",
+    "tags": ["checkout", "voided-auth", "charge"],
     "severity": "high",
     "sentiment": "frustrated"
   },
@@ -336,12 +257,9 @@
     "created_at": "2026-01-23T23:57:00Z",
     "status": "resolved",
     "product_area": "billing",
-    "case_summary": "Caller reported two bank notifications for the same order and feared double billing.",
-    "resolution_text": "Agent reviewed payment status, confirmed one capture and one pending authorization, and advised the customer that the duplicate hold would disappear without further action.",
-    "tags": [
-      "bank-notification",
-      "double-charge"
-    ],
+    "case_summary": "A pessoa relatou duas notificações bancárias para o mesmo pedido e temia cobrança em duplicidade.",
+    "resolution_text": "O agente revisou o status do pagamento, confirmou uma captura e uma autorização pendente e orientou o cliente de que a retenção duplicada desapareceria sem necessidade de ação adicional.",
+    "tags": ["bank-notification", "double-charge"],
     "severity": "medium",
     "sentiment": "stressed"
   },
@@ -351,16 +269,12 @@
     "created_at": "2026-01-25T03:04:00Z",
     "status": "resolved",
     "product_area": "payments",
-    "case_summary": "Customer requested a refund because they thought the order was billed twice.",
-    "resolution_text": "Support confirmed only one completed charge and one temporary authorization. Customer withdrew the refund request after the explanation.",
-    "tags": [
-      "refund-avoid",
-      "authorization-hold",
-      "payments"
-    ],
+    "case_summary": "Cliente solicitou reembolso porque achou que o pedido havia sido cobrado duas vezes.",
+    "resolution_text": "O suporte confirmou apenas uma cobrança concluída e uma autorização temporária. O cliente retirou o pedido de reembolso após a explicação.",
+    "tags": ["refund-avoid", "authorization-hold", "payments"],
     "severity": "medium",
     "sentiment": "upset",
-    "customer_message": "I think I was billed twice for the same order and want the extra charge refunded."
+    "customer_message": "Acho que fui cobrado duas vezes pelo mesmo pedido e quero o reembolso da cobrança extra."
   },
   {
     "id": "case_023",
@@ -368,16 +282,12 @@
     "created_at": "2026-01-26T06:11:00Z",
     "status": "resolved",
     "product_area": "orders",
-    "case_summary": "Customer clicked Pay twice after a slow checkout page and now sees two transactions.",
-    "resolution_text": "Support checked the gateway logs, verified a single order and a single settled payment, and explained the other entry was an authorization hold caused by the retry.",
-    "tags": [
-      "slow-checkout",
-      "retry",
-      "billing"
-    ],
+    "case_summary": "Cliente clicou em Pagar duas vezes após uma página de checkout lenta e agora vê duas transações.",
+    "resolution_text": "O suporte verificou os logs do gateway, confirmou um único pedido e um único pagamento liquidado e explicou que o outro lançamento era uma retenção de autorização causada pela nova tentativa.",
+    "tags": ["slow-checkout", "retry", "billing"],
     "severity": "high",
     "sentiment": "frustrated",
-    "customer_message": "The checkout page was slow, I clicked pay again, and now I have two transactions."
+    "customer_message": "A página de checkout estava lenta, cliquei em pagar de novo e agora tenho duas transações."
   },
   {
     "id": "case_024",
@@ -385,16 +295,12 @@
     "created_at": "2026-01-26T09:18:00Z",
     "status": "resolved",
     "product_area": "billing",
-    "case_summary": "Customer's statement shows a second pending charge from the same merchant right after purchase.",
-    "resolution_text": "Agent matched both payment IDs, confirmed one payment was reversed automatically, and explained bank statements can temporarily show both lines.",
-    "tags": [
-      "statement",
-      "pending-charge",
-      "merchant"
-    ],
+    "case_summary": "O extrato do cliente mostra uma segunda cobrança pendente do mesmo lojista logo após a compra.",
+    "resolution_text": "O agente correlacionou ambos os IDs de pagamento, confirmou que um pagamento foi revertido automaticamente e explicou que extratos bancários podem mostrar temporariamente ambas as linhas.",
+    "tags": ["statement", "pending-charge", "merchant"],
     "severity": "medium",
     "sentiment": "worried",
-    "customer_message": "My statement is showing a second pending charge right after the purchase."
+    "customer_message": "Meu extrato está mostrando uma segunda cobrança pendente logo após a compra."
   },
   {
     "id": "case_025",
@@ -402,13 +308,9 @@
     "created_at": "2026-01-27T12:25:00Z",
     "status": "resolved",
     "product_area": "payments",
-    "case_summary": "Customer insisted there were two completed charges for one order, requiring deeper payment review.",
-    "resolution_text": "Escalation traced the payment events and confirmed one capture plus one canceled authorization. Documentation from the gateway was provided to reassure the customer.",
-    "tags": [
-      "gateway",
-      "capture",
-      "authorization"
-    ],
+    "case_summary": "Cliente insistiu que havia duas cobranças concluídas para um único pedido, exigindo uma revisão mais profunda do pagamento.",
+    "resolution_text": "A escalada rastreou os eventos de pagamento e confirmou uma captura e uma autorização cancelada. Foi fornecida documentação do gateway para tranquilizar o cliente.",
+    "tags": ["gateway", "capture", "authorization"],
     "severity": "high",
     "sentiment": "angry"
   },
@@ -418,12 +320,9 @@
     "created_at": "2026-01-28T14:32:00Z",
     "status": "resolved",
     "product_area": "checkout",
-    "case_summary": "Caller said checkout froze, so they retried and later noticed two identical card charges.",
-    "resolution_text": "Support confirmed there was no duplicate order and only one final settlement. The extra line item was identified as a temporary hold that would expire.",
-    "tags": [
-      "retry-payment",
-      "temporary-hold"
-    ],
+    "case_summary": "A pessoa disse que o checkout travou, então tentou de novo e depois percebeu duas cobranças idênticas no cartão.",
+    "resolution_text": "O suporte confirmou que não havia pedido duplicado e apenas uma liquidação final. O lançamento extra foi identificado como uma retenção temporária que expiraria.",
+    "tags": ["retry-payment", "temporary-hold"],
     "severity": "medium",
     "sentiment": "frustrated"
   },
@@ -433,16 +332,12 @@
     "created_at": "2026-01-29T17:39:00Z",
     "status": "resolved",
     "product_area": "promotions",
-    "case_summary": "Customer says a valid promo code is rejected at checkout even though the offer is still active.",
-    "resolution_text": "Support confirmed the code was valid but limited to first-time purchases. The customer was given the correct eligibility details and applied a different eligible offer successfully.",
-    "tags": [
-      "promo",
-      "discount",
-      "eligibility"
-    ],
+    "case_summary": "Cliente diz que um código promocional válido é rejeitado no checkout, embora a oferta ainda esteja ativa.",
+    "resolution_text": "O suporte confirmou que o código era válido, mas limitado a primeiras compras. O cliente recebeu os detalhes corretos de elegibilidade e aplicou com sucesso uma oferta elegível diferente.",
+    "tags": ["promo", "discount", "eligibility"],
     "severity": "medium",
     "sentiment": "confused",
-    "customer_message": "My promo code is still active, but checkout keeps saying it's invalid."
+    "customer_message": "Meu código promocional ainda está ativo, mas o checkout continua dizendo que ele é inválido."
   },
   {
     "id": "case_028",
@@ -450,16 +345,12 @@
     "created_at": "2026-01-30T20:46:00Z",
     "status": "resolved",
     "product_area": "checkout",
-    "case_summary": "Promo code from a campaign email returns invalid during checkout.",
-    "resolution_text": "Agent reviewed the campaign rules, found the code required a minimum cart value, and explained the requirement. Customer adjusted the cart and applied the code successfully.",
-    "tags": [
-      "checkout",
-      "promo-code",
-      "cart-threshold"
-    ],
+    "case_summary": "Código promocional de um e-mail de campanha retorna inválido durante o checkout.",
+    "resolution_text": "O agente revisou as regras da campanha, identificou que o código exigia um valor mínimo no carrinho e explicou o requisito. O cliente ajustou o carrinho e aplicou o código com sucesso.",
+    "tags": ["checkout", "promo-code", "cart-threshold"],
     "severity": "low",
     "sentiment": "annoyed",
-    "customer_message": "The discount code from your campaign email won't work at checkout."
+    "customer_message": "O código de desconto do seu e-mail de campanha não funciona no checkout."
   },
   {
     "id": "case_029",
@@ -467,13 +358,9 @@
     "created_at": "2026-01-31T23:53:00Z",
     "status": "resolved",
     "product_area": "promotions",
-    "case_summary": "Customer reports a marketing coupon should work but the checkout page keeps rejecting it.",
-    "resolution_text": "Escalation found the code was region-limited and not applicable to the customer's account locale. Support clarified the restriction and offered an alternative active promotion.",
-    "tags": [
-      "coupon",
-      "region",
-      "campaign"
-    ],
+    "case_summary": "Cliente relata que um cupom de marketing deveria funcionar, mas a página de checkout continua rejeitando-o.",
+    "resolution_text": "A escalada identificou que o código era limitado por região e não se aplicava à localidade da conta do cliente. O suporte esclareceu a restrição e ofereceu uma promoção ativa alternativa.",
+    "tags": ["coupon", "region", "campaign"],
     "severity": "medium",
     "sentiment": "frustrated"
   },
@@ -483,13 +370,9 @@
     "created_at": "2026-02-02T03:00:00Z",
     "status": "resolved",
     "product_area": "subscriptions",
-    "case_summary": "Caller tried to redeem a discount code but the system said the code was invalid.",
-    "resolution_text": "Agent verified the code was active, then found it applied only to annual plans and not monthly subscriptions. Customer switched plan type and redeemed the discount.",
-    "tags": [
-      "subscription",
-      "discount",
-      "plan-rule"
-    ],
+    "case_summary": "A pessoa tentou resgatar um código de desconto, mas o sistema disse que o código era inválido.",
+    "resolution_text": "O agente verificou que o código estava ativo, depois identificou que ele se aplicava apenas a planos anuais e não a assinaturas mensais. O cliente mudou o tipo de plano e resgatou o desconto.",
+    "tags": ["subscription", "discount", "plan-rule"],
     "severity": "low",
     "sentiment": "confused"
   },
@@ -499,16 +382,12 @@
     "created_at": "2026-02-03T06:07:00Z",
     "status": "resolved",
     "product_area": "checkout",
-    "case_summary": "Customer requested a refund after paying full price because a promo code was rejected during purchase.",
-    "resolution_text": "Support reviewed the code rules, confirmed the customer used an ineligible code, and applied a post-purchase courtesy credit instead of a full refund.",
-    "tags": [
-      "refund",
-      "promo",
-      "ineligible"
-    ],
+    "case_summary": "Cliente solicitou reembolso após pagar preço cheio porque um código promocional foi rejeitado durante a compra.",
+    "resolution_text": "O suporte revisou as regras do código, confirmou que o cliente usou um código inelegível e aplicou um crédito de cortesia pós-compra em vez de um reembolso integral.",
+    "tags": ["refund", "promo", "ineligible"],
     "severity": "medium",
     "sentiment": "disappointed",
-    "customer_message": "My promo code was rejected, so I ended up paying full price and want help."
+    "customer_message": "Meu código promocional foi rejeitado, então acabei pagando o preço cheio e quero ajuda."
   },
   {
     "id": "case_032",
@@ -516,16 +395,12 @@
     "created_at": "2026-02-03T09:14:00Z",
     "status": "resolved",
     "product_area": "promotions",
-    "case_summary": "Discount code looked active but failed during checkout on an account that had used a similar offer before.",
-    "resolution_text": "Support confirmed the campaign was one-time-use per account. Customer was informed of the usage limit and the checkout completed without further errors.",
-    "tags": [
-      "discount",
-      "one-time-use",
-      "account-limit"
-    ],
+    "case_summary": "O código de desconto parecia ativo, mas falhou durante o checkout em uma conta que já havia usado uma oferta semelhante antes.",
+    "resolution_text": "O suporte confirmou que a campanha era de uso único por conta. O cliente foi informado do limite de uso e o checkout foi concluído sem novos erros.",
+    "tags": ["discount", "one-time-use", "account-limit"],
     "severity": "low",
     "sentiment": "frustrated",
-    "customer_message": "The code looks valid, but it fails when I try to apply it during checkout."
+    "customer_message": "O código parece válido, mas falha quando tento aplicá-lo durante o checkout."
   },
   {
     "id": "case_033",
@@ -533,15 +408,12 @@
     "created_at": "2026-02-04T12:21:00Z",
     "status": "resolved",
     "product_area": "payments",
-    "case_summary": "Customer entered a promo code copied from social media and got an expired or invalid error.",
-    "resolution_text": "Agent validated the code and found the public post referenced an expired campaign. A currently active code was shared and the customer completed checkout.",
-    "tags": [
-      "social-campaign",
-      "expired-code"
-    ],
+    "case_summary": "Cliente inseriu um código promocional copiado das redes sociais e recebeu um erro de expirado ou inválido.",
+    "resolution_text": "O agente validou o código e identificou que a publicação pública se referia a uma campanha expirada. Um código atualmente ativo foi compartilhado e o cliente concluiu o checkout.",
+    "tags": ["social-campaign", "expired-code"],
     "severity": "low",
     "sentiment": "neutral",
-    "customer_message": "I copied the promo code and it says expired or invalid."
+    "customer_message": "Copiei o código promocional e ele diz que está expirado ou inválido."
   },
   {
     "id": "case_034",
@@ -549,13 +421,9 @@
     "created_at": "2026-02-05T15:28:00Z",
     "status": "resolved",
     "product_area": "checkout",
-    "case_summary": "Promo code kept failing even though the customer believed all campaign conditions were met.",
-    "resolution_text": "Escalation found the offer excluded gift-card items in the basket. After the excluded item was removed, the code applied normally.",
-    "tags": [
-      "basket-rules",
-      "gift-card",
-      "discount"
-    ],
+    "case_summary": "O código promocional continuava falhando, embora o cliente acreditasse que todas as condições da campanha haviam sido atendidas.",
+    "resolution_text": "A escalada identificou que a oferta excluía itens de gift card na cesta. Após a remoção do item excluído, o código foi aplicado normalmente.",
+    "tags": ["basket-rules", "gift-card", "discount"],
     "severity": "medium",
     "sentiment": "frustrated"
   },
@@ -565,16 +433,12 @@
     "created_at": "2026-02-06T17:35:00Z",
     "status": "resolved",
     "product_area": "auth",
-    "case_summary": "Customer enters MFA code successfully but is sent back to the login page instead of getting into the account.",
-    "resolution_text": "Support identified a stale browser session cookie, asked the customer to clear cookies and sign in again, which resolved the MFA login loop.",
-    "tags": [
-      "mfa",
-      "login-loop",
-      "cookies"
-    ],
+    "case_summary": "Cliente insere o código MFA com sucesso, mas é enviado de volta para a página de login em vez de entrar na conta.",
+    "resolution_text": "O suporte identificou um cookie de sessão do navegador desatualizado, pediu ao cliente para limpar os cookies e entrar novamente, o que resolveu o loop de login com MFA.",
+    "tags": ["mfa", "login-loop", "cookies"],
     "severity": "high",
     "sentiment": "frustrated",
-    "customer_message": "I enter the MFA code successfully, but the app sends me back to the login page."
+    "customer_message": "Eu insiro o código MFA com sucesso, mas o app me manda de volta para a página de login."
   },
   {
     "id": "case_036",
@@ -582,16 +446,12 @@
     "created_at": "2026-02-07T20:42:00Z",
     "status": "resolved",
     "product_area": "mobile_app",
-    "case_summary": "After completing two-factor verification in the mobile app, the customer returns to the sign-in screen repeatedly.",
-    "resolution_text": "Agent had the customer update the app and clear local session data. After signing in again, the MFA loop stopped.",
-    "tags": [
-      "app",
-      "2fa",
-      "session"
-    ],
+    "case_summary": "Após concluir a verificação em duas etapas no app móvel, o cliente retorna repetidamente à tela de login.",
+    "resolution_text": "O agente orientou o cliente a atualizar o app e limpar os dados locais da sessão. Após entrar novamente, o loop de MFA parou.",
+    "tags": ["app", "2fa", "session"],
     "severity": "medium",
     "sentiment": "annoyed",
-    "customer_message": "After two-factor verification, it keeps taking me back to sign-in."
+    "customer_message": "Depois da verificação em duas etapas, ele continua me levando de volta para o login."
   },
   {
     "id": "case_037",
@@ -599,13 +459,9 @@
     "created_at": "2026-02-08T23:49:00Z",
     "status": "resolved",
     "product_area": "security",
-    "case_summary": "User passes multi-factor authentication but never reaches the dashboard because the session refresh fails.",
-    "resolution_text": "Escalation traced the issue to an outdated app build with a token refresh bug. Updating the client resolved the post-MFA redirect loop.",
-    "tags": [
-      "security",
-      "token-refresh",
-      "mobile"
-    ],
+    "case_summary": "Usuário passa pela autenticação multifator, mas nunca chega ao painel porque a atualização da sessão falha.",
+    "resolution_text": "A escalada rastreou o problema até uma versão desatualizada do app com um bug de atualização de token. Atualizar o cliente resolveu o loop de redirecionamento após o MFA.",
+    "tags": ["security", "token-refresh", "mobile"],
     "severity": "high",
     "sentiment": "frustrated"
   },
@@ -615,13 +471,9 @@
     "created_at": "2026-02-10T02:56:00Z",
     "status": "resolved",
     "product_area": "accounts",
-    "case_summary": "Caller can enter the verification code but is immediately asked to log in again.",
-    "resolution_text": "Agent walked the customer through clearing cached browser data and disabling an old bookmarked login path. The next login worked normally.",
-    "tags": [
-      "browser-cache",
-      "auth",
-      "redirect"
-    ],
+    "case_summary": "A pessoa consegue inserir o código de verificação, mas imediatamente é solicitada a fazer login novamente.",
+    "resolution_text": "O agente orientou o cliente a limpar os dados em cache do navegador e desativar um caminho antigo de login salvo nos favoritos. O próximo login funcionou normalmente.",
+    "tags": ["browser-cache", "auth", "redirect"],
     "severity": "medium",
     "sentiment": "upset"
   },
@@ -631,16 +483,12 @@
     "created_at": "2026-02-11T06:03:00Z",
     "status": "resolved",
     "product_area": "auth",
-    "case_summary": "Customer asked to cancel because they were stuck in a login loop even after passing MFA.",
-    "resolution_text": "Support found corrupted session data, had the customer sign out everywhere and retry on the latest app version, and access was restored.",
-    "tags": [
-      "retention",
-      "login-loop",
-      "session-reset"
-    ],
+    "case_summary": "Cliente pediu cancelamento porque ficou preso em um loop de login mesmo após passar pelo MFA.",
+    "resolution_text": "O suporte encontrou dados de sessão corrompidos, orientou o cliente a sair de todas as sessões e tentar novamente na versão mais recente do app, e o acesso foi restaurado.",
+    "tags": ["retention", "login-loop", "session-reset"],
     "severity": "medium",
     "sentiment": "frustrated",
-    "customer_message": "I can't get into my account because it loops back to login after MFA."
+    "customer_message": "Não consigo entrar na minha conta porque ele volta para o login depois do MFA."
   },
   {
     "id": "case_040",
@@ -648,16 +496,12 @@
     "created_at": "2026-02-11T09:10:00Z",
     "status": "resolved",
     "product_area": "mobile_app",
-    "case_summary": "The app accepts the one-time passcode but instantly returns to the authentication screen.",
-    "resolution_text": "Support confirmed the account was healthy and resolved the issue by having the customer force-close the app, clear local storage, and re-authenticate.",
-    "tags": [
-      "otp",
-      "mobile",
-      "local-storage"
-    ],
+    "case_summary": "O app aceita a senha de uso único, mas retorna instantaneamente à tela de autenticação.",
+    "resolution_text": "O suporte confirmou que a conta estava saudável e resolveu o problema orientando o cliente a forçar o fechamento do app, limpar o armazenamento local e autenticar novamente.",
+    "tags": ["otp", "mobile", "local-storage"],
     "severity": "medium",
     "sentiment": "frustrated",
-    "customer_message": "The one-time passcode is accepted, then I'm returned to the authentication screen."
+    "customer_message": "A senha de uso único é aceita, depois sou devolvido à tela de autenticação."
   },
   {
     "id": "case_041",
@@ -665,16 +509,12 @@
     "created_at": "2026-02-12T12:17:00Z",
     "status": "resolved",
     "product_area": "auth",
-    "case_summary": "Customer completes verification but the website keeps bouncing back to sign-in.",
-    "resolution_text": "Agent identified blocked third-party cookies in the browser, recommended enabling required cookies for the session, and the user logged in successfully.",
-    "tags": [
-      "browser",
-      "cookies",
-      "2fa"
-    ],
+    "case_summary": "Cliente conclui a verificação, mas o site continua voltando para a tela de login.",
+    "resolution_text": "O agente identificou cookies de terceiros bloqueados no navegador, recomendou habilitar os cookies necessários para a sessão e o usuário conseguiu entrar com sucesso.",
+    "tags": ["browser", "cookies", "2fa"],
     "severity": "low",
     "sentiment": "confused",
-    "customer_message": "Verification works, but the site keeps bouncing me back to the login page."
+    "customer_message": "A verificação funciona, mas o site continua me jogando de volta para a página de login."
   },
   {
     "id": "case_042",
@@ -682,13 +522,9 @@
     "created_at": "2026-02-13T15:24:00Z",
     "status": "resolved",
     "product_area": "accounts",
-    "case_summary": "Repeated MFA success still led to a login loop across multiple attempts.",
-    "resolution_text": "Escalation confirmed the customer was using an outdated deep-link path from an old email. Access worked after navigating to the current login page and starting a fresh session.",
-    "tags": [
-      "deep-link",
-      "stale-session",
-      "mfa"
-    ],
+    "case_summary": "Sucessos repetidos no MFA ainda levavam a um loop de login em várias tentativas.",
+    "resolution_text": "A escalada confirmou que o cliente estava usando um deep link desatualizado de um e-mail antigo. O acesso funcionou após navegar para a página de login atual e iniciar uma nova sessão.",
+    "tags": ["deep-link", "stale-session", "mfa"],
     "severity": "medium",
     "sentiment": "frustrated"
   },
@@ -698,16 +534,12 @@
     "created_at": "2026-02-14T17:31:00Z",
     "status": "resolved",
     "product_area": "refunds",
-    "case_summary": "Customer received notice that the refund was processed but the bank balance has not updated yet.",
-    "resolution_text": "Support confirmed the refund had been issued and explained that banks can take several business days to post the credit to the original payment method.",
-    "tags": [
-      "refund",
-      "bank-delay",
-      "card"
-    ],
+    "case_summary": "Cliente recebeu aviso de que o reembolso foi processado, mas o saldo bancário ainda não foi atualizado.",
+    "resolution_text": "O suporte confirmou que o reembolso havia sido emitido e explicou que os bancos podem levar vários dias úteis para lançar o crédito no método de pagamento original.",
+    "tags": ["refund", "bank-delay", "card"],
     "severity": "medium",
     "sentiment": "worried",
-    "customer_message": "I got a message saying my refund was processed, but the money isn't back in my account yet."
+    "customer_message": "Recebi uma mensagem dizendo que meu reembolso foi processado, mas o dinheiro ainda não voltou para a minha conta."
   },
   {
     "id": "case_044",
@@ -715,15 +547,12 @@
     "created_at": "2026-02-15T20:38:00Z",
     "status": "resolved",
     "product_area": "billing",
-    "case_summary": "Refund email says completed, but the card statement still does not show the returned amount.",
-    "resolution_text": "Agent verified the refund transaction ID and explained that card issuers often display the credit after additional processing time.",
-    "tags": [
-      "refund-status",
-      "statement-delay"
-    ],
+    "case_summary": "O e-mail de reembolso diz que foi concluído, mas o extrato do cartão ainda não mostra o valor devolvido.",
+    "resolution_text": "O agente verificou o ID da transação de reembolso e explicou que emissores de cartão frequentemente exibem o crédito após um tempo adicional de processamento.",
+    "tags": ["refund-status", "statement-delay"],
     "severity": "low",
     "sentiment": "concerned",
-    "customer_message": "The refund email says completed, but I still don't see anything on my card statement."
+    "customer_message": "O e-mail de reembolso diz que foi concluído, mas eu ainda não vejo nada no extrato do meu cartão."
   },
   {
     "id": "case_045",
@@ -731,13 +560,9 @@
     "created_at": "2026-02-16T23:45:00Z",
     "status": "resolved",
     "product_area": "payments",
-    "case_summary": "Customer insists the refund was never sent because the bank account still looks unchanged.",
-    "resolution_text": "Escalation confirmed the refund settled from the merchant side and provided the refund reference while explaining bank posting delays.",
-    "tags": [
-      "payments",
-      "refund-reference",
-      "bank"
-    ],
+    "case_summary": "Cliente insiste que o reembolso nunca foi enviado porque a conta bancária ainda parece inalterada.",
+    "resolution_text": "A escalada confirmou que o reembolso foi liquidado do lado do lojista e forneceu a referência do reembolso, explicando os atrasos de lançamento bancário.",
+    "tags": ["payments", "refund-reference", "bank"],
     "severity": "medium",
     "sentiment": "frustrated"
   },
@@ -747,12 +572,9 @@
     "created_at": "2026-02-18T02:52:00Z",
     "status": "resolved",
     "product_area": "refunds",
-    "case_summary": "Caller says support promised a refund, but nothing has appeared on the debit card yet.",
-    "resolution_text": "Agent confirmed the refund date, noted that debit-card refunds can take multiple business days, and advised the customer when to follow up if still missing.",
-    "tags": [
-      "debit-card",
-      "refund-timing"
-    ],
+    "case_summary": "A pessoa diz que o suporte prometeu um reembolso, mas nada apareceu no cartão de débito ainda.",
+    "resolution_text": "O agente confirmou a data do reembolso, observou que reembolsos em cartão de débito podem levar vários dias úteis e orientou o cliente sobre quando fazer acompanhamento se ainda não aparecesse.",
+    "tags": ["debit-card", "refund-timing"],
     "severity": "medium",
     "sentiment": "worried"
   },
@@ -762,15 +584,12 @@
     "created_at": "2026-02-19T05:59:00Z",
     "status": "resolved",
     "product_area": "refunds",
-    "case_summary": "Customer submitted a second refund request because the first processed refund was not visible in banking yet.",
-    "resolution_text": "Support confirmed the original refund was already completed and explained expected bank posting windows, so no duplicate refund was issued.",
-    "tags": [
-      "duplicate-refund-request",
-      "bank-window"
-    ],
+    "case_summary": "Cliente enviou uma segunda solicitação de reembolso porque o primeiro reembolso processado ainda não estava visível no banco.",
+    "resolution_text": "O suporte confirmou que o reembolso original já estava concluído e explicou as janelas esperadas de lançamento bancário, então nenhum reembolso duplicado foi emitido.",
+    "tags": ["duplicate-refund-request", "bank-window"],
     "severity": "low",
     "sentiment": "anxious",
-    "customer_message": "My refund shows as processed on your side, but my bank still hasn't posted it."
+    "customer_message": "O meu reembolso aparece como processado do lado de vocês, mas meu banco ainda não o lançou."
   },
   {
     "id": "case_048",
@@ -778,16 +597,12 @@
     "created_at": "2026-02-19T09:06:00Z",
     "status": "resolved",
     "product_area": "subscriptions",
-    "case_summary": "Subscription cancellation refund shows as processed in the account but not on the customer's card.",
-    "resolution_text": "Support verified the refund status and explained that issuer processing time can vary by bank, usually several business days.",
-    "tags": [
-      "subscription",
-      "refund",
-      "issuer-delay"
-    ],
+    "case_summary": "O reembolso por cancelamento de assinatura aparece como processado na conta, mas não no cartão do cliente.",
+    "resolution_text": "O suporte verificou o status do reembolso e explicou que o tempo de processamento do emissor pode variar por banco, geralmente vários dias úteis.",
+    "tags": ["subscription", "refund", "issuer-delay"],
     "severity": "medium",
     "sentiment": "frustrated",
-    "customer_message": "My account says the refund was processed, but nothing has appeared on my card."
+    "customer_message": "Minha conta diz que o reembolso foi processado, mas nada apareceu no meu cartão."
   },
   {
     "id": "case_049",
@@ -795,15 +610,12 @@
     "created_at": "2026-02-20T12:13:00Z",
     "status": "resolved",
     "product_area": "orders",
-    "case_summary": "Customer wants to know why the refund appears as done on our side but pending nowhere on the bank side.",
-    "resolution_text": "Agent shared the refund timestamp and explained that some banks do not show a pending credit before final posting.",
-    "tags": [
-      "bank-pending",
-      "refund-credit"
-    ],
+    "case_summary": "Cliente quer saber por que o reembolso aparece como concluído do nosso lado, mas não aparece nem como pendente do lado do banco.",
+    "resolution_text": "O agente compartilhou o timestamp do reembolso e explicou que alguns bancos não mostram um crédito pendente antes do lançamento final.",
+    "tags": ["bank-pending", "refund-credit"],
     "severity": "low",
     "sentiment": "confused",
-    "customer_message": "Why does the refund show as done in the app when my bank doesn't show it at all?"
+    "customer_message": "Por que o reembolso aparece como concluído no app quando meu banco não o mostra de jeito nenhum?"
   },
   {
     "id": "case_050",
@@ -811,13 +623,9 @@
     "created_at": "2026-02-21T15:20:00Z",
     "status": "resolved",
     "product_area": "billing",
-    "case_summary": "Customer expected same-day refund visibility after cancellation but the account still showed no credit.",
-    "resolution_text": "Escalation confirmed the refund left the merchant processor and asked the customer to allow the standard bank settlement period before escalating further.",
-    "tags": [
-      "cancellation",
-      "settlement",
-      "refund"
-    ],
+    "case_summary": "Cliente esperava visibilidade do reembolso no mesmo dia após o cancelamento, mas a conta ainda não mostrava crédito.",
+    "resolution_text": "A escalada confirmou que o reembolso saiu do processador do lojista e pediu ao cliente que aguardasse o período padrão de liquidação bancária antes de escalar novamente.",
+    "tags": ["cancellation", "settlement", "refund"],
     "severity": "medium",
     "sentiment": "annoyed"
   },
@@ -827,12 +635,9 @@
     "created_at": "2026-02-22T18:27:00Z",
     "status": "resolved",
     "product_area": "payments",
-    "case_summary": "Caller says the app shows refunded, but the original payment method has not been credited yet.",
-    "resolution_text": "Support confirmed the refund completed internally and advised waiting through the bank's posting timeframe, then contacting support with the reference number if needed.",
-    "tags": [
-      "payment-method",
-      "credit-delay"
-    ],
+    "case_summary": "A pessoa diz que o app mostra reembolsado, mas o método de pagamento original ainda não foi creditado.",
+    "resolution_text": "O suporte confirmou que o reembolso foi concluído internamente e orientou aguardar o prazo de lançamento do banco, depois entrar em contato com o suporte com o número de referência se necessário.",
+    "tags": ["payment-method", "credit-delay"],
     "severity": "medium",
     "sentiment": "concerned"
   },
@@ -842,16 +647,12 @@
     "created_at": "2026-02-23T20:34:00Z",
     "status": "resolved",
     "product_area": "subscriptions",
-    "case_summary": "Customer says the subscription was canceled but a renewal charge still appeared this billing cycle.",
-    "resolution_text": "Support found the cancellation was scheduled for period end, so the renewal processed before access ended. The timing was explained and a courtesy refund was issued where policy allowed.",
-    "tags": [
-      "subscription",
-      "renewal",
-      "cancellation"
-    ],
+    "case_summary": "Cliente diz que a assinatura foi cancelada, mas uma cobrança de renovação ainda apareceu neste ciclo de faturamento.",
+    "resolution_text": "O suporte identificou que o cancelamento estava agendado para o fim do período, então a renovação foi processada antes do término do acesso. O timing foi explicado e um reembolso de cortesia foi emitido quando a política permitiu.",
+    "tags": ["subscription", "renewal", "cancellation"],
     "severity": "high",
     "sentiment": "angry",
-    "customer_message": "I canceled my subscription, but I was still charged for renewal."
+    "customer_message": "Cancelei minha assinatura, mas ainda fui cobrado pela renovação."
   },
   {
     "id": "case_053",
@@ -859,16 +660,12 @@
     "created_at": "2026-02-24T23:41:00Z",
     "status": "resolved",
     "product_area": "billing",
-    "case_summary": "Customer believed they had canceled already, but a new subscription charge was posted.",
-    "resolution_text": "Agent checked the account and saw auto-renew remained active because cancellation was not completed in the final confirmation step. Support canceled the plan and handled the billing outcome according to policy.",
-    "tags": [
-      "auto-renew",
-      "confirmation-step",
-      "billing"
-    ],
+    "case_summary": "Cliente acreditava que já havia cancelado, mas uma nova cobrança de assinatura foi lançada.",
+    "resolution_text": "O agente verificou a conta e viu que a renovação automática permaneceu ativa porque o cancelamento não foi concluído na etapa final de confirmação. O suporte cancelou o plano e tratou o resultado da cobrança de acordo com a política.",
+    "tags": ["auto-renew", "confirmation-step", "billing"],
     "severity": "high",
     "sentiment": "frustrated",
-    "customer_message": "I thought I had already canceled, so why did another subscription charge go through?"
+    "customer_message": "Achei que já tinha cancelado, então por que outra cobrança de assinatura foi processada?"
   },
   {
     "id": "case_054",
@@ -876,13 +673,9 @@
     "created_at": "2026-02-26T02:48:00Z",
     "status": "resolved",
     "product_area": "subscriptions",
-    "case_summary": "Customer disputes a renewal fee after attempting to cancel from the mobile app.",
-    "resolution_text": "Escalation found the in-app cancellation did not finish due to store-side interruption. Customer was guided through the correct cancellation path and the disputed renewal was resolved.",
-    "tags": [
-      "app-store",
-      "renewal-fee",
-      "cancel-flow"
-    ],
+    "case_summary": "Cliente contesta uma taxa de renovação após tentar cancelar pelo app móvel.",
+    "resolution_text": "A escalada identificou que o cancelamento no app não foi concluído devido a uma interrupção do lado da loja. O cliente foi orientado pelo caminho correto de cancelamento e a renovação contestada foi resolvida.",
+    "tags": ["app-store", "renewal-fee", "cancel-flow"],
     "severity": "high",
     "sentiment": "angry"
   },
@@ -892,12 +685,9 @@
     "created_at": "2026-02-27T05:55:00Z",
     "status": "resolved",
     "product_area": "accounts",
-    "case_summary": "Caller says the subscription showed canceled in their mind, but they were billed again this month.",
-    "resolution_text": "Agent reviewed the timeline and confirmed the subscription stayed active until the end of the paid term. The customer misunderstood the delayed cancellation model, which was clarified.",
-    "tags": [
-      "billing-cycle",
-      "subscription-end"
-    ],
+    "case_summary": "A pessoa diz que acreditava que a assinatura estava cancelada, mas foi cobrada novamente este mês.",
+    "resolution_text": "O agente revisou a linha do tempo e confirmou que a assinatura permaneceu ativa até o fim do período pago. O cliente entendeu de forma incorreta o modelo de cancelamento postergado, o que foi esclarecido.",
+    "tags": ["billing-cycle", "subscription-end"],
     "severity": "medium",
     "sentiment": "upset"
   },
@@ -907,16 +697,12 @@
     "created_at": "2026-02-27T09:02:00Z",
     "status": "resolved",
     "product_area": "subscriptions",
-    "case_summary": "Customer requested a refund after being charged following what they thought was a completed cancellation.",
-    "resolution_text": "Support verified the cancellation attempt was incomplete, canceled the subscription immediately, and issued a refund under the exception policy.",
-    "tags": [
-      "refund",
-      "cancel-attempt",
-      "renewal"
-    ],
+    "case_summary": "Cliente solicitou reembolso após ser cobrado depois do que acreditava ser um cancelamento concluído.",
+    "resolution_text": "O suporte verificou que a tentativa de cancelamento estava incompleta, cancelou a assinatura imediatamente e emitiu um reembolso conforme a política de exceção.",
+    "tags": ["refund", "cancel-attempt", "renewal"],
     "severity": "high",
     "sentiment": "frustrated",
-    "customer_message": "I believed my subscription was canceled, but I was charged again and want a refund."
+    "customer_message": "Eu acreditava que minha assinatura tinha sido cancelada, mas fui cobrado de novo e quero um reembolso."
   },
   {
     "id": "case_057",
@@ -924,15 +710,12 @@
     "created_at": "2026-02-28T12:09:00Z",
     "status": "resolved",
     "product_area": "billing",
-    "case_summary": "Customer turned off the service and expected no further charges, but renewal still happened.",
-    "resolution_text": "Support explained that disabling usage does not cancel billing. The subscription itself was still active, so the customer was shown the correct cancellation workflow.",
-    "tags": [
-      "service-disabled",
-      "billing-active"
-    ],
+    "case_summary": "Cliente desativou o serviço e esperava que não houvesse novas cobranças, mas a renovação ainda aconteceu.",
+    "resolution_text": "O suporte explicou que desativar o uso não cancela a cobrança. A assinatura em si ainda estava ativa, então o cliente recebeu orientação sobre o fluxo correto de cancelamento.",
+    "tags": ["service-disabled", "billing-active"],
     "severity": "medium",
     "sentiment": "confused",
-    "customer_message": "I turned the service off and expected no more charges, but renewal still happened."
+    "customer_message": "Desativei o serviço e esperava não ter mais cobranças, mas a renovação ainda aconteceu."
   },
   {
     "id": "case_058",
@@ -940,15 +723,12 @@
     "created_at": "2026-03-01T15:16:00Z",
     "status": "resolved",
     "product_area": "subscriptions",
-    "case_summary": "Customer canceled on the last day and was still charged overnight.",
-    "resolution_text": "Agent explained that the renewal had already queued before cancellation completed. Support applied the appropriate policy outcome and confirmed the plan was no longer renewing.",
-    "tags": [
-      "queued-renewal",
-      "timing"
-    ],
+    "case_summary": "Cliente cancelou no último dia e ainda foi cobrado durante a madrugada.",
+    "resolution_text": "O agente explicou que a renovação já havia sido enfileirada antes da conclusão do cancelamento. O suporte aplicou o desfecho apropriado conforme a política e confirmou que o plano não estava mais renovando.",
+    "tags": ["queued-renewal", "timing"],
     "severity": "medium",
     "sentiment": "annoyed",
-    "customer_message": "I canceled on the last day and still got charged overnight."
+    "customer_message": "Cancelei no último dia e mesmo assim fui cobrado durante a madrugada."
   },
   {
     "id": "case_059",
@@ -956,13 +736,9 @@
     "created_at": "2026-03-02T18:23:00Z",
     "status": "resolved",
     "product_area": "payments",
-    "case_summary": "Customer says they removed the card but still got charged for renewal.",
-    "resolution_text": "Escalation confirmed that removing a payment method does not cancel the subscription contract. The account was canceled properly and the charge dispute was resolved.",
-    "tags": [
-      "payment-method",
-      "renewal",
-      "contract"
-    ],
+    "case_summary": "Cliente diz que removeu o cartão, mas ainda foi cobrado pela renovação.",
+    "resolution_text": "A escalada confirmou que remover um método de pagamento não cancela o contrato de assinatura. A conta foi cancelada corretamente e a contestação da cobrança foi resolvida.",
+    "tags": ["payment-method", "renewal", "contract"],
     "severity": "high",
     "sentiment": "angry"
   },
@@ -972,13 +748,9 @@
     "created_at": "2026-03-03T20:30:00Z",
     "status": "resolved",
     "product_area": "subscriptions",
-    "case_summary": "Caller thought uninstalling the app canceled the subscription, but another monthly charge appeared.",
-    "resolution_text": "Agent clarified that uninstalling does not end billing, verified the active plan, and walked the customer through cancellation. Billing remediation followed policy.",
-    "tags": [
-      "uninstall",
-      "active-plan",
-      "monthly"
-    ],
+    "case_summary": "A pessoa acreditava que desinstalar o app cancelava a assinatura, mas outra cobrança mensal apareceu.",
+    "resolution_text": "O agente esclareceu que desinstalar não encerra a cobrança, verificou o plano ativo e orientou o cliente no processo de cancelamento. A remediação de faturamento seguiu a política.",
+    "tags": ["uninstall", "active-plan", "monthly"],
     "severity": "medium",
     "sentiment": "frustrated"
   }

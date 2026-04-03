@@ -4,6 +4,23 @@
 export type DraftStatus = 'Draft' | 'Reviewed' | 'Rejected';
 
 /**
+ * Localized label for DraftStatus values.
+ * Keep status values stable for logic/API and translate only at display time.
+ */
+export function localizeDraftStatus(status: DraftStatus): string {
+  switch (status) {
+    case 'Draft':
+      return $localize`:@@status_draft:Draft`;
+    case 'Reviewed':
+      return $localize`:@@status_reviewed:Reviewed`;
+    case 'Rejected':
+      return $localize`:@@status_rejected:Rejected`;
+    default:
+      return status;
+  }
+}
+
+/**
  * Frontend FAQ Draft Model (normalized from backend)
  */
 export interface FaqDraft {

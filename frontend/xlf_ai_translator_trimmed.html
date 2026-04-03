@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>XLIFF AI Translator - Plain Text Blocks</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #121933;
+      --panel-2: #1a2447;
+      --text: #e7ecff;
+      --muted: #9fb0e3;
+      --accent: #7aa2ff;
+      --accent-2: #5dd4a2;
+      --danger: #ff7878;
+      --border: #2d3a6b;
+      --shadow: 0 20px 45px rgba(0,0,0,.25);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(180deg, #09101d 0%, #0d1427 100%);
+      color: var(--text);
+      min-height: 100vh;
+    }
+    .wrap {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 28px;
+    }
+    h1 {
+      margin: 0 0 10px;
+      font-size: 30px;
+      line-height: 1.15;
+    }
+    .lead {
+      color: var(--muted);
+      margin: 0 0 22px;
+      max-width: 980px;
+      line-height: 1.5;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 18px;
+    }
+    .card {
+      background: rgba(18, 25, 51, 0.92);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(8px);
+    }
+    .card h2 {
+      margin: 0 0 12px;
+      font-size: 18px;
+    }
+    .muted { color: var(--muted); }
+    .dropzone {
+      border: 2px dashed #4660a7;
+      background: rgba(122,162,255,.08);
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      transition: .18s ease;
+      margin-bottom: 14px;
+    }
+    .dropzone.dragover {
+      border-color: var(--accent-2);
+      background: rgba(93,212,162,.12);
+    }
+    .controls, .row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .controls { margin-top: 14px; }
+    button, .button, input[type="file"]::file-selector-button {
+      border: 0;
+      border-radius: 12px;
+      background: linear-gradient(180deg, #8db0ff 0%, #6b8ffc 100%);
+      color: #08122d;
+      font-weight: 700;
+      padding: 11px 14px;
+      cursor: pointer;
+      transition: transform .12s ease, opacity .12s ease;
+    }
+    button.secondary {
+      background: #24315d;
+      color: var(--text);
+      border: 1px solid #39508f;
+    }
+    button.ghost {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid #39508f;
+    }
+    button.success {
+      background: linear-gradient(180deg, #73f0bd 0%, #52d29a 100%);
+      color: #082417;
+    }
+    button:disabled {
+      opacity: .45;
+      cursor: not-allowed;
+      transform: none !important;
+    }
+    button:hover:not(:disabled), .button:hover {
+      transform: translateY(-1px);
+    }
+    input[type="text"], textarea {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid #34467f;
+      background: #0c1328;
+      color: var(--text);
+      padding: 11px 12px;
+      font: inherit;
+    }
+    textarea {
+      min-height: 280px;
+      resize: vertical;
+      line-height: 1.45;
+      white-space: pre;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 13px;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .stat {
+      background: #0d1429;
+      border: 1px solid #253664;
+      border-radius: 14px;
+      padding: 14px;
+    }
+    .stat .n {
+      font-size: 22px;
+      font-weight: 800;
+      margin-top: 4px;
+    }
+    .small {
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .banner {
+      padding: 11px 13px;
+      border-radius: 12px;
+      margin-top: 12px;
+      line-height: 1.45;
+      display: none;
+      white-space: pre-wrap;
+    }
+    .banner.show { display: block; }
+    .banner.info { background: rgba(122,162,255,.12); border: 1px solid rgba(122,162,255,.32); }
+    .banner.ok { background: rgba(93,212,162,.12); border: 1px solid rgba(93,212,162,.35); }
+    .banner.err { background: rgba(255,120,120,.12); border: 1px solid rgba(255,120,120,.35); }
+    .table-wrap {
+      max-height: 560px;
+      overflow: auto;
+      border: 1px solid #253664;
+      border-radius: 16px;
+      margin-top: 12px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 960px;
+    }
+    th, td {
+      text-align: left;
+      padding: 10px 12px;
+      border-bottom: 1px solid #1e2a50;
+      vertical-align: top;
+      font-size: 13px;
+    }
+    th {
+      position: sticky;
+      top: 0;
+      background: #10172f;
+      z-index: 1;
+    }
+    td code {
+      color: #b9caff;
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    .status-pill {
+      display: inline-block;
+      border-radius: 999px;
+      padding: 4px 8px;
+      font-size: 12px;
+      font-weight: 700;
+      border: 1px solid transparent;
+    }
+    .status-empty { background: rgba(255,120,120,.12); border-color: rgba(255,120,120,.35); color: #ffc1c1; }
+    .status-filled { background: rgba(93,212,162,.12); border-color: rgba(93,212,162,.35); color: #bff2da; }
+    .status-existing { background: rgba(122,162,255,.12); border-color: rgba(122,162,255,.35); color: #c9d7ff; }
+    details {
+      margin-top: 12px;
+      border: 1px solid #253664;
+      border-radius: 14px;
+      padding: 10px 12px;
+      background: rgba(12,19,40,.7);
+    }
+    details summary {
+      cursor: pointer;
+      font-weight: 700;
+    }
+    .mono {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    .two-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .top-gap { margin-top: 12px; }
+    @media (max-width: 1020px) {
+      .grid, .two-cols { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>XLIFF AI Translator</h1>
+    <p class="lead">
+      Upload an <span class="mono">.xlf</span> or <span class="mono">.xliff</span> file, export all translatable strings as plain text blocks,
+      send that text to an AI, then paste the returned text back here to generate a translated XLIFF automatically.
+    </p>
+
+    <div class="grid">
+      <section class="card">
+        <h2>1. Load XLIFF</h2>
+        <div id="dropzone" class="dropzone">
+          <div><strong>Drop your XLF here</strong> or choose a file below.</div>
+          <div class="small top-gap">Works with XLIFF 1.2 files like Angular i18n exports.</div>
+        </div>
+
+        <div class="row">
+          <input id="fileInput" type="file" accept=".xlf,.xliff,.xml" />
+          <button id="loadSampleBtn" class="secondary" type="button">Try messages.xlf</button>
+        </div>
+
+        <div class="two-cols top-gap">
+          <label>
+            <div class="small">Detected source language</div>
+            <input id="sourceLanguage" type="text" placeholder="auto" readonly />
+          </label>
+          <label>
+            <div class="small">Target language</div>
+            <input id="targetLanguage" type="text" placeholder="pt-BR" />
+          </label>
+        </div>
+
+        <div class="controls">
+          <button id="downloadTxtBtn" type="button" disabled>Download AI TXT</button>
+          <button id="copyTxtBtn" class="secondary" type="button" disabled>Copy AI TXT</button>
+          <button id="copyPromptBtn" class="ghost" type="button" disabled>Copy prompt + TXT</button>
+        </div>
+
+        <div class="stats">
+          <div class="stat"><div class="small">Units</div><div class="n" id="statUnits">0</div></div>
+          <div class="stat"><div class="small">Existing target</div><div class="n" id="statExisting">0</div></div>
+          <div class="stat"><div class="small">Imported target</div><div class="n" id="statImported">0</div></div>
+          <div class="stat"><div class="small">Ready to export</div><div class="n" id="statReady">0</div></div>
+        </div>
+
+        <div id="loadBanner" class="banner info"></div>
+
+        <details>
+          <summary>Recommended prompt for the AI</summary>
+          <div class="small top-gap">
+            Translate every <span class="mono">SOURCE</span> to the target language and return the exact same block format.
+            Keep every <span class="mono">UNIT</span> id. Fill only the <span class="mono">TARGET</span> sections.
+            Preserve inline XML placeholders exactly, such as <span class="mono">&lt;x .../&gt;</span> and entities like
+            <span class="mono">&amp;amp;</span>. Do not wrap the answer in Markdown or code fences.
+          </div>
+        </details>
+      </section>
+
+      <section class="card">
+        <h2>2. Paste the translated plain text back</h2>
+        <textarea id="importBox" spellcheck="false" placeholder="Paste the translated plain text here.
+
+Example:
+
+### UNIT: 123
+### SOURCE
+Hello &lt;x id=&quot;INTERPOLATION&quot;/&gt;
+### TARGET
+Olá &lt;x id=&quot;INTERPOLATION&quot;/&gt;
+### END"></textarea>
+
+        <div class="controls">
+          <button id="applyBtn" class="secondary" type="button" disabled>Apply translated TXT</button>
+          <button id="clearImportedBtn" class="ghost" type="button" disabled>Clear imported targets</button>
+          <button id="downloadXlfBtn" class="success" type="button" disabled>Download translated XLF</button>
+        </div>
+
+        <div id="importBanner" class="banner info"></div>
+
+        <details>
+          <summary>Block format used by the page</summary>
+          <div class="small top-gap mono">### UNIT: 123
+### SOURCE
+Hello &lt;x id="INTERPOLATION"/&gt;
+### TARGET
+Olá &lt;x id="INTERPOLATION"/&gt;
+### END</div>
+        </details>
+      </section>
+    </div>
+
+    <section class="card" style="margin-top: 18px;">
+      <div class="row" style="justify-content: space-between; gap: 16px; align-items: end;">
+        <div>
+          <h2 style="margin-bottom: 6px;">3. Preview units</h2>
+          <div class="small">This preview shows the source fragment and the target fragment that will be written into the XLF.</div>
+        </div>
+        <div style="min-width: 320px; max-width: 420px; width: 100%;">
+          <div class="small">Filter by ID or source</div>
+          <input id="filterInput" type="text" placeholder="search..." />
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 18%;">ID</th>
+              <th style="width: 34%;">Source fragment</th>
+              <th style="width: 34%;">Target fragment</th>
+              <th style="width: 14%;">Status</th>
+            </tr>
+          </thead>
+          <tbody id="unitsBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const state = {
+      fileName: '',
+      xmlText: '',
+      xmlDoc: null,
+      namespaceUri: 'urn:oasis:names:tc:xliff:document:1.2',
+      transUnits: [],
+      importedTargets: new Map(),
+      sourceLanguage: '',
+      targetLanguage: ''
+    };
+
+    const el = {
+      fileInput: document.getElementById('fileInput'),
+      loadSampleBtn: document.getElementById('loadSampleBtn'),
+      dropzone: document.getElementById('dropzone'),
+      sourceLanguage: document.getElementById('sourceLanguage'),
+      targetLanguage: document.getElementById('targetLanguage'),
+      downloadTxtBtn: document.getElementById('downloadTxtBtn'),
+      copyTxtBtn: document.getElementById('copyTxtBtn'),
+      copyPromptBtn: document.getElementById('copyPromptBtn'),
+      applyBtn: document.getElementById('applyBtn'),
+      clearImportedBtn: document.getElementById('clearImportedBtn'),
+      downloadXlfBtn: document.getElementById('downloadXlfBtn'),
+      importBox: document.getElementById('importBox'),
+      loadBanner: document.getElementById('loadBanner'),
+      importBanner: document.getElementById('importBanner'),
+      unitsBody: document.getElementById('unitsBody'),
+      filterInput: document.getElementById('filterInput'),
+      statUnits: document.getElementById('statUnits'),
+      statExisting: document.getElementById('statExisting'),
+      statImported: document.getElementById('statImported'),
+      statReady: document.getElementById('statReady')
+    };
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#39;');
+    }
+
+    function setBanner(node, kind, message) {
+      node.className = 'banner show ' + kind;
+      node.textContent = message;
+    }
+
+    function clearBanner(node) {
+      node.className = 'banner';
+      node.textContent = '';
+    }
+
+    function getInnerXml(node) {
+      return Array.from(node.childNodes).map(child => new XMLSerializer().serializeToString(child)).join('');
+    }
+
+    function parseXml(xmlText) {
+      const doc = new DOMParser().parseFromString(xmlText, 'application/xml');
+      const parserError = doc.getElementsByTagName('parsererror')[0];
+      if (parserError) {
+        throw new Error('XML parse error: ' + parserError.textContent.trim());
+      }
+      return doc;
+    }
+
+    function queryNodesByLocalName(root, localName) {
+      return Array.from(root.getElementsByTagNameNS('*', localName));
+    }
+
+    function firstChildByLocalName(root, localName) {
+      return queryNodesByLocalName(root, localName)[0] || null;
+    }
+
+    function setElementInnerXml(xmlDoc, element, fragmentXml) {
+      const wrapperDoc = parseXml(`<wrapper xmlns="${state.namespaceUri}">${fragmentXml}</wrapper>`);
+      const wrapper = wrapperDoc.documentElement;
+      while (element.firstChild) {
+        element.removeChild(element.firstChild);
+      }
+      Array.from(wrapper.childNodes).forEach(child => {
+        element.appendChild(xmlDoc.importNode(child, true));
+      });
+    }
+
+    function getTransUnitContext(transUnit) {
+      const groups = queryNodesByLocalName(transUnit, 'context-group');
+      const parts = [];
+      for (const group of groups) {
+        const contexts = queryNodesByLocalName(group, 'context');
+        const text = contexts.map(n => n.textContent.trim()).filter(Boolean).join(' | ');
+        if (text) parts.push(text);
+      }
+      return parts.join(' || ');
+    }
+
+    function parseXliff(xmlText, fileName = 'messages.xlf') {
+      const xmlDoc = parseXml(xmlText);
+      const root = xmlDoc.documentElement;
+      const namespaceUri = root.namespaceURI || state.namespaceUri;
+      const fileNode = firstChildByLocalName(root, 'file');
+
+      const transUnits = queryNodesByLocalName(root, 'trans-unit').map((transUnit, index) => {
+        const id = transUnit.getAttribute('id') || `unit_${index + 1}`;
+        const sourceNode = firstChildByLocalName(transUnit, 'source');
+        if (!sourceNode) {
+          throw new Error(`trans-unit ${id} has no <source> node.`);
+        }
+        const targetNode = firstChildByLocalName(transUnit, 'target');
+        return {
+          index,
+          id,
+          sourceXml: getInnerXml(sourceNode),
+          existingTargetXml: targetNode ? getInnerXml(targetNode) : '',
+          context: getTransUnitContext(transUnit)
+        };
+      });
+
+      state.fileName = fileName;
+      state.xmlText = xmlText;
+      state.xmlDoc = xmlDoc;
+      state.namespaceUri = namespaceUri;
+      state.transUnits = transUnits;
+      state.importedTargets = new Map();
+      state.sourceLanguage = fileNode?.getAttribute('source-language') || '';
+      state.targetLanguage = fileNode?.getAttribute('target-language') || '';
+
+      el.sourceLanguage.value = state.sourceLanguage;
+      if (!el.targetLanguage.value.trim()) {
+        el.targetLanguage.value = state.targetLanguage || '';
+      }
+
+      updateStats();
+      renderTable();
+      updateButtons();
+      clearBanner(el.importBanner);
+
+      const existingCount = transUnits.filter(t => t.existingTargetXml.trim()).length;
+      setBanner(el.loadBanner, 'ok', `Loaded ${fileName} with ${transUnits.length} units.${existingCount ? ` ${existingCount} already have a target.` : ''}`);
+    }
+
+    function buildPlainTextTemplate() {
+      if (!state.transUnits.length) {
+        throw new Error('Load an XLIFF file first.');
+      }
+
+      const targetLang = el.targetLanguage.value.trim();
+      const parts = [
+        'XLF TRANSLATION BATCH',
+        `FILE: ${state.fileName}`,
+        `SOURCE_LANGUAGE: ${state.sourceLanguage || ''}`,
+        `TARGET_LANGUAGE: ${targetLang || ''}`,
+        '',
+        'Return the exact same format.',
+        'Fill only the TARGET sections.',
+        'Keep IDs unchanged.',
+        'Preserve inline XML placeholders exactly.',
+        ''
+      ];
+
+      for (const unit of state.transUnits) {
+        const currentTarget = state.importedTargets.has(unit.id)
+          ? state.importedTargets.get(unit.id)
+          : (unit.existingTargetXml || '');
+
+        parts.push(`### UNIT: ${unit.id}`);
+        parts.push('### SOURCE');
+        parts.push(unit.sourceXml);
+        parts.push('### TARGET');
+        parts.push(currentTarget);
+        parts.push('### END');
+        parts.push('');
+      }
+
+      return parts.join('\n').replace(/\n{3,}/g, '\n\n');
+    }
+
+    function buildPromptPlusText() {
+      const targetLang = el.targetLanguage.value.trim() || '[TARGET_LANGUAGE]';
+      return [
+        `Translate the SOURCE of every unit to ${targetLang}.`,
+        'Return the exact same plain-text block format.',
+        'Keep every UNIT id exactly the same.',
+        'Fill only the TARGET sections.',
+        'Preserve inline XML placeholders like <x .../> exactly.',
+        'Do not wrap the answer in Markdown or code fences.',
+        '',
+        buildPlainTextTemplate()
+      ].join('\n');
+    }
+
+    function downloadTextFile(name, content, mime = 'application/octet-stream;charset=utf-8') {
+      const blob = new Blob([content], { type: mime });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = name;
+      a.click();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    }
+
+    async function copyToClipboard(text) {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(text);
+        return;
+      }
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      ta.remove();
+    }
+
+    function stripCodeFences(text) {
+      return String(text)
+        .trim()
+        .replace(/^```[\w-]*\n?/, '')
+        .replace(/\n?```$/, '');
+    }
+
+    function escapeXmlText(text) {
+      return String(text)
+        .replace(/&(?!(?:#\d+|#x[0-9a-fA-F]+|[a-zA-Z][\w.-]*);)/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+    }
+
+    function trimOuterWhitespace(value) {
+      return String(value ?? '').replace(/^\s+|\s+$/g, '');
+    }
+
+    function sanitizeTargetFragment(raw) {
+      return String(raw).split(/(<[^>]+>)/g).map(part => {
+        if (!part) return '';
+        if (part.startsWith('<') && part.endsWith('>')) return part;
+        return escapeXmlText(part);
+      }).join('');
+    }
+
+    function normalizeTargetFragment(raw) {
+      const original = trimOuterWhitespace(raw);
+      if (!original) return '';
+      try {
+        parseXml(`<wrapper xmlns="${state.namespaceUri}">${original}</wrapper>`);
+        return original;
+      } catch (_) {
+        const sanitized = trimOuterWhitespace(sanitizeTargetFragment(original));
+        parseXml(`<wrapper xmlns="${state.namespaceUri}">${sanitized}</wrapper>`);
+        return sanitized;
+      }
+    }
+
+    function parsePlainTextBlocks(rawText) {
+      const text = stripCodeFences(rawText).replace(/\r\n?/g, '\n');
+      const lines = text.split('\n');
+      const result = new Map();
+
+      let i = 0;
+      while (i < lines.length) {
+        const line = lines[i].trim();
+        if (!line.startsWith('### UNIT:')) {
+          i += 1;
+          continue;
+        }
+
+        const id = line.slice('### UNIT:'.length).trim();
+        i += 1;
+
+        while (i < lines.length && !lines[i].trim()) i += 1;
+        if (i >= lines.length || lines[i].trim().toUpperCase() !== '### SOURCE') {
+          throw new Error(`Missing ### SOURCE for unit ${id}`);
+        }
+        i += 1;
+
+        const sourceLines = [];
+        while (i < lines.length && lines[i].trim().toUpperCase() !== '### TARGET') {
+          sourceLines.push(lines[i]);
+          i += 1;
+        }
+
+        if (i >= lines.length) {
+          throw new Error(`Missing ### TARGET for unit ${id}`);
+        }
+        i += 1;
+
+        const targetLines = [];
+        while (i < lines.length && lines[i].trim().toUpperCase() !== '### END') {
+          targetLines.push(lines[i]);
+          i += 1;
+        }
+
+        if (i >= lines.length) {
+          throw new Error(`Missing ### END for unit ${id}`);
+        }
+
+        result.set(id, {
+          source: trimOuterWhitespace(sourceLines.join('\n')),
+          target: trimOuterWhitespace(targetLines.join('\n'))
+        });
+
+        i += 1;
+      }
+
+      if (!result.size) {
+        throw new Error('No translation blocks were found.');
+      }
+
+      return result;
+    }
+
+    function applyImportedTranslations() {
+      try {
+        if (!state.transUnits.length) throw new Error('Load an XLIFF file first.');
+        const raw = el.importBox.value.trim();
+        if (!raw) throw new Error('Paste translated plain text first.');
+
+        const blocks = parsePlainTextBlocks(raw);
+        const knownIds = new Set(state.transUnits.map(t => t.id));
+        const missing = [];
+        const invalidXml = [];
+        let applied = 0;
+
+        for (const [id, payload] of blocks.entries()) {
+          if (!knownIds.has(id)) continue;
+          try {
+            const normalizedTarget = normalizeTargetFragment(payload.target);
+            state.importedTargets.set(id, normalizedTarget);
+            applied += 1;
+          } catch (err) {
+            invalidXml.push(`${id}: ${err.message}`);
+          }
+        }
+
+        for (const unit of state.transUnits) {
+          if (!blocks.has(unit.id)) missing.push(unit.id);
+        }
+
+        updateStats();
+        renderTable();
+        updateButtons();
+
+        let msg = `Applied ${applied} translated targets.`;
+        if (missing.length) msg += `\nMissing IDs: ${missing.slice(0, 12).join(', ')}${missing.length > 12 ? ' …' : ''}`;
+        if (invalidXml.length) msg += `\nSkipped invalid targets:\n${invalidXml.slice(0, 8).join('\n')}${invalidXml.length > 8 ? '\n…' : ''}`;
+        setBanner(el.importBanner, invalidXml.length ? 'err' : 'ok', msg);
+      } catch (err) {
+        setBanner(el.importBanner, 'err', err.message || String(err));
+      }
+    }
+
+    function buildTranslatedXlf() {
+      if (!state.xmlText || !state.transUnits.length) {
+        throw new Error('Load an XLIFF file first.');
+      }
+
+      const xmlDoc = parseXml(state.xmlText);
+      const root = xmlDoc.documentElement;
+      const fileNode = firstChildByLocalName(root, 'file');
+      const targetLanguage = el.targetLanguage.value.trim();
+      if (fileNode && targetLanguage) {
+        fileNode.setAttribute('target-language', targetLanguage);
+      }
+
+      const transUnits = queryNodesByLocalName(root, 'trans-unit');
+      transUnits.forEach((transUnit, index) => {
+        const source = state.transUnits[index];
+        if (!source) return;
+
+        const incomingTarget = state.importedTargets.has(source.id)
+          ? state.importedTargets.get(source.id)
+          : source.existingTargetXml;
+
+        let targetNode = firstChildByLocalName(transUnit, 'target');
+        if (!targetNode) {
+          targetNode = xmlDoc.createElementNS(state.namespaceUri, 'target');
+          const sourceNode = firstChildByLocalName(transUnit, 'source');
+          if (sourceNode && sourceNode.nextSibling) {
+            transUnit.insertBefore(targetNode, sourceNode.nextSibling);
+          } else {
+            transUnit.appendChild(targetNode);
+          }
+        }
+
+        setElementInnerXml(xmlDoc, targetNode, incomingTarget || '');
+        if ((incomingTarget || '').trim()) {
+          targetNode.setAttribute('state', 'translated');
+        } else {
+          targetNode.removeAttribute('state');
+        }
+      });
+
+      const serialized = new XMLSerializer().serializeToString(xmlDoc);
+      return '<?xml version="1.0" encoding="UTF-8"?>\n' + serialized;
+    }
+
+    function renderTable() {
+      const q = el.filterInput.value.trim().toLowerCase();
+      const rows = [];
+
+      for (const unit of state.transUnits) {
+        const target = state.importedTargets.has(unit.id)
+          ? state.importedTargets.get(unit.id)
+          : unit.existingTargetXml;
+
+        const hay = `${unit.id}\n${unit.sourceXml}\n${target}\n${unit.context}`.toLowerCase();
+        if (q && !hay.includes(q)) continue;
+
+        const status = state.importedTargets.has(unit.id)
+          ? ['Imported', 'status-filled']
+          : unit.existingTargetXml.trim()
+            ? ['Existing', 'status-existing']
+            : ['Empty', 'status-empty'];
+
+        rows.push(`
+          <tr>
+            <td><code>${escapeHtml(unit.id)}</code><div class="small">${escapeHtml(unit.context || '')}</div></td>
+            <td><code>${escapeHtml(unit.sourceXml)}</code></td>
+            <td><code>${escapeHtml(target || '')}</code></td>
+            <td><span class="status-pill ${status[1]}">${status[0]}</span></td>
+          </tr>
+        `);
+      }
+
+      el.unitsBody.innerHTML = rows.length
+        ? rows.join('')
+        : '<tr><td colspan="4" class="muted">No units to show.</td></tr>';
+    }
+
+    function updateStats() {
+      const existing = state.transUnits.filter(t => t.existingTargetXml.trim()).length;
+      const imported = Array.from(state.importedTargets.values()).filter(v => String(v).trim()).length;
+      const ready = state.transUnits.filter(t => {
+        const target = state.importedTargets.has(t.id) ? state.importedTargets.get(t.id) : t.existingTargetXml;
+        return String(target || '').trim();
+      }).length;
+
+      el.statUnits.textContent = String(state.transUnits.length);
+      el.statExisting.textContent = String(existing);
+      el.statImported.textContent = String(imported);
+      el.statReady.textContent = String(ready);
+    }
+
+    function updateButtons() {
+      const loaded = state.transUnits.length > 0;
+      el.downloadTxtBtn.disabled = !loaded;
+      el.copyTxtBtn.disabled = !loaded;
+      el.copyPromptBtn.disabled = !loaded;
+      el.applyBtn.disabled = !loaded;
+      el.clearImportedBtn.disabled = !loaded;
+      el.downloadXlfBtn.disabled = !loaded;
+    }
+
+    async function handleFile(file) {
+      if (!file) return;
+      const text = await file.text();
+      parseXliff(text, file.name);
+    }
+
+    el.fileInput.addEventListener('change', async event => {
+      const [file] = event.target.files || [];
+      if (!file) return;
+      try {
+        await handleFile(file);
+      } catch (err) {
+        setBanner(el.loadBanner, 'err', err.message || String(err));
+      }
+    });
+
+    el.loadSampleBtn.addEventListener('click', async () => {
+      try {
+        const res = await fetch('./messages.xlf');
+        if (!res.ok) throw new Error('messages.xlf was not found next to this HTML file.');
+        const text = await res.text();
+        parseXliff(text, 'messages.xlf');
+      } catch (err) {
+        setBanner(el.loadBanner, 'err', err.message || String(err));
+      }
+    });
+
+    ['dragenter', 'dragover'].forEach(type => {
+      el.dropzone.addEventListener(type, event => {
+        event.preventDefault();
+        el.dropzone.classList.add('dragover');
+      });
+    });
+
+    ['dragleave', 'drop'].forEach(type => {
+      el.dropzone.addEventListener(type, event => {
+        event.preventDefault();
+        el.dropzone.classList.remove('dragover');
+      });
+    });
+
+    el.dropzone.addEventListener('drop', async event => {
+      try {
+        const [file] = event.dataTransfer.files || [];
+        if (!file) return;
+        await handleFile(file);
+      } catch (err) {
+        setBanner(el.loadBanner, 'err', err.message || String(err));
+      }
+    });
+
+    el.downloadTxtBtn.addEventListener('click', () => {
+      try {
+        const txt = buildPlainTextTemplate();
+        const base = state.fileName.replace(/\.(xlf|xliff|xml)$/i, '');
+        downloadTextFile(`${base}.ai.txt`, txt, 'text/plain;charset=utf-8');
+      } catch (err) {
+        setBanner(el.loadBanner, 'err', err.message || String(err));
+      }
+    });
+
+    el.copyTxtBtn.addEventListener('click', async () => {
+      try {
+        await copyToClipboard(buildPlainTextTemplate());
+        setBanner(el.loadBanner, 'ok', 'AI TXT copied to clipboard.');
+      } catch (err) {
+        setBanner(el.loadBanner, 'err', err.message || String(err));
+      }
+    });
+
+    el.copyPromptBtn.addEventListener('click', async () => {
+      try {
+        await copyToClipboard(buildPromptPlusText());
+        setBanner(el.loadBanner, 'ok', 'Prompt + AI TXT copied to clipboard.');
+      } catch (err) {
+        setBanner(el.loadBanner, 'err', err.message || String(err));
+      }
+    });
+
+    el.applyBtn.addEventListener('click', applyImportedTranslations);
+
+    el.clearImportedBtn.addEventListener('click', () => {
+      state.importedTargets.clear();
+      updateStats();
+      renderTable();
+      clearBanner(el.importBanner);
+    });
+
+    el.downloadXlfBtn.addEventListener('click', () => {
+      try {
+        const xlf = buildTranslatedXlf();
+        const base = state.fileName.replace(/\.(xlf|xliff|xml)$/i, '');
+        const lang = el.targetLanguage.value.trim();
+        const outName = lang ? `${base}.${lang}.xlf` : `${base}.translated.xlf`;
+        downloadTextFile(outName, xlf, 'application/xml;charset=utf-8');
+        setBanner(el.importBanner, 'ok', `Generated ${outName}`);
+      } catch (err) {
+        setBanner(el.importBanner, 'err', err.message || String(err));
+      }
+    });
+
+    el.filterInput.addEventListener('input', renderTable);
+    el.targetLanguage.addEventListener('input', () => {
+      state.targetLanguage = el.targetLanguage.value.trim();
+    });
+
+    updateButtons();
+    renderTable();
+  </script>
+</body>
+</html>

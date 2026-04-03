@@ -3,7 +3,7 @@ import { toSignal, toObservable } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { combineLatest, map, switchMap } from 'rxjs';
 import { FaqDataService } from '../data-access/faq-data.service';
-import { DraftStatus } from '../data-access/faq.models';
+import { DraftStatus, localizeDraftStatus } from '../data-access/faq.models';
 
 @Component({
   selector: 'app-faq-detail',
@@ -47,6 +47,10 @@ export class FaqDetailComponent {
 
   protected statusClass(status: DraftStatus): string {
     return status.toLowerCase();
+  }
+
+  protected statusLabel(status: DraftStatus): string {
+    return localizeDraftStatus(status);
   }
 
   /**

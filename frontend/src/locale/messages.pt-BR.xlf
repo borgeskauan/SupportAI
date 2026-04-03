@@ -3,6 +3,27 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" datatype="plaintext" original="ng2.template" target-language="pt-BR">
     <body>
+      <trans-unit id="status_draft" datatype="html">
+        <source>Draft</source><target state="translated">Rascunho</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/data-access/faq.models.ts</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="status_reviewed" datatype="html">
+        <source>Reviewed</source><target state="translated">Revisado</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/data-access/faq.models.ts</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="status_rejected" datatype="html">
+        <source>Rejected</source><target state="translated">Rejeitado</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/data-access/faq.models.ts</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="error_service_unavailable" datatype="html">
         <source>Service Unavailable</source><target state="translated">Serviço indisponível</target>
         <context-group purpose="location">
@@ -11,7 +32,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="error_backend_unreachable" datatype="html">
-        <source>The backend service is currently unreachable.</source><target state="translated">O serviço de backend está inacessível no momento.</target>
+        <source>The backend service is currently unreachable.</source><target state="translated">O serviço de backend está indisponível no momento.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/error-overlay/error-overlay.component.html</context>
           <context context-type="linenumber">7,8</context>
@@ -92,7 +113,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="link_back_to_drafts" datatype="html">
-        <source>Back to drafts</source><target state="translated">Voltar aos rascunhos</target>
+        <source>Back to drafts</source><target state="translated">Voltar para os rascunhos</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/faq-detail/faq-detail.component.html</context>
           <context context-type="linenumber">18,19</context>
@@ -126,6 +147,13 @@
           <context context-type="linenumber">34,36</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="score_confidence_label" datatype="html">
+        <source>Confidence Score</source><target state="translated">Pontuação de confiança</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/faq-detail/faq-detail.component.html</context>
+          <context context-type="linenumber">41,42</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="score_confidence_value" datatype="html">
         <source><x id="INTERPOLATION" equiv-text="{{ formatConfidence(detail().confidence) }}"/>%</source><target state="translated"><x xmlns="urn:oasis:names:tc:xliff:document:1.2" id="INTERPOLATION" equiv-text="{{ formatConfidence(detail().confidence) }}"/>%</target>
         <context-group purpose="location">
@@ -134,14 +162,14 @@
         </context-group>
       </trans-unit>
       <trans-unit id="score_case_count" datatype="html">
-        <source>Case Count</source><target state="translated">Número de casos</target>
+        <source>Case Count</source><target state="translated">Quantidade de casos</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/faq-detail/faq-detail.component.html</context>
           <context context-type="linenumber">50,51</context>
         </context-group>
       </trans-unit>
       <trans-unit id="score_case_value" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="{{ detail().caseCount }}"/> instances</source><target state="translated"><x xmlns="urn:oasis:names:tc:xliff:document:1.2" id="INTERPOLATION" equiv-text="{{ detail().caseCount }}"/> instâncias</target>
+        <source><x id="INTERPOLATION" equiv-text="{{ detail().caseCount }}"/> instances</source><target state="translated"><x xmlns="urn:oasis:names:tc:xliff:document:1.2" id="INTERPOLATION" equiv-text="{{ detail().caseCount }}"/> ocorrências</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/faq-detail/faq-detail.component.html</context>
           <context context-type="linenumber">51,52</context>
@@ -162,14 +190,14 @@
         </context-group>
       </trans-unit>
       <trans-unit id="section_step_by_step_fix" datatype="html">
-        <source>Step-by-Step Fix</source><target state="translated">Solução passo a passo</target>
+        <source>Step-by-Step Fix</source><target state="translated">Correção passo a passo</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/faq-detail/faq-detail.component.html</context>
           <context context-type="linenumber">69,71</context>
         </context-group>
       </trans-unit>
       <trans-unit id="section_edge_cases" datatype="html">
-        <source>Edge Cases</source><target state="translated">Casos limite</target>
+        <source>Edge Cases</source><target state="translated">Casos excepcionais</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/faq-detail/faq-detail.component.html</context>
           <context context-type="linenumber">79,81</context>
@@ -183,7 +211,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="section_evidence" datatype="html">
-        <source>Supporting Evidence</source><target state="translated">Evidências de apoio</target>
+        <source>Supporting Evidence</source><target state="translated">Evidências de suporte</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/faq-detail/faq-detail.component.html</context>
           <context context-type="linenumber">96,97</context>
@@ -225,7 +253,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="stat_draft_count" datatype="html">
-        <source>Draft Count</source><target state="translated">Número de rascunhos</target>
+        <source>Draft Count</source><target state="translated">Quantidade de rascunhos</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/faq-drafts-list/faq-drafts-list.component.html</context>
           <context context-type="linenumber">50,51</context>
@@ -239,7 +267,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="table_col_family" datatype="html">
-        <source>Issue Family</source><target state="translated">Família do problema</target>
+        <source>Issue Family</source><target state="translated">Categoria do problema</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/faq-drafts-list/faq-drafts-list.component.html</context>
           <context context-type="linenumber">60,61</context>
@@ -316,14 +344,14 @@
         </context-group>
       </trans-unit>
       <trans-unit id="label_the_fix" datatype="html">
-        <source>The Fix (one step per line)</source><target state="translated">A solução (uma etapa por linha)</target>
+        <source>The Fix (one step per line)</source><target state="translated">A correção (uma etapa por linha)</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/faq-edit/faq-edit.component.html</context>
           <context context-type="linenumber">46,47</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label_edge_cases" datatype="html">
-        <source>Edge Cases (one per line)</source><target state="translated">Casos limite (um por linha)</target>
+        <source>Edge Cases (one per line)</source><target state="translated">Casos excepcionais (um por linha)</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/faq-edit/faq-edit.component.html</context>
           <context context-type="linenumber">52,53</context>

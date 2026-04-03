@@ -76,7 +76,7 @@
                 <span class="family-chip">{{ draft.family }}</span>
               </td>
               <td>
-                <span class="status-chip" [class]="'status-chip ' + draft.status.toLowerCase()">{{ draft.status }}</span>
+                <span class="status-chip" [class]="'status-chip ' + draft.status.toLowerCase()">{{ statusLabel(draft.status) }}</span>
               </td>
               <td>
                 <div class="confidence-wrap">
