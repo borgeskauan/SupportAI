@@ -104,3 +104,5 @@ pnpm-debug.log*
 *.swo
 .DS_Store
 Thumbs.db
+
+.codex
