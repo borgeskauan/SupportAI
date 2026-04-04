@@ -1,93 +1,12 @@
 :host {
-  --ink-900: #13233a;
-  --ink-700: #35506f;
-  --ink-500: #5f7a96;
-  --canvas: #f7f8ff;
-  --panel: #ffffff;
-  --line: #dfe6f2;
-  --blue: #2f5ad7;
-  --blue-soft: #e7edff;
-  --mint: #34a171;
-  --mint-soft: #d7f7e8;
-  --amber: #bd7b00;
-  --amber-soft: #ffecc7;
-  --rose: #b44158;
-  --rose-soft: #ffdfe6;
-
-  color: var(--ink-900);
   display: block;
+  --shell-accent-a: radial-gradient(circle at 95% 5%, #dfe8ff 0%, transparent 35%);
+  --shell-accent-b: radial-gradient(circle at 8% 100%, #d5f3ff 0%, transparent 30%);
+  --canvas-max-width: 76rem;
+  --back-link-color: var(--blue);
 }
 
-.detail-shell {
-  min-height: 100dvh;
-  display: grid;
-  grid-template-columns: 16rem minmax(0, 1fr);
-  background:
-    radial-gradient(circle at 95% 5%, #dfe8ff 0%, transparent 35%),
-    radial-gradient(circle at 8% 100%, #d5f3ff 0%, transparent 30%),
-    var(--canvas);
-}
-
-.side-nav {
-  border-right: 1px solid var(--line);
-  background: linear-gradient(180deg, #f6f8ff 0%, #eef5ff 100%);
-  padding: 1.5rem 1rem;
-}
-
-.brand-block h2 {
-  margin: 0;
-  font-size: 1.1rem;
-}
-
-.brand-block p {
-  margin: 0.3rem 0 1rem;
-  font-size: 0.72rem;
-  color: var(--ink-500);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-weight: 700;
-}
-
-nav {
-  display: grid;
-  gap: 0.35rem;
-}
-
-nav a {
-  text-decoration: none;
-  color: var(--ink-700);
-  padding: 0.55rem 0.75rem;
-  border-radius: 0.7rem;
-  font-weight: 600;
-}
-
-nav a.active {
-  color: var(--blue);
-  background: var(--blue-soft);
-}
-
-.main-shell {
-  min-width: 0;
-}
-
-.top-strip {
-  position: sticky;
-  top: 0;
-  z-index: 5;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.9rem 1.5rem;
-  border-bottom: 1px solid var(--line);
-  background: rgb(255 255 255 / 80%);
-  backdrop-filter: blur(8px);
-}
-
-.back-link {
-  text-decoration: none;
-  color: var(--blue);
-  font-weight: 700;
-}
+/* Shared shell, nav, sticky top strip, and canvas styles live in src/design-system.css. */
 
 .edit-link {
   text-decoration: none;
@@ -97,12 +16,6 @@ nav a.active {
   color: #fff;
   font-size: 0.82rem;
   font-weight: 700;
-}
-
-.canvas {
-  max-width: 76rem;
-  margin: 0 auto;
-  padding: 1.5rem;
 }
 
 .heading-block {
@@ -342,37 +255,12 @@ time {
 }
 
 @media (max-width: 980px) {
-  .detail-shell {
-    grid-template-columns: 1fr;
-  }
-
-  .side-nav {
-    border-right: 0;
-    border-bottom: 1px solid var(--line);
-  }
-
-  nav {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
-  nav a {
-    text-align: center;
-  }
-
   .content-grid {
     grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 640px) {
-  .canvas {
-    padding: 1rem;
-  }
-
-  nav {
-    grid-template-columns: 1fr 1fr;
-  }
-
   .split-grid {
     grid-template-columns: 1fr;
   }

@@ -1,103 +1,12 @@
 :host {
-  --ink-900: #13233a;
-  --ink-700: #35506f;
-  --ink-500: #5f7a96;
-  --canvas: #f7f8ff;
-  --panel: #ffffff;
-  --line: #dfe6f2;
-  --blue: #2f5ad7;
-  --blue-soft: #e7edff;
-  --mint: #34a171;
-  --mint-soft: #d7f7e8;
-  --amber: #bd7b00;
-  --amber-soft: #ffecc7;
-  --rose: #b44158;
-  --rose-soft: #ffdfe6;
-
-  color: var(--ink-900);
   display: block;
   min-height: 100dvh;
+  --shell-accent-a: radial-gradient(circle at 90% 10%, #dfe8ff 0%, transparent 40%);
+  --shell-accent-b: radial-gradient(circle at 15% 100%, #d3f1ff 0%, transparent 35%);
+  --insight-columns: 2;
 }
 
-.page-shell {
-  min-height: 100dvh;
-  display: grid;
-  grid-template-columns: 16rem minmax(0, 1fr);
-  background:
-    radial-gradient(circle at 90% 10%, #dfe8ff 0%, transparent 40%),
-    radial-gradient(circle at 15% 100%, #d3f1ff 0%, transparent 35%),
-    var(--canvas);
-}
-
-.side-nav {
-  border-right: 1px solid var(--line);
-  background: linear-gradient(180deg, #f6f8ff 0%, #eef5ff 100%);
-  padding: 1.5rem 1rem;
-}
-
-.brand-block h1 {
-  margin: 0;
-  font-size: 1.15rem;
-  letter-spacing: -0.02em;
-}
-
-.brand-block p {
-  margin: 0.35rem 0 1.2rem;
-  color: var(--ink-500);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-weight: 700;
-}
-
-nav {
-  display: grid;
-  gap: 0.35rem;
-}
-
-nav a {
-  text-decoration: none;
-  padding: 0.6rem 0.8rem;
-  border-radius: 0.7rem;
-  color: var(--ink-700);
-  font-weight: 600;
-}
-
-nav a.active {
-  background: var(--blue-soft);
-  color: var(--blue);
-}
-
-.content-shell {
-  padding: 2rem;
-}
-
-.page-header {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  align-items: end;
-}
-
-.eyebrow {
-  margin: 0;
-  text-transform: uppercase;
-  letter-spacing: 0.09em;
-  color: var(--ink-500);
-  font-size: 0.72rem;
-  font-weight: 700;
-}
-
-.page-header h2 {
-  margin: 0.15rem 0;
-  font-size: clamp(1.55rem, 2.2vw, 2rem);
-  letter-spacing: -0.03em;
-}
-
-.subtitle {
-  margin: 0;
-  color: var(--ink-700);
-}
+/* Shared shell, nav, page header, and metric card styles live in src/design-system.css. */
 
 .header-actions {
   display: inline-flex;
@@ -159,36 +68,6 @@ nav a.active {
   color: #fff;
   border-color: var(--blue);
   background: linear-gradient(135deg, #2f5ad7 0%, #5d83f0 100%);
-}
-
-.insights-grid {
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  margin: 1.5rem 0;
-}
-
-.insight-card {
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: 1rem;
-  padding: 1rem;
-}
-
-.insight-card .label {
-  margin: 0;
-  color: var(--ink-500);
-  font-size: 0.78rem;
-  text-transform: uppercase;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-}
-
-.insight-card .value {
-  margin: 0.45rem 0 0;
-  font-size: 1.6rem;
-  font-weight: 700;
-  letter-spacing: -0.03em;
 }
 
 .table-wrap {
@@ -332,32 +211,7 @@ th {
   font-weight: 700;
 }
 
-@media (max-width: 920px) {
-  .page-shell {
-    grid-template-columns: 1fr;
-  }
-
-  .side-nav {
-    border-right: 0;
-    border-bottom: 1px solid var(--line);
-  }
-
-  nav {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
-  nav a {
-    text-align: center;
-    font-size: 0.88rem;
-    padding: 0.55rem 0.3rem;
-  }
-}
-
 @media (max-width: 640px) {
-  .content-shell {
-    padding: 1rem;
-  }
-
   .page-header {
     flex-direction: column;
     align-items: start;
@@ -365,9 +219,5 @@ th {
 
   .insights-grid {
     grid-template-columns: 1fr;
-  }
-
-  nav {
-    grid-template-columns: 1fr 1fr;
   }
 }
