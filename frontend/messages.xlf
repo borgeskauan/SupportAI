@@ -363,6 +363,244 @@
           <context context-type="linenumber">57,58</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="nav_support_records" datatype="html">
+        <source>Support Records</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/support-records-list/support-records-list.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="page_eyebrow_records" datatype="html">
+        <source>Raw case feed</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/support-records-list/support-records-list.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="page_title_records" datatype="html">
+        <source>Support Records</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/support-records-list/support-records-list.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="page_subtitle_records" datatype="html">
+        <source>Browse the raw cases loaded from the backend before they are turned into FAQ drafts.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/support-records-list/support-records-list.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="records_stat_total" datatype="html">
+        <source>Total Cases</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/support-records-list/support-records-list.component.html</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="records_stat_resolved" datatype="html">
+        <source>Resolved Cases</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/support-records-list/support-records-list.component.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="records_stat_areas" datatype="html">
+        <source>Product Areas</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/support-records-list/support-records-list.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="records_loading_title" datatype="html">
+        <source>Loading support records</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/support-records-list/support-records-list.component.html</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="records_loading_body" datatype="html">
+        <source>Fetching the latest raw cases from the API.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/support-records-list/support-records-list.component.html</context>
+          <context context-type="linenumber">48</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="records_empty_title" datatype="html">
+        <source>No support records available</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/support-records-list/support-records-list.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="records_empty_body" datatype="html">
+        <source>The backend returned an empty record set for this workspace.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/support-records-list/support-records-list.component.html</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="records_label_customer_message" datatype="html">
+        <source>Customer Message</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/support-records-list/support-records-list.component.html</context>
+          <context context-type="linenumber">77</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="records_label_resolution" datatype="html">
+        <source>Resolution</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/support-records-list/support-records-list.component.html</context>
+          <context context-type="linenumber">82</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="records_label_tags" datatype="html">
+        <source>Tags</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/support-records-list/support-records-list.component.html</context>
+          <context context-type="linenumber">88</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="records_error_loading" datatype="html">
+        <source>We couldn't load the support records right now.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/support-records-list/support-records-list.component.ts</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="records_error_title" datatype="html">
+        <source>Support records unavailable</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/support-records-list/support-records-list.component.html</context>
+          <context context-type="linenumber">51</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="records_error_body" datatype="html">
+        <source>The API couldn't return the raw support cases for this screen.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/support-records-list/support-records-list.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="record_status_resolved" datatype="html">
+        <source>Resolved</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/data-access/support-record.models.ts</context>
+          <context context-type="linenumber">58</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="record_status_open" datatype="html">
+        <source>Open</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/data-access/support-record.models.ts</context>
+          <context context-type="linenumber">60</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="record_status_pending" datatype="html">
+        <source>Pending</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/data-access/support-record.models.ts</context>
+          <context context-type="linenumber">62</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="record_source_ticket" datatype="html">
+        <source>Ticket</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/data-access/support-record.models.ts</context>
+          <context context-type="linenumber">71</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="record_source_chat" datatype="html">
+        <source>Chat</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/data-access/support-record.models.ts</context>
+          <context context-type="linenumber">73</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="record_source_email" datatype="html">
+        <source>Email</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/data-access/support-record.models.ts</context>
+          <context context-type="linenumber">75</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="record_severity_low" datatype="html">
+        <source>Low</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/data-access/support-record.models.ts</context>
+          <context context-type="linenumber">84</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="record_severity_medium" datatype="html">
+        <source>Medium</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/data-access/support-record.models.ts</context>
+          <context context-type="linenumber">86</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="record_severity_high" datatype="html">
+        <source>High</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/data-access/support-record.models.ts</context>
+          <context context-type="linenumber">88</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="record_severity_critical" datatype="html">
+        <source>Critical</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/data-access/support-record.models.ts</context>
+          <context context-type="linenumber">90</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="record_sentiment_frustrated" datatype="html">
+        <source>Frustrated</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/data-access/support-record.models.ts</context>
+          <context context-type="linenumber">99</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="record_sentiment_neutral" datatype="html">
+        <source>Neutral</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/data-access/support-record.models.ts</context>
+          <context context-type="linenumber">101</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="record_sentiment_satisfied" datatype="html">
+        <source>Satisfied</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/data-access/support-record.models.ts</context>
+          <context context-type="linenumber">103</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="record_sentiment_confused" datatype="html">
+        <source>Confused</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/data-access/support-record.models.ts</context>
+          <context context-type="linenumber">105</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="record_sentiment_urgent" datatype="html">
+        <source>Urgent</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/data-access/support-record.models.ts</context>
+          <context context-type="linenumber">107</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="drafts_regenerated_successfully" datatype="html">
+        <source>Drafts regenerated successfully.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/faq-drafts-list/faq-drafts-list.component.ts</context>
+          <context context-type="linenumber">87</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="drafts_regeneration_failed" datatype="html">
+        <source>Regeneration failed. Please try again.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/faq-drafts-list/faq-drafts-list.component.ts</context>
+          <context context-type="linenumber">90</context>
+        </context-group>
+      </trans-unit>
     </body>
   </file>
 </xliff>

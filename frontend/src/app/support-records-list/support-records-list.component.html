@@ -1,0 +1,105 @@
+<main class="page-shell">
+  <aside class="side-nav">
+    <div class="brand-block">
+      <h1>Editorial Dash</h1>
+      <p>Knowledge MVP</p>
+    </div>
+
+    <nav aria-label="Primary">
+      <a routerLink="/" i18n="@@nav_faq_drafts">FAQ Drafts</a>
+      <a class="active" routerLink="/records" i18n="@@nav_support_records">Support Records</a>
+      <a href="#" i18n="@@nav_issues">Issues</a>
+      <a href="#" i18n="@@nav_archive">Archive</a>
+      <a href="#" i18n="@@nav_settings">Settings</a>
+    </nav>
+  </aside>
+
+  <section class="content-shell">
+    <header class="page-header">
+      <div>
+        <p class="eyebrow" i18n="@@page_eyebrow_records">Raw case feed</p>
+        <h2 i18n="@@page_title_records">Support Records</h2>
+        <p class="subtitle" i18n="@@page_subtitle_records">Browse the raw cases loaded from the backend before they are turned into FAQ drafts.</p>
+      </div>
+    </header>
+
+    @if (loadError()) {
+      <p class="error-banner" role="alert">{{ loadError() }}</p>
+    }
+
+    <section class="insights-grid" aria-label="Support record stats">
+      <article class="insight-card">
+        <p class="label" i18n="@@records_stat_total">Total Cases</p>
+        <p class="value">{{ totalCount() }}</p>
+      </article>
+      <article class="insight-card">
+        <p class="label" i18n="@@records_stat_resolved">Resolved Cases</p>
+        <p class="value">{{ resolvedCount() }}</p>
+      </article>
+      <article class="insight-card">
+        <p class="label" i18n="@@records_stat_areas">Product Areas</p>
+        <p class="value">{{ productAreaCount() }}</p>
+      </article>
+    </section>
+
+    @if (!hasLoaded()) {
+      <section class="empty-state">
+        <h3 i18n="@@records_loading_title">Loading support records</h3>
+        <p i18n="@@records_loading_body">Fetching the latest raw cases from the API.</p>
+      </section>
+    } @else if (loadError()) {
+      <section class="empty-state">
+        <h3 i18n="@@records_error_title">Support records unavailable</h3>
+        <p i18n="@@records_error_body">The API couldn't return the raw support cases for this screen.</p>
+      </section>
+    } @else if (!records().length) {
+      <section class="empty-state">
+        <h3 i18n="@@records_empty_title">No support records available</h3>
+        <p i18n="@@records_empty_body">The backend returned an empty record set for this workspace.</p>
+      </section>
+    } @else {
+      <section class="records-grid" aria-label="Support records list">
+        @for (record of records(); track record.id) {
+          <article class="record-card">
+            <header class="record-header">
+              <div>
+                <p class="record-id">{{ record.id }}</p>
+                <h3>{{ record.caseSummary }}</h3>
+              </div>
+              <time [attr.datetime]="record.createdAt">{{ formatCreatedAt(record.createdAt) }}</time>
+            </header>
+
+            <div class="chip-row">
+              <span class="chip source">{{ sourceLabel(record.sourceType) }}</span>
+              <span class="chip status" [class]="'chip status ' + cssToken(record.status)">{{ statusLabel(record.status) }}</span>
+              <span class="chip severity" [class]="'chip severity ' + cssToken(record.severity)">{{ severityLabel(record.severity) }}</span>
+              <span class="chip sentiment">{{ sentimentLabel(record.sentiment) }}</span>
+              <span class="chip area">{{ record.productArea }}</span>
+            </div>
+
+            <div class="detail-grid">
+              <section>
+                <p class="section-label" i18n="@@records_label_customer_message">Customer Message</p>
+                <p>{{ record.customerMessage }}</p>
+              </section>
+
+              <section>
+                <p class="section-label" i18n="@@records_label_resolution">Resolution</p>
+                <p>{{ record.resolutionText }}</p>
+              </section>
+            </div>
+
+            <section class="tags-block">
+              <p class="section-label" i18n="@@records_label_tags">Tags</p>
+              <div class="tag-row">
+                @for (tag of record.tags; track tag) {
+                  <span class="tag-chip">{{ tag }}</span>
+                }
+              </div>
+            </section>
+          </article>
+        }
+      </section>
+    }
+  </section>
+</main>

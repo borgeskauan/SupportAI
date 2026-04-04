@@ -364,6 +364,244 @@
           <context context-type="linenumber">57,58</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="nav_support_records" datatype="html">
+        <source>Support Records</source><target state="translated">Casos de suporte</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/support-records-list/support-records-list.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="page_eyebrow_records" datatype="html">
+        <source>Raw case feed</source><target state="translated">Fluxo bruto de casos</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/support-records-list/support-records-list.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="page_title_records" datatype="html">
+        <source>Support Records</source><target state="translated">Casos de suporte</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/support-records-list/support-records-list.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="page_subtitle_records" datatype="html">
+        <source>Browse the raw cases loaded from the backend before they are turned into FAQ drafts.</source><target state="translated">Navegue pelos casos brutos carregados do backend antes de serem transformados em rascunhos de FAQ.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/support-records-list/support-records-list.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="records_stat_total" datatype="html">
+        <source>Total Cases</source><target state="translated">Total de casos</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/support-records-list/support-records-list.component.html</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="records_stat_resolved" datatype="html">
+        <source>Resolved Cases</source><target state="translated">Casos resolvidos</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/support-records-list/support-records-list.component.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="records_stat_areas" datatype="html">
+        <source>Product Areas</source><target state="translated">Áreas de produto</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/support-records-list/support-records-list.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="records_loading_title" datatype="html">
+        <source>Loading support records</source><target state="translated">Carregando casos de suporte</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/support-records-list/support-records-list.component.html</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="records_loading_body" datatype="html">
+        <source>Fetching the latest raw cases from the API.</source><target state="translated">Buscando os casos brutos mais recentes da API.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/support-records-list/support-records-list.component.html</context>
+          <context context-type="linenumber">48</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="records_empty_title" datatype="html">
+        <source>No support records available</source><target state="translated">Nenhum caso de suporte disponível</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/support-records-list/support-records-list.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="records_empty_body" datatype="html">
+        <source>The backend returned an empty record set for this workspace.</source><target state="translated">O backend retornou um conjunto vazio de registros para este workspace.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/support-records-list/support-records-list.component.html</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="records_label_customer_message" datatype="html">
+        <source>Customer Message</source><target state="translated">Mensagem do cliente</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/support-records-list/support-records-list.component.html</context>
+          <context context-type="linenumber">77</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="records_label_resolution" datatype="html">
+        <source>Resolution</source><target state="translated">Resolução</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/support-records-list/support-records-list.component.html</context>
+          <context context-type="linenumber">82</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="records_label_tags" datatype="html">
+        <source>Tags</source><target state="translated">Tags</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/support-records-list/support-records-list.component.html</context>
+          <context context-type="linenumber">88</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="records_error_loading" datatype="html">
+        <source>We couldn't load the support records right now.</source><target state="translated">Não foi possível carregar os casos de suporte agora.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/support-records-list/support-records-list.component.ts</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="records_error_title" datatype="html">
+        <source>Support records unavailable</source><target state="translated">Casos de suporte indisponíveis</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/support-records-list/support-records-list.component.html</context>
+          <context context-type="linenumber">51</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="records_error_body" datatype="html">
+        <source>The API couldn't return the raw support cases for this screen.</source><target state="translated">A API não conseguiu retornar os casos brutos de suporte para esta tela.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/support-records-list/support-records-list.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="record_status_resolved" datatype="html">
+        <source>Resolved</source><target state="translated">Resolvido</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/data-access/support-record.models.ts</context>
+          <context context-type="linenumber">58</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="record_status_open" datatype="html">
+        <source>Open</source><target state="translated">Aberto</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/data-access/support-record.models.ts</context>
+          <context context-type="linenumber">60</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="record_status_pending" datatype="html">
+        <source>Pending</source><target state="translated">Pendente</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/data-access/support-record.models.ts</context>
+          <context context-type="linenumber">62</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="record_source_ticket" datatype="html">
+        <source>Ticket</source><target state="translated">Ticket</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/data-access/support-record.models.ts</context>
+          <context context-type="linenumber">71</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="record_source_chat" datatype="html">
+        <source>Chat</source><target state="translated">Chat</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/data-access/support-record.models.ts</context>
+          <context context-type="linenumber">73</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="record_source_email" datatype="html">
+        <source>Email</source><target state="translated">E-mail</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/data-access/support-record.models.ts</context>
+          <context context-type="linenumber">75</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="record_severity_low" datatype="html">
+        <source>Low</source><target state="translated">Baixa</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/data-access/support-record.models.ts</context>
+          <context context-type="linenumber">84</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="record_severity_medium" datatype="html">
+        <source>Medium</source><target state="translated">Média</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/data-access/support-record.models.ts</context>
+          <context context-type="linenumber">86</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="record_severity_high" datatype="html">
+        <source>High</source><target state="translated">Alta</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/data-access/support-record.models.ts</context>
+          <context context-type="linenumber">88</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="record_severity_critical" datatype="html">
+        <source>Critical</source><target state="translated">Crítica</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/data-access/support-record.models.ts</context>
+          <context context-type="linenumber">90</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="record_sentiment_frustrated" datatype="html">
+        <source>Frustrated</source><target state="translated">Frustrado</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/data-access/support-record.models.ts</context>
+          <context context-type="linenumber">99</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="record_sentiment_neutral" datatype="html">
+        <source>Neutral</source><target state="translated">Neutro</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/data-access/support-record.models.ts</context>
+          <context context-type="linenumber">101</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="record_sentiment_satisfied" datatype="html">
+        <source>Satisfied</source><target state="translated">Satisfeito</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/data-access/support-record.models.ts</context>
+          <context context-type="linenumber">103</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="record_sentiment_confused" datatype="html">
+        <source>Confused</source><target state="translated">Confuso</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/data-access/support-record.models.ts</context>
+          <context context-type="linenumber">105</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="record_sentiment_urgent" datatype="html">
+        <source>Urgent</source><target state="translated">Urgente</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/data-access/support-record.models.ts</context>
+          <context context-type="linenumber">107</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="drafts_regenerated_successfully" datatype="html">
+        <source>Drafts regenerated successfully.</source><target state="translated">Rascunhos regenerados com sucesso.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/faq-drafts-list/faq-drafts-list.component.ts</context>
+          <context context-type="linenumber">87</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="drafts_regeneration_failed" datatype="html">
+        <source>Regeneration failed. Please try again.</source><target state="translated">A regeneração falhou. Tente novamente.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/faq-drafts-list/faq-drafts-list.component.ts</context>
+          <context context-type="linenumber">90</context>
+        </context-group>
+      </trans-unit>
     </body>
   </file>
 </xliff>

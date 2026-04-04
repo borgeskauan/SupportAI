@@ -84,10 +84,10 @@ export class FaqDraftsListComponent {
         next: () => {
           // Trigger a refresh of the FAQ list
           this.refreshTrigger.update((v) => v + 1);
-          this.showNotice('Drafts regenerated successfully.');
+          this.showNotice($localize`:@@drafts_regenerated_successfully:Drafts regenerated successfully.`);
         },
         error: () => {
-          this.showNotice('Regeneration failed. Please try again.');
+          this.showNotice($localize`:@@drafts_regeneration_failed:Regeneration failed. Please try again.`);
         }
       });
   }
