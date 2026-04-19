@@ -6,6 +6,7 @@ from google import genai
 from google.genai import types
 
 from backend.core.embeddings_protocol import EmbeddingProvider
+from backend.core.circuit_breaker import CircuitBreaker
 
 
 logger = logging.getLogger(__name__)
@@ -39,6 +40,17 @@ class GeminiEmbeddingProvider:
 
         self.model = model
         self.client = genai.Client(api_key=api_key)
+        
+        # Circuit breaker for handling API rate limits and failures
+        self.circuit_breaker = CircuitBreaker(
+            failure_threshold=3,
+            timeout_seconds=60,
+            max_retries=5,
+            base_delay_seconds=10.0,
+            max_delay_seconds=60.0,
+            name="GeminiEmbedding",
+        )
+
         logger.info(f"Initialized GeminiEmbeddingProvider with model={model}")
 
     def embed(self, text: str) -> list[float]:
@@ -80,25 +92,29 @@ class GeminiEmbeddingProvider:
         if not texts:
             raise ValueError("Texts list cannot be empty")
 
-        try:
-            logger.info(f"Requesting embeddings for {len(texts)} texts from Gemini API")
-            
+        logger.info(f"Requesting embeddings for {len(texts)} texts from Gemini API")
+        
+        # Use circuit breaker to handle API failures with retry logic
+        def make_api_call():
             response = self.client.models.embed_content(
                 model=self.model,
                 contents=texts,
                 config=types.EmbedContentConfig(task_type="SEMANTIC_SIMILARITY"),
             )
+            return response
 
-            # Extract embedding vectors
-            embeddings = [emb.values for emb in response.embeddings]
-            
-            logger.debug(
-                f"Generated {len(embeddings)} embeddings, "
-                f"dimension={len(embeddings[0]) if embeddings else 0}"
-            )
-
-            return embeddings
-
+        try:
+            response = self.circuit_breaker.call(make_api_call)
         except Exception as e:
-            logger.error(f"Failed to generate embeddings with Gemini API: {e}")
+            logger.error(f"Failed to generate embeddings: {e}")
             raise
+
+        # Extract embedding vectors
+        embeddings = [emb.values for emb in response.embeddings]
+        
+        logger.debug(
+            f"Generated {len(embeddings)} embeddings, "
+            f"dimension={len(embeddings[0]) if embeddings else 0}"
+        )
+
+        return embeddings
