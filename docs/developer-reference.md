@@ -1,6 +1,90 @@
 # SupportAI developer reference
 
-See the [README](../README.md) for the product overview, screenshots, and local setup. Run commands below from the repository root unless stated otherwise.
+See the [README](../README.md) for the product overview and screenshots. SupportAI uses Python/FastAPI and Angular. Run commands below from the repository root unless stated otherwise.
+
+## Install dependencies
+
+Prerequisites: a Unix-like shell, Python 3.11+, Node.js 22.x (22.12 or later), and npm. The frontend uses Angular 21.2.
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+python -m pip install -r backend/requirements.txt
+if [ ! -f backend/.env ]; then cp backend/.env.example backend/.env; fi
+```
+
+This installs backend dependencies and creates a configuration file only if one does not already exist. The example configuration uses mock mode. Choose the receipt demo below for a prepared example, or [run with your own configuration and data](#run-with-your-own-configuration-and-data).
+
+## Run the receipt demo
+
+Complete [dependency installation](#install-dependencies). Stop any backend already using port 8000, then run:
+
+```bash
+source venv/bin/activate
+python -m backend.demo
+```
+
+In a second terminal, start the English frontend:
+
+```bash
+cd frontend
+npm ci
+npm start
+```
+
+Open [localhost:4200](http://localhost:4200), click **Generate / Regenerate FAQs**, and open **My payment went through. Where is my receipt?**
+
+The [synthetic fixture](../backend/demo/scenario.json) contains three distinct receipt cases (ticket, chat, and escalation), plus unrelated password, refund, and tracking cases. The normal startup pipeline loads all six and forms one receipt family. The answer covers the supplied resolutions: spam, payment verification, delayed email, address verification, and resending the receipt. It also explains why a missing receipt alone does not justify repeating a confirmed payment.
+
+The demo launcher copies the backend into a temporary directory and uses only the bundled cases. It leaves `backend/.env` and `backend/data/` untouched, selects both mock providers, and uses the code defaults of 768 dimensions, minimum group size 3, and similarity threshold 0.90. No API key or Gemini call is needed. Stop it with Ctrl+C; the temporary copy is removed. `--port` is available for API-only use; the frontend expects port 8000.
+
+### How the deterministic scenario works
+
+The existing mock embedding provider recognizes the fixture's exact summary-and-resolution pairs. It combines a shared receipt signal with a distinct hash-derived vector for each case. The three vectors are different and yield about 94% average similarity at the normal threshold; the unrelated cases remain outside the group. These are scripted demo similarities, not semantic-quality measurements.
+
+The mock LLM uses a natural label for the three fixture summaries and returns the bundled FAQ only when all three supplied summaries and resolutions match. Changed, incomplete, or mixed evidence uses the existing generic fallback. Other embedding inputs retain the original hash-based behavior. Keep the fixture's answer consistent with its resolutions when editing the scenario.
+
+### Verify and refresh screenshots
+
+Run the focused backend checks:
+
+```bash
+source venv/bin/activate
+python -m pytest backend/tests -q
+```
+
+With the demo backend and frontend running, install screenshot tooling in a separate temporary directory:
+
+```bash
+demo_tools=$(mktemp -d /tmp/supportai-browser.XXXXXX)
+npm install --prefix "$demo_tools" playwright sharp
+"$demo_tools/node_modules/.bin/playwright" install chromium
+NODE_PATH="$demo_tools/node_modules" node scripts/capture-demo.cjs
+```
+
+The [capture script](../scripts/capture-demo.cjs) generates the FAQ through the UI, checks the three distinct evidence cards and review controls, then loads the API matrix and records into the real viewer. It checks label alignment and the selected comparison before replacing both PNGs in `docs/images/`. For an existing Chromium installation, set `PLAYWRIGHT_CHROMIUM_EXECUTABLE` to its executable path.
+
+Screenshots demonstrate the interface and review workflow with deterministic mock output. They do not evaluate Gemini, answer accuracy, or production readiness. FAQ drafts and frontend review changes remain temporary as described in the README.
+
+## Run with your own configuration and data
+
+Complete [dependency installation](#install-dependencies), then optionally [configure Gemini](#use-gemini). Stop the demo backend if it is running. With the virtual environment active, start the normal backend:
+
+```bash
+python -m uvicorn backend.main:app --reload --host 127.0.0.1 --port 8000
+```
+
+This reads your existing configuration and cases in `backend/data/`. Wait for startup to finish, then start the frontend in a second terminal:
+
+```bash
+cd frontend
+npm ci
+npm start
+```
+
+Open [localhost:4200](http://localhost:4200), click **Generate / Regenerate FAQs**, and open a draft. See [Brazilian Portuguese](#brazilian-portuguese) for that interface language.
+
+Grouping runs at startup; FAQ generation is a separate step. Restart the backend after changing case files. Generating again replaces drafts and clears local edits and review statuses. If generation fails for one group, the app continues with the others.
 
 ## Use Gemini
 
@@ -61,7 +145,7 @@ curl -fsS http://localhost:8000/records | python -c 'import json, sys; json.dump
 
 Open the [standalone viewer](../backend/similarity_matrix_viewer.html) in a desktop browser and load both files into their matching fields. Adjust the highlight threshold to explore closer matches, then click a cell to read the cases.
 
-The current viewer requires both matrix and records JSON files. Use a window wider than 1200 pixels and scroll within the viewer to see the heatmap. Its layout can clip rotated column labels.
+The viewer requires both matrix and records JSON files. Collapse **Data and display settings** after loading to give the matrix more space. The comparison panel appears beside the matrix on wider screens and below it on narrower screens.
 
 ## API
 
@@ -94,3 +178,4 @@ Input is always read from `backend/data/`; the `DATA_DIR` setting is currently u
 - [Embedding](../backend/core/embeddings_protocol.py) and [text-generation](../backend/core/llm_protocol.py) interfaces support Gemini and local mocks.
 - [Gemini error handling](../backend/core/circuit_breaker.py) retries temporary failures and pauses further calls after repeated failures. Retries block the current operation. Failures while comparing cases can prevent startup; failed group naming uses fallback labels.
 - The API allows requests from any origin (permissive CORS) and has no authentication. Embeddings and drafts are not stored permanently.
+- Screens under `stitch/` are design mockups, not screenshots of implemented features. Export and publishing are not implemented.

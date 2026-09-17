@@ -2,8 +2,10 @@
 
 import hashlib
 import logging
+import math
 
 from backend.core.embeddings_protocol import EmbeddingProvider
+from backend.demo import receipt_embedding_texts
 
 
 logger = logging.getLogger(__name__)
@@ -13,8 +15,8 @@ class MockEmbeddingProvider:
     """
     Mock embedding provider that generates deterministic vectors.
     
-    Uses hash-based generation to produce consistent embeddings
-    for the same input text without external API calls.
+    Uses hash-based generation for arbitrary inputs. The explicit receipt demo
+    adds a shared signal to distinct per-case vectors, without external calls.
     """
 
     def __init__(self, dimension: int = 768):
@@ -44,6 +46,19 @@ class MockEmbeddingProvider:
             logger.warning("Empty text provided for embedding")
             return [0.0] * self.dimension
 
+        vector = self._hash_vector(text)
+        if text in receipt_embedding_texts():
+            # A scripted similarity signal for the bundled demo only. Retain
+            # per-case variation: related cases must not become identical vectors.
+            anchor = self._hash_vector("supportai-demo:receipt")
+            anchor_norm = math.sqrt(sum(value * value for value in anchor))
+            vector_norm = math.sqrt(sum(value * value for value in vector))
+            if anchor_norm and vector_norm:
+                return [a / anchor_norm + 0.25 * v / vector_norm for a, v in zip(anchor, vector)]
+        return vector
+
+    def _hash_vector(self, text: str) -> list[float]:
+        """Original hash-based fallback, also used for demo case variation."""
         # Generate deterministic values from hash
         hash_obj = hashlib.sha256(text.encode("utf-8"))
         hash_bytes = hash_obj.digest()

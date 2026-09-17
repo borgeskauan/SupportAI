@@ -1,100 +1,36 @@
-# SupportAI — Support Knowledge Copilot
+# SupportAI
 
-SupportAI turns solved support cases into FAQ drafts. It finds recurring problems, drafts answers from previous resolutions, and shows the original cases alongside each draft so you can review and edit it.
+SupportAI helps support teams write answers to frequently asked questions (FAQs) using cases they've already solved. The idea is to reuse what the team has learned instead of writing the same explanations from scratch.
 
-This local prototype is built with Python/FastAPI and Angular. The interface is available in English and Brazilian Portuguese.
+It groups similar cases and drafts an answer from their solutions. You can read the original cases next to the draft, edit the text, and approve or reject it.
 
-![FAQ detail showing a generated draft alongside three supporting cases and review controls](docs/images/faq-detail.png)
+## Example
 
-*A FAQ draft beside its supporting cases. Captured in the running app with synthetic cases and local demo mode.*
+In this demo, three customers have paid but can't find their receipts. Support finds one in spam, confirms that another email arrived late, and resends the third after checking the customer's email address.
 
-## How it works
+The cases are grouped under “My payment went through. Where is my receipt?” The draft brings those solutions together and explains that a missing receipt doesn't mean the customer needs to pay again.
 
-1. **Add solved cases.** Place case files in `backend/data/`. On startup, the app checks their format and loads resolved cases.
-2. **Find recurring problems.** The app compares case summaries and resolutions, groups similar cases, and names each group. These groups appear as *issue families* in the interface.
-3. **Generate drafts.** Click **Generate / Regenerate FAQs** to create answers covering the problem, likely cause, fix steps, exceptions, and when to contact support.
-4. **Review each answer.** Read the supporting cases beside the draft, edit the text, then approve or reject it. You can also browse all loaded cases under **Support Records**.
+![Receipt FAQ draft beside three original cases, with options to edit, approve, or reject it](docs/images/faq-detail.png)
 
-Grouping runs at startup; FAQ generation is a separate step. Restart the backend after changing case files. Generating again replaces the current drafts and clears local edits and review statuses.
+*The screenshots use fictional cases with prepared comparisons and a prewritten answer. The demo returns the same results each time. “Confidence” refers to how similar the cases are, not whether the answer is correct.*
 
-## Understanding the results
+The comparison view lets you look at two cases side by side. Here, they describe the same problem but have different solutions.
 
-### Related cases and confidence
+![Color grid comparing six cases, with two receipt problems and their solutions shown side by side](docs/images/similarity-matrix.png)
 
-The app groups cases based on how similar their summaries and resolutions are. A stricter similarity setting requires closer matches, and small groups are filtered out.
+## Current limits
 
-**Confidence describes the average similarity of cases in a group, not the accuracy of the answer.** Individual cases in a group can still differ.
+This is an early version that runs on your own computer.
 
-The separate similarity viewer shows these comparisons as a color grid. Click a cell to inspect the two cases it compares.
+- Work isn't saved permanently. Restarting the service clears drafts; reloading the page clears edits and review decisions. Generating drafts again replaces the previous work.
+- Approval only marks an answer as reviewed. There's no export or publishing yet.
+- Cases must be supplied as files in the required format. The app doesn't connect to support tools automatically.
+- There's no login or access protection. Answer quality, grouping, and speed haven't been formally evaluated.
 
-![Standalone similarity matrix viewer showing four groups of synthetic cases with a 0.90 highlight threshold](docs/images/similarity-matrix.png)
+Suggestions for updating existing documentation are planned but aren't built yet.
 
-*Twelve synthetic cases in four groups with repeated text. Captured in the standalone viewer using data from the app's local demo mode.*
+## Try it
 
-### Drafts with supporting evidence
+You can try the prepared demo without an AI service. For AI-generated answers from your own cases, the app uses Google's Gemini. That sends the case text to Google, and the answers still need checking.
 
-Each draft includes the cases used to generate it. The app checks that the answer has the required sections; you review the content against the evidence before using it.
-
-If generation fails for one group, the app continues with the others.
-
-### Gemini or local demo mode
-
-- **Gemini** compares case text and generates answers through Google's API. It requires an API key and sends case text to that service.
-- **Mock mode** runs locally without an API key. It uses simulated comparisons and template answers to exercise the interface. The screenshots use this mode with synthetic cases.
-
-Mock mode can leave the FAQ list empty because the sample cases may not form qualifying groups. Use Gemini to explore AI-generated results.
-
-## Run locally
-
-Prerequisites: a Unix-like shell, Python 3.11+, Node.js 22.x (22.12 or later), and npm. The frontend uses Angular 21.2.
-
-### 1. Set up the backend
-
-From the repository root:
-
-```bash
-python3 -m venv venv
-source venv/bin/activate
-python -m pip install -r backend/requirements.txt
-if [ ! -f backend/.env ]; then cp backend/.env.example backend/.env; fi
-```
-
-This installs the backend dependencies and creates a configuration file if you do not already have one. The example configuration uses mock mode.
-
-To use Gemini, follow the [configuration guide](docs/developer-reference.md#use-gemini).
-
-### 2. Start the backend
-
-From the repository root, with the virtual environment active:
-
-```bash
-python -m uvicorn backend.main:app --reload --host 127.0.0.1 --port 8000
-```
-
-Wait for startup to finish before opening the app.
-
-### 3. Open the app
-
-In a second terminal:
-
-```bash
-cd frontend
-npm ci
-npm start
-```
-
-Open [localhost:4200](http://localhost:4200), click **Generate / Regenerate FAQs**, then open a draft to review its answer and supporting cases. [Brazilian Portuguese setup](docs/developer-reference.md#brazilian-portuguese) is also available.
-
-## Add your own cases
-
-Use the [sample cases](backend/data/sample_records.json) as a starting point. Save your files in `backend/data/`, then restart the backend. Include several solved cases about the same problem so the app can identify recurring issues. See the [case format guide](docs/developer-reference.md#case-format) for the required fields.
-
-## Current scope
-
-- **Temporary work.** Generated drafts are kept in backend memory and disappear on restart. Edits and review statuses are kept in the browser and disappear on reload or regeneration.
-- **Review only.** Approving a draft marks it as `Reviewed` locally. Export and publishing are not implemented; screens under `stitch/` are design mockups.
-- **File-based input.** Cases must be prepared in the expected JSON format. There are no automatic imports, live updates, or background processing.
-- **Local prototype.** The API has no login or access controls. Answer quality, grouping quality, and performance have not been benchmarked.
-- **Planned:** suggestions for updating existing documentation.
-
-For API endpoints, configuration options, similarity viewer instructions, and implementation notes, see the [developer reference](docs/developer-reference.md).
+The app is available in English and Brazilian Portuguese. Installation takes some technical setup, covered in the [setup guide](docs/developer-reference.md).
