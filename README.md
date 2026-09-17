@@ -1,37 +1,36 @@
 # SupportAI
 
-Support teams often answer the same questions repeatedly. SupportAI helps turn their past solutions into reusable answers.
+SupportAI helps support teams write answers to frequently asked questions (FAQs) using cases they've already solved. The idea is to reuse what the team has learned instead of writing the same explanations from scratch.
 
-It finds similar problems in solved support cases and drafts answers to frequently asked questions (FAQs). A person checks each draft alongside the original cases, edits it, and decides whether to approve it.
+It groups similar cases and drafts an answer from their solutions. You can read the original cases next to the draft, edit the text, and approve or reject it.
 
-## See it in action
+## Example
 
-Three customers paid successfully but couldn't find their receipts. Support found one in spam, confirmed another email arrived late, and resent the third.
+In this demo, three customers have paid but can't find their receipts. Support finds one in spam, confirms that another email arrived late, and resends the third after checking the customer's email address.
 
-Those solutions become one draft: **“My payment went through. Where is my receipt?”** It explains what to check and when to ask for help—without repeating a confirmed payment.
+The cases are grouped under “My payment went through. Where is my receipt?” The draft brings those solutions together and explains that a missing receipt doesn't mean the customer needs to pay again.
 
 ![Receipt FAQ draft beside three original cases, with options to edit, approve, or reject it](docs/images/faq-detail.png)
 
-*Both screenshots use made-up cases and fixed demo results, not AI-generated answers. “Confidence” measures how similar the cases are, not answer accuracy.*
+*The screenshots use fictional cases with prepared comparisons and a prewritten answer. The demo returns the same results each time. “Confidence” refers to how similar the cases are, not whether the answer is correct.*
 
-You can also compare cases side by side to understand why they belong together.
+The comparison view lets you look at two cases side by side. Here, they describe the same problem but have different solutions.
 
 ![Color grid comparing six cases, with two receipt problems and their solutions shown side by side](docs/images/similarity-matrix.png)
 
-*Two related receipt problems, solved in different ways.*
+## Current limits
 
-## What to know
+This is an early version that runs on your own computer.
 
-This is an early version for running on your own computer, not a finished support service.
+- Work isn't saved permanently. Restarting the service clears drafts; reloading the page clears edits and review decisions. Generating drafts again replaces the previous work.
+- Approval only marks an answer as reviewed. There's no export or publishing yet.
+- Cases must be supplied as files in the required format. The app doesn't connect to support tools automatically.
+- There's no login or access protection. Answer quality, grouping, and speed haven't been formally evaluated.
 
-- Drafts, edits, and review decisions are temporary. Restarting the service, reloading the page, or generating new drafts can clear work.
-- Approving an answer only marks it as reviewed. Export and publishing are not available.
-- Cases need specially prepared files; there is no automatic connection to support tools.
-- There is no login or access protection. Answer quality, case grouping, and speed have not been formally evaluated.
-- Suggestions for updating existing documentation are planned, not implemented.
+Suggestions for updating existing documentation are planned but aren't built yet.
 
 ## Try it
 
-The prepared demo needs no AI service. To generate answers from your own cases, SupportAI can use Google's Gemini AI, which sends case text to Google.
+You can try the prepared demo without an AI service. For AI-generated answers from your own cases, the app uses Google's Gemini. That sends the case text to Google, and the answers still need checking.
 
-The app is available in English and Brazilian Portuguese. See the [setup guide](docs/developer-reference.md) to get started; installation needs some technical knowledge.
+The app is available in English and Brazilian Portuguese. Installation takes some technical setup, covered in the [setup guide](docs/developer-reference.md).
