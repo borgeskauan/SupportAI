@@ -1,60 +1,54 @@
 # SupportAI — Support Knowledge Copilot
 
-SupportAI is a local MVP that turns solved support cases into FAQ drafts for human review. It groups related cases using embeddings and clustering, gives each group a readable label, and generates structured answers linked to their supporting cases.
+SupportAI turns solved support cases into FAQ drafts. It finds recurring problems, drafts answers from previous resolutions, and shows the original cases alongside each draft so you can review and edit it.
 
-The repository implements the FAQ workflow with a Python/FastAPI backend and an Angular frontend. Documentation update suggestions remain future work.
+This local prototype is built with Python/FastAPI and Angular. The interface is available in English and Brazilian Portuguese.
 
 ![FAQ detail showing a generated draft alongside three supporting cases and review controls](docs/images/faq-detail.png)
 
-*FAQ draft and supporting case evidence in the running app. Synthetic demo data with mock providers.*
+*A FAQ draft beside its supporting cases. Captured in the running app with synthetic cases and local demo mode.*
 
-## Workflow
+## How it works
 
-1. **Load solved cases.** At startup, the backend validates JSON files in `backend/data/`, logs invalid entries, and keeps resolved cases.
-2. **Group related cases.** It embeds each case's summary and resolution, then clusters similar vectors into *issue families*: groups of related support cases.
-3. **Label each family.** An LLM names the group; the backend retains its supporting records and a similarity score.
-4. **Generate FAQ drafts.** On request, the LLM turns each family's summaries and resolutions into a problem statement, cause, fix steps, edge cases, and guidance on contacting support.
-5. **Review with evidence.** The Angular UI displays drafts beside their supporting cases and provides edit, approve, reject, and bulk-regeneration actions.
+1. **Add solved cases.** Place case files in `backend/data/`. On startup, the app checks their format and loads resolved cases.
+2. **Find recurring problems.** The app compares case summaries and resolutions, groups similar cases, and names each group. These groups appear as *issue families* in the interface.
+3. **Generate drafts.** Click **Generate / Regenerate FAQs** to create answers covering the problem, likely cause, fix steps, exceptions, and when to contact support.
+4. **Review each answer.** Read the supporting cases beside the draft, edit the text, then approve or reject it. You can also browse all loaded cases under **Support Records**.
 
-The UI also includes a support-record browser and English/Brazilian Portuguese localization. A separate HTML viewer lets you inspect similarities between cases.
+Grouping runs at startup; FAQ generation is a separate step. Restart the backend after changing case files. Generating again replaces the current drafts and clears local edits and review statuses.
 
-Restart the backend after changing input files. FAQ generation is triggered separately through the UI or API.
+## Understanding the results
 
-## Engineering choices and tradeoffs
+### Related cases and confidence
 
-### Clustering and confidence
+The app groups cases based on how similar their summaries and resolutions are. A stricter similarity setting requires closer matches, and small groups are filtered out.
 
-[Clustering](backend/core/clustering.py) uses SciPy's average-linkage hierarchical clustering over pairwise cosine distances. A similarity setting controls where the clustering tree is cut; a minimum-size filter then removes small groups. Pairwise distance storage grows quadratically with the number of cases.
+**Confidence describes the average similarity of cases in a group, not the accuracy of the answer.** Individual cases in a group can still differ.
 
-The UI's **confidence score measures average similarity within a cluster, not answer accuracy**. Average linkage does not guarantee that every pair meets the configured threshold.
+The separate similarity viewer shows these comparisons as a color grid. Click a cell to inspect the two cases it compares.
 
 ![Standalone similarity matrix viewer showing four groups of synthetic cases with a 0.90 highlight threshold](docs/images/similarity-matrix.png)
 
-*Similarity matrix for 12 synthetic demo cases in four repeated-text groups, loaded from `GET /similarity-matrix` using mock embeddings.*
+*Twelve synthetic cases in four groups with repeated text. Captured in the standalone viewer using data from the app's local demo mode.*
 
-### Structured generation with evidence
+### Drafts with supporting evidence
 
-[FAQ generation](backend/core/faq_generation.py) validates the model's JSON output with Pydantic and attaches supporting case IDs and summaries. This checks structure, not factual correctness; drafts still need human review.
+Each draft includes the cases used to generate it. The app checks that the answer has the required sections; you review the content against the evidence before using it.
 
-Bulk generation continues when a family fails and returns a `failures` array alongside successful drafts. Each run replaces the previous draft collection. The UI currently does not display the per-family failure breakdown.
+If generation fails for one group, the app continues with the others. Failure details are available in the API response but are not shown in the interface yet.
 
-### Gemini and mock providers
+### Gemini or local demo mode
 
-Separate [embedding](backend/core/embeddings_protocol.py) and [LLM](backend/core/llm_protocol.py) interfaces support Gemini and local mocks. Mocks use hash-derived vectors and local text-generation logic to exercise the workflow without API calls; they cannot demonstrate semantic or answer quality.
+- **Gemini** compares case text and generates answers through Google's API. It requires an API key and sends case text to that service.
+- **Mock mode** runs locally without an API key. It uses simulated comparisons and template answers to exercise the interface. The screenshots use this mode with synthetic cases.
 
-OpenAI appears in configuration enums but has no implemented provider.
-
-### Failure handling
-
-Both Gemini providers use a [circuit breaker](backend/core/circuit_breaker.py): retryable failures get up to five attempts with linear waits of 10, 20, 30, and 40 seconds. Three failed calls open the circuit; a later call can test recovery after 60 seconds.
-
-Retries block execution and classify errors by message matching. Circuit state is local to each process. Embedding failures can prevent startup; labeling failures use fallback names.
+Mock mode can leave the FAQ list empty because the sample cases may not form qualifying groups. It is useful for trying the workflow; use Gemini to explore AI-generated results. OpenAI support is not implemented.
 
 ## Run locally
 
 Prerequisites: a Unix-like shell, Python 3.11+, Node.js 22.x (22.12 or later), and npm. The frontend uses Angular 21.2.
 
-### 1. Configure the backend
+### 1. Set up the backend
 
 From the repository root:
 
@@ -62,12 +56,15 @@ From the repository root:
 python3 -m venv venv
 source venv/bin/activate
 python -m pip install -r backend/requirements.txt
-cp backend/.env.example backend/.env
+if [ ! -f backend/.env ]; then cp backend/.env.example backend/.env; fi
 ```
 
-The example configuration selects mock providers, so no API key is needed for an initial run. Mock mode may produce few or no qualifying clusters with the sample data.
+This installs the backend dependencies and creates a configuration file if you do not already have one. The example configuration uses mock mode.
 
-For real embeddings and generated text, edit `backend/.env`:
+<details>
+<summary>Use Gemini</summary>
+
+Set the following values in `backend/.env`, including your API key:
 
 ```dotenv
 EMBEDDING_PROVIDER=gemini
@@ -77,15 +74,9 @@ GEMINI_MODEL=gemini-embedding-001
 LLM_MODEL=gemini-2.0-flash
 ```
 
-These are the repository's default model names; replace them if unavailable to your account. Gemini mode sends case text to the external API.
+These are the model names configured in the repository. Replace them if your account uses different models.
 
-| Setting | Behavior |
-| --- | --- |
-| `CLUSTERING_MIN_CLUSTER_SIZE` | Defaults to 3. The single-record code path is an exception and returns a singleton. |
-| `CLUSTERING_SIMILARITY_THRESHOLD` | The copied example sets 0.70; without an override, `Settings` defaults to 0.90. |
-| `EMBEDDING_DIMENSION` | Controls mock vector dimensions; it is not passed as an output-dimension setting to Gemini. |
-
-Input is read from `backend/data/`; the declared `DATA_DIR` setting is currently unused.
+</details>
 
 ### 2. Start the backend
 
@@ -97,7 +88,7 @@ python -m uvicorn backend.main:app --reload --host 127.0.0.1 --port 8000
 
 Wait for startup to finish. API documentation is available at [localhost:8000/docs](http://localhost:8000/docs).
 
-### 3. Start the frontend
+### 3. Open the app
 
 In a second terminal:
 
@@ -113,13 +104,13 @@ Open [localhost:4200](http://localhost:4200). For Brazilian Portuguese, replace 
 npm run ng -- serve --configuration=pt-BR
 ```
 
-The UI connects to the backend API. Use the draft-list regeneration action to create drafts, then open one to review its content and evidence.
+Click **Generate / Regenerate FAQs**, then open a draft to review its answer and supporting cases.
 
 Alternatively, after configuring `backend/.env`, run `bash start.sh` to prepare dependencies and start both services with the Portuguese UI.
 
-## Input format
+## Add your own cases
 
-Each JSON file can contain one record or an array of records. Supported `source_type` values are `ticket`, `chat_log`, `escalation`, `call_transcript`, and `refund_reason`. These are normalized categories, not external integrations.
+Save cases as JSON files in `backend/data/`, then restart the backend. Each file can contain one case or a list of cases. For example:
 
 ```json
 {
@@ -134,33 +125,61 @@ Each JSON file can contain one record or an array of records. Supported `source_
 }
 ```
 
-See the [schema](backend/models/support_record.py) and [sample dataset](backend/data/sample_records.json). Repeated-issue detection needs multiple related cases.
+Use `ticket`, `chat_log`, `escalation`, `call_transcript`, or `refund_reason` for `source_type`. These describe where a case came from; the app does not import from those systems automatically.
 
-## API and inspection tools
+See the [sample cases](backend/data/sample_records.json) and [full field definitions](backend/models/support_record.py). Include several cases about the same problem so the app can identify recurring issues.
+
+## Inspect case similarities
+
+Keep the backend running. In another terminal at the repository root, save the comparison data and case records:
+
+```bash
+source venv/bin/activate
+curl -fsS http://localhost:8000/similarity-matrix -o /tmp/supportai-similarity.json
+curl -fsS http://localhost:8000/records | python -c 'import json, sys; json.dump(json.load(sys.stdin)["records"], sys.stdout)' > /tmp/supportai-records.json
+```
+
+Open the [standalone viewer](backend/similarity_matrix_viewer.html) in a desktop browser and load both files into their matching fields. Adjust the highlight threshold to explore closer matches, then click a cell to read the cases.
+
+## Current scope
+
+- **Temporary work.** Generated drafts are kept in backend memory and disappear on restart. Edits and review statuses are kept in the browser and disappear on reload or regeneration.
+- **Review only.** Approving a draft marks it as `Reviewed` locally. Export and publishing are not implemented; screens under `stitch/` are design mockups.
+- **File-based input.** Cases must be prepared in the expected JSON format. There are no automatic imports, live updates, or background processing.
+- **Local prototype.** The API has no login or access controls. Answer quality, grouping quality, and performance have not been benchmarked.
+- **Planned:** suggestions for updating existing documentation.
+
+<details>
+<summary>Developer reference: API, configuration, and implementation</summary>
+
+### API
 
 | Method | Endpoint | Purpose |
 | --- | --- | --- |
 | GET | `/health` | Application status and loaded-record count. |
 | GET | `/records` | Loaded resolved support records. |
-| GET | `/clusters` | Labeled issue families with supporting records. |
-| GET | `/similarity-matrix` | Record IDs and the pairwise cosine-similarity matrix. |
-| POST | `/faqs/generate/{index}` | Generate a draft for a zero-based issue-family index. |
-| POST | `/faqs/generate` | Generate drafts for all families; return successes and failures. |
+| GET | `/clusters` | Named groups and their supporting cases. |
+| GET | `/similarity-matrix` | Case IDs and similarity scores for each pair. |
+| POST | `/faqs/generate/{index}` | Generate a draft for one group; numbering starts at 0. |
+| POST | `/faqs/generate` | Generate drafts for all groups; return drafts and failures. |
 | GET | `/faqs` | List drafts currently held in backend memory. |
 
-To inspect similarities, save the matrix response:
+### Configuration
 
-```bash
-curl http://localhost:8000/similarity-matrix -o /tmp/supportai-similarity.json
-```
+| Setting | Behavior |
+| --- | --- |
+| `CLUSTERING_MIN_CLUSTER_SIZE` | Minimum cases per group, normally 3. An input containing only one case is handled separately and returns a one-case group. |
+| `CLUSTERING_SIMILARITY_THRESHOLD` | Higher values require closer matches. The example configuration uses 0.70; the code defaults to 0.90 if no value is set. |
+| `EMBEDDING_DIMENSION` | Size of the numeric representation used in mock mode. Does not set Gemini's output size. |
 
-Open the [standalone viewer](backend/similarity_matrix_viewer.html) in a browser and load the JSON file. It supports threshold highlighting and optional records JSON for case inspection.
+Input is always read from `backend/data/`; the `DATA_DIR` setting is currently unused.
 
-## Current limitations and future work
+### Implementation notes
 
-- **No durable storage.** Backend drafts disappear on restart. Frontend edits and review statuses are not saved to the backend and disappear on page reload; regeneration also clears local overrides.
-- **No export or publishing.** Approval only changes local status to `Reviewed`. Export screens under `stitch/` are mockups.
-- **Future work:** documentation-update suggestions.
-- **Batch input only.** Records must already be normalized. There are no platform connectors, live ingestion, background jobs, or incremental embedding cache.
-- **No published evaluations or benchmarks** for answer accuracy, clustering quality, or throughput.
-- **Local prototype deployment.** The API has no authentication and uses permissive CORS.
+- [Grouping](backend/core/clustering.py) uses SciPy's average-linkage hierarchical clustering with cosine distance. The threshold applies to grouping, so not every pair must meet it. Comparing all pairs requires memory that grows with the square of the case count.
+- [FAQ generation](backend/core/faq_generation.py) checks the answer structure with Pydantic and attaches case IDs and summaries. Bulk generation returns a `failures` array for groups it could not process.
+- [Embedding](backend/core/embeddings_protocol.py) and [text-generation](backend/core/llm_protocol.py) interfaces support Gemini and local mocks. Mock comparisons use hash-derived vectors rather than semantic meaning.
+- [Gemini error handling](backend/core/circuit_breaker.py) retries temporary failures and pauses further calls after repeated failures. Retries block the current operation. Failures while comparing cases can prevent startup; failed group naming uses fallback labels.
+- The API allows requests from any origin (permissive CORS) and has no authentication. Embeddings and drafts are not stored permanently.
+
+</details>
