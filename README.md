@@ -4,6 +4,10 @@ SupportAI is a local MVP that turns solved support cases into FAQ drafts for hum
 
 The repository implements the FAQ workflow with a Python/FastAPI backend and an Angular frontend. Documentation update suggestions remain future work.
 
+![FAQ detail showing a generated draft alongside three supporting cases and review controls](docs/images/faq-detail.png)
+
+*Running app with synthetic cases and mock providers. Confidence reflects repeated-text cluster similarity, not answer accuracy; this demonstrates the interface, not measured AI quality or production readiness.*
+
 ## Workflow
 
 1. **Load solved cases.** At startup, the backend validates JSON files in `backend/data/`, logs invalid entries, and keeps resolved cases.
@@ -23,6 +27,10 @@ Restart the backend after changing input files. FAQ generation is triggered sepa
 [Clustering](backend/core/clustering.py) uses SciPy's average-linkage hierarchical clustering over pairwise cosine distances. A similarity setting controls where the clustering tree is cut; a minimum-size filter then removes small groups. Pairwise distance storage grows quadratically with the number of cases.
 
 The UI's **confidence score measures average similarity within a cluster, not answer accuracy**. Average linkage does not guarantee that every pair meets the configured threshold.
+
+![Standalone similarity matrix viewer showing four groups of synthetic cases with a 0.90 highlight threshold](docs/images/similarity-matrix.png)
+
+*Viewer loaded from `GET /similarity-matrix`: 12 synthetic cases in four repeated-text groups, using mock embeddings.*
 
 ### Structured generation with evidence
 
