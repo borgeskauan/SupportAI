@@ -6,7 +6,7 @@ The repository implements the FAQ workflow with a Python/FastAPI backend and an 
 
 ![FAQ detail showing a generated draft alongside three supporting cases and review controls](docs/images/faq-detail.png)
 
-*Running app with synthetic cases and mock providers. Confidence reflects repeated-text cluster similarity, not answer accuracy; this demonstrates the interface, not measured AI quality or production readiness.*
+*FAQ draft and supporting case evidence in the running app. Synthetic demo data with mock providers.*
 
 ## Workflow
 
@@ -30,7 +30,7 @@ The UI's **confidence score measures average similarity within a cluster, not an
 
 ![Standalone similarity matrix viewer showing four groups of synthetic cases with a 0.90 highlight threshold](docs/images/similarity-matrix.png)
 
-*Viewer loaded from `GET /similarity-matrix`: 12 synthetic cases in four repeated-text groups, using mock embeddings.*
+*Similarity matrix for 12 synthetic demo cases in four repeated-text groups, loaded from `GET /similarity-matrix` using mock embeddings.*
 
 ### Structured generation with evidence
 
