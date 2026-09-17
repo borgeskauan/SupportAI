@@ -6,7 +6,9 @@ This local prototype is built with Python/FastAPI and Angular. The interface is 
 
 ![FAQ detail showing a generated draft alongside three supporting cases and review controls](docs/images/faq-detail.png)
 
-*A FAQ draft beside its supporting cases. Captured in the running app with synthetic cases and local demo mode.*
+*Synthetic cases and deterministic mock output demonstrate the review workflow. Confidence measures case similarity, not answer accuracy.*
+
+[Run this demo locally](docs/developer-reference.md#run-the-receipt-demo) without an API key.
 
 ## How it works
 
@@ -27,9 +29,9 @@ The app groups cases based on how similar their summaries and resolutions are. A
 
 The separate similarity viewer shows these comparisons as a color grid. Click a cell to inspect the two cases it compares.
 
-![Standalone similarity matrix viewer showing four groups of synthetic cases with a 0.90 highlight threshold](docs/images/similarity-matrix.png)
+![Similarity matrix showing three related receipt cases, three unrelated cases, and a selected comparison with their resolutions](docs/images/similarity-matrix.png)
 
-*Twelve synthetic cases in four groups with repeated text. Captured in the standalone viewer using data from the app's local demo mode.*
+*Six varied synthetic cases with deterministic mock similarities. The selected comparison shows two receipt cases and their distinct resolutions.*
 
 ### Drafts with supporting evidence
 

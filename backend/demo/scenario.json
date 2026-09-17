@@ -1,0 +1,79 @@
+{
+  "label": "Missing receipt after successful payment",
+  "case_ids": ["receipt_01", "receipt_02", "receipt_03"],
+  "faq": {
+    "title": "My payment went through. Where is my receipt?",
+    "problem_statement": "Your payment is confirmed, but you cannot find the receipt or confirmation email.",
+    "cause_explanation": "In these cases, the email was in spam, arrived later, or needed to be resent after support verified the email address.",
+    "step_by_step_fix": [
+      "Check your spam folder for the receipt and confirm its order reference.",
+      "Verify that the order or payment is confirmed. Ask support if you are unsure.",
+      "Allow for an email delay; a confirmation email can arrive after payment succeeds.",
+      "If the receipt is still missing, contact support to verify your email address and resend it."
+    ],
+    "edge_cases": ["A missing receipt alone is not a reason to repeat a confirmed payment."],
+    "when_to_contact_support": "Contact support if you cannot confirm the payment status or still need the receipt after checking spam and allowing for a delay."
+  },
+  "records": [
+    {
+      "id": "receipt_01",
+      "source_type": "ticket",
+      "created_at": "2026-09-11T10:15:00Z",
+      "status": "resolved",
+      "case_summary": "Payment succeeded, but the customer could not find the receipt.",
+      "resolution_text": "Support located the receipt in the spam folder and confirmed its order reference.",
+      "product_area": "checkout",
+      "tags": ["synthetic-demo", "receipt"]
+    },
+    {
+      "id": "receipt_02",
+      "source_type": "chat_log",
+      "created_at": "2026-09-12T14:30:00Z",
+      "status": "resolved",
+      "case_summary": "The order showed as paid while its confirmation email was delayed.",
+      "resolution_text": "Support verified the payment and confirmed the email arrived later; no second payment was needed.",
+      "product_area": "checkout",
+      "tags": ["synthetic-demo", "receipt"]
+    },
+    {
+      "id": "receipt_03",
+      "source_type": "escalation",
+      "created_at": "2026-09-13T09:45:00Z",
+      "status": "resolved",
+      "case_summary": "Payment was confirmed, but the receipt email had not arrived.",
+      "resolution_text": "Support verified the customer's email address and resent the receipt successfully.",
+      "product_area": "checkout",
+      "tags": ["synthetic-demo", "receipt"]
+    },
+    {
+      "id": "reset_01",
+      "source_type": "ticket",
+      "created_at": "2026-09-11T13:00:00Z",
+      "status": "resolved",
+      "case_summary": "A password reset link expired before the customer could sign in.",
+      "resolution_text": "Support requested a fresh reset email and the customer signed in using its link.",
+      "product_area": "identity",
+      "tags": ["synthetic-demo", "password"]
+    },
+    {
+      "id": "refund_01",
+      "source_type": "chat_log",
+      "created_at": "2026-09-12T11:00:00Z",
+      "status": "resolved",
+      "case_summary": "A returned item was received but the refund had not appeared.",
+      "resolution_text": "Support confirmed the refund had been issued and the customer later confirmed receiving it.",
+      "product_area": "billing",
+      "tags": ["synthetic-demo", "refund"]
+    },
+    {
+      "id": "track_01",
+      "source_type": "escalation",
+      "created_at": "2026-09-13T16:00:00Z",
+      "status": "resolved",
+      "case_summary": "Parcel tracking stopped updating after the package left the warehouse.",
+      "resolution_text": "Support checked the carrier's latest scan and shared the current tracking status.",
+      "product_area": "shipping",
+      "tags": ["synthetic-demo", "tracking"]
+    }
+  ]
+}

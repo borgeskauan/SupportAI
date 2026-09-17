@@ -4,8 +4,10 @@ import logging
 import json
 import re
 from collections import Counter
+from itertools import permutations
 from typing import Optional
 
+from backend.demo import load_scenario, receipt_records
 
 logger = logging.getLogger(__name__)
 
@@ -55,6 +57,9 @@ class MockLLM:
             # Extract numbered cluster summaries from prompt
             summaries = self._extract_summaries(prompt)
 
+            if self._matches_receipt_scenario(prompt, include_resolutions=False):
+                return load_scenario()["label"]
+
             if not summaries:
                 logger.warning("No summaries found in prompt, returning generic label")
                 return "Support Issues"
@@ -79,8 +84,31 @@ class MockLLM:
         prompt_lower = prompt.lower()
         return "customer support content writer" in prompt_lower and "return only valid json" in prompt_lower
 
+    def _matches_receipt_scenario(self, prompt: str, *, include_resolutions: bool) -> bool:
+        """Match the complete three-case block; never ignore extra evidence lines."""
+        heading = "Supporting cases:\n" if include_resolutions else "Cluster summaries:\n"
+        # FAQ prompts currently use literal \\n separators. Accept both forms.
+        _, found, supplied = prompt.replace("\\n", "\n").partition(heading)
+        if not found:
+            return False
+        # There are only three fixture cases (six orders). Full-block comparison
+        # avoids a partial parser silently dropping multiline or extra cases.
+        for records in permutations(receipt_records()):
+            lines = []
+            for i, record in enumerate(records, start=1):
+                if include_resolutions:
+                    lines.append(f'{i}. issue: {record["case_summary"]}\n   resolution: {record["resolution_text"]}')
+                else:
+                    lines.append(f'{i}. {record["case_summary"]}')
+            if supplied.strip() == "\n".join(lines):
+                return True
+        return False
+
     def _generate_mock_faq_json(self, prompt: str) -> str:
         """Generate deterministic JSON FAQ content for local development."""
+        if self._matches_receipt_scenario(prompt, include_resolutions=True):
+            return json.dumps(load_scenario()["faq"])
+
         summaries = self._extract_summaries(prompt)
         title_topic = summaries[0] if summaries else "my issue"
         short_topic = title_topic[:80].rstrip(".")
